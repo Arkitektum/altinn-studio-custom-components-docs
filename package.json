@@ -1,4 +1,12 @@
 {
   "name": "altinn-studio-custom-components-docs",
-  "packageManager": "yarn@4.5.0"
+  "packageManager": "yarn@4.5.0",
+  "devDependencies": {
+    "css-minimizer-webpack-plugin": "^8.0.0",
+    "html-webpack-plugin": "^5.6.6",
+    "mini-css-extract-plugin": "^2.10.1",
+    "webpack": "^5.105.4",
+    "webpack-cli": "^7.0.1",
+    "webpack-dev-server": "^5.2.3"
+  }
 }

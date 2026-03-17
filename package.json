@@ -10,5 +10,8 @@
     "webpack": "^5.105.4",
     "webpack-cli": "^7.0.1",
     "webpack-dev-server": "^5.2.3"
+    },
+    "dependencies": {
+        "@arkitektum/altinn-studio-custom-components": "^13.10.2"
   }
 }

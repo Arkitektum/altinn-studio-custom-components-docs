@@ -94,7 +94,7 @@ export function getResults(componentExamples, dataModels) {
  */
 globalThis.onload = async function () {
     globalThis.textResources = textResources;
-    globalThis.defaultTextResources = defaultTextResources; //await fetchDefaultTextResources("nb");
+    globalThis.defaultTextResources = defaultTextResources;
     const results = getResults(componentExamples, dataModels);
     renderResults(results);
     renderSidebar(results);

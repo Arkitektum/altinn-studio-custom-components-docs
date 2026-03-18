@@ -5,6 +5,13 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
+"@arkitektum/altinn-studio-custom-components-utils@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@arkitektum/altinn-studio-custom-components-utils@npm:1.2.0"
+  checksum: 10c0/1b4232b7643254a059d15bc73e54ea6f9fa69833c355381b92d8b0a2f9660b3e29734c3e93c99407ae7d9333613a7e94e810af4db0e68e0232adf6b7de0e4148
+  languageName: node
+  linkType: hard
+
 "@arkitektum/altinn-studio-custom-components@npm:^13.10.2":
   version: 13.10.2
   resolution: "@arkitektum/altinn-studio-custom-components@npm:13.10.2"
@@ -1093,6 +1100,7 @@ __metadata:
   resolution: "altinn-studio-custom-components-docs@workspace:."
   dependencies:
     "@arkitektum/altinn-studio-custom-components": "npm:^13.10.2"
+    "@arkitektum/altinn-studio-custom-components-utils": "npm:^1.2.0"
     css-loader: "npm:^7.1.4"
     css-minimizer-webpack-plugin: "npm:^8.0.0"
     highlight.js: "npm:^11.11.1"

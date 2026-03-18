@@ -1,3 +1,6 @@
+// Dependencies
+import { appendChildren, hasValue } from "@arkitektum/altinn-studio-custom-components-utils";
+
 // Global functions
 import { getComponentNameFromTagName, getComponentTypeNameFromKey } from "./helpers.js";
 
@@ -6,7 +9,6 @@ import iconBrick from "../assets/svg/brick.svg";
 import iconCodeBlocks from "../assets/svg/code-blocks.svg";
 import iconDataObject from "../assets/svg/data-object.svg";
 import iconDictionary from "../assets/svg/dictionary.svg";
-import { appendChildren, hasValue } from "./common.js";
 
 /**
  * Renders a markup example for a component as a collapsible <details> element.

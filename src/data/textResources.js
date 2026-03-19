@@ -71,7 +71,7 @@ export default {
         },
         {
             id: "resource.customSummation.areaEquals.title",
-            value: "Areal som skal byggesesakbehandles"
+            value: "Areal som skal byggesakbehandles"
         },
         {
             id: "resource.arbeidsplasser.title",

@@ -12,10 +12,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkitektum/altinn-studio-custom-components@npm:^13.10.2":
-  version: 13.10.2
-  resolution: "@arkitektum/altinn-studio-custom-components@npm:13.10.2"
-  checksum: 10c0/e7b6fac17b45bbb53050d8b30705e88861717fdce0e59ab33dfb9ebf21013f650acad85eae802ebf95739056cd963ee707c90fa3b8330667db3ae09af2cb746d
+"@arkitektum/altinn-studio-custom-components-utils@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "@arkitektum/altinn-studio-custom-components-utils@npm:1.2.1"
+  checksum: 10c0/ad816460932ecdc955f19c3724a207411a9a65f01def6cb9f1b7909e8fe12c0d48681fca242a71ccf0c73065d23a73b6cf68b983e80e3fee4eaeb46ceeb130bb
+  languageName: node
+  linkType: hard
+
+"@arkitektum/altinn-studio-custom-components@npm:^13.12.0":
+  version: 13.12.0
+  resolution: "@arkitektum/altinn-studio-custom-components@npm:13.12.0"
+  dependencies:
+    "@arkitektum/altinn-studio-custom-components-utils": "npm:^1.2.0"
+  checksum: 10c0/bec8d4631f9240a938d56eea3eeb06664bf59f4dedf06e24eced83d3bb5c64386d7ce3dca065334c3e5355f762a6fb9052bdb7551ec80e039705adbea1b14b2a
   languageName: node
   linkType: hard
 
@@ -1232,8 +1241,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "altinn-studio-custom-components-docs@workspace:."
   dependencies:
-    "@arkitektum/altinn-studio-custom-components": "npm:^13.10.2"
-    "@arkitektum/altinn-studio-custom-components-utils": "npm:^1.2.0"
+    "@arkitektum/altinn-studio-custom-components": "npm:^13.12.0"
+    "@arkitektum/altinn-studio-custom-components-utils": "npm:^1.2.1"
     "@eslint/js": "npm:^10.0.1"
     css-loader: "npm:^7.1.4"
     css-minimizer-webpack-plugin: "npm:^8.0.0"

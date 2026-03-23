@@ -29,6 +29,7 @@ export default {
     "custom-summation-arealdisponering": "Arealdisponering",
     "custom-summation-data": "Data",
     "custom-group-adkomst": "Adkomst",
+    "custom-group-ansvarsrett-erklaeringer": "Ansvarsrettserklæringer",
     "custom-group-avloep": "Avløp",
     "custom-group-ettersending": "Ettersending",
     "custom-group-loefteinnretninger": "Løfteinnretninger",

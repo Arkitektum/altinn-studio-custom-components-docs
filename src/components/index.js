@@ -41,6 +41,7 @@ import customSummationData from "./summation/custom-summation-data.js";
 
 // Group
 import customGroupAdkomst from "./group/custom-group-adkomst.js";
+import customGroupAnsvarsrettErklaeringer from "./group/custom-group-ansvarsrett-erklaeringer.js";
 import customGroupAvloep from "./group/custom-group-avloep.js";
 import customGroupEttersending from "./group/custom-group-ettersending.js";
 import customGroupLoefteinnretninger from "./group/custom-group-loefteinnretninger.js";
@@ -108,6 +109,7 @@ export const summation = { customSummationArealdisponering, customSummationData 
 
 export const group = {
     customGroupAdkomst,
+    customGroupAnsvarsrettErklaeringer,
     customGroupAvloep,
     customGroupEttersending,
     customGroupLoefteinnretninger,

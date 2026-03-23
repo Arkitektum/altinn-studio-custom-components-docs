@@ -440,6 +440,46 @@ export default [
                         kodebeskrivelse: "Vegtype 1 beskrivelse"
                     }
                 },
+                ansvarsrettErklaering: [
+                    {
+                        beskrivelseAvAnsvarsomraadet: "Strukturell sikkerhet",
+                        dekkesOmraadeAvSentralGodkjenning: true,
+                        faseSamsvarKontroll: {
+                            harSamsvarKontrollVedFerdigattest: false,
+                            harSamsvarKontrollVedIgangsettingstillatelse: true,
+                            harSamsvarKontrollVedMidlertidigBrukstillatelse: true,
+                            harSamsvarKontrollVedRammetillatelse: true
+                        },
+                        funksjon: {
+                            kodeverdi: "KONTROLL",
+                            kodebeskrivelse: "Ansvarlig kontrollerende"
+                        },
+                        soeknadssystemetsReferanse: "123456789",
+                        tiltaksklasse: {
+                            kodeverdi: "1",
+                            kodebeskrivelse: "Tiltaksklasse 1"
+                        }
+                    },
+                    {
+                        beskrivelseAvAnsvarsomraadet: "Brannsikkerhet",
+                        dekkesOmraadeAvSentralGodkjenning: false,
+                        faseSamsvarKontroll: {
+                            harSamsvarKontrollVedFerdigattest: true,
+                            harSamsvarKontrollVedIgangsettingstillatelse: true,
+                            harSamsvarKontrollVedMidlertidigBrukstillatelse: true,
+                            harSamsvarKontrollVedRammetillatelse: false
+                        },
+                        funksjon: {
+                            kodeverdi: "UTFØRENDE",
+                            kodebeskrivelse: "Ansvarlig utførende"
+                        },
+                        soeknadssystemetsReferanse: "987654321",
+                        tiltaksklasse: {
+                            kodeverdi: "2",
+                            kodebeskrivelse: "Tiltaksklasse 2"
+                        }
+                    }
+                ],
                 avloep: {
                     harTinglystErklaering: true,
                     krysserAvloepAnnensGrunn: false,

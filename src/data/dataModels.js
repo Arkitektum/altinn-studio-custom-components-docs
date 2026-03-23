@@ -29,6 +29,20 @@ export default [
                     saksaar: 2024,
                     sakssekvensnummer: 12345
                 },
+                listData: [
+                    {
+                        label: "Element 1",
+                        value: "Verdi for element 1"
+                    },
+                    {
+                        label: "Element 2",
+                        value: "Verdi for element 2"
+                    },
+                    {
+                        label: "Element 3",
+                        value: "Verdi for element 3"
+                    }
+                ],
                 part: {
                     partstype: {
                         kodeverdi: "Foretak",

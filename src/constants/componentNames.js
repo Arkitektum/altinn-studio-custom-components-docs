@@ -10,6 +10,7 @@ export default {
     "custom-field-data": "Data",
     "custom-field-kode": "Kode",
     "custom-field-kommunens-saksnummer": "Kommunens saksnummer",
+    "custom-field-list-data": "Feltliste",
     "custom-field-part-navn": "Part navn",
     "custom-field-prosjekt": "Prosjekt",
     "custom-field-telefonnummer": "Telefonnummer",

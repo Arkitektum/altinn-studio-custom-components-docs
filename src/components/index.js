@@ -6,6 +6,7 @@ import customFieldCountData from "./field/custom-field-count-data.js";
 import customFieldData from "./field/custom-field-data.js";
 import customFieldKode from "./field/custom-field-kode.js";
 import customFieldKommunensSaksnummer from "./field/custom-field-kommunens-saksnummer.js";
+import customFieldListData from "./field/custom-field-list-data.js";
 import customFieldPartNavn from "./field/custom-field-part-navn.js";
 import customFieldProsjekt from "./field/custom-field-prosjekt.js";
 import customFieldTelefonnummer from "./field/custom-field-telefonnummer.js";
@@ -75,6 +76,7 @@ export const field = {
     customFieldData,
     customFieldKode,
     customFieldKommunensSaksnummer,
+    customFieldListData,
     customFieldPartNavn,
     customFieldProsjekt,
     customFieldTelefonnummer,

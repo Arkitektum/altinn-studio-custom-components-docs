@@ -5,19 +5,19 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"@arkitektum/altinn-studio-custom-components-utils@npm:^1.2.0, @arkitektum/altinn-studio-custom-components-utils@npm:^1.2.2":
+"@arkitektum/altinn-studio-custom-components-utils@npm:^1.2.2":
   version: 1.2.2
   resolution: "@arkitektum/altinn-studio-custom-components-utils@npm:1.2.2"
   checksum: 10c0/7db47cc62efa3f7749bbc370b83ed00efe121ce5a19dbf74806eaf8d5d9981e3b8dd00aabf90f8785e955c1d01d29bccc27142858359b9d969cb6b2cff502845
   languageName: node
   linkType: hard
 
-"@arkitektum/altinn-studio-custom-components@npm:^13.12.0":
-  version: 13.12.0
-  resolution: "@arkitektum/altinn-studio-custom-components@npm:13.12.0"
+"@arkitektum/altinn-studio-custom-components@npm:^13.13.1":
+  version: 13.13.1
+  resolution: "@arkitektum/altinn-studio-custom-components@npm:13.13.1"
   dependencies:
-    "@arkitektum/altinn-studio-custom-components-utils": "npm:^1.2.0"
-  checksum: 10c0/bec8d4631f9240a938d56eea3eeb06664bf59f4dedf06e24eced83d3bb5c64386d7ce3dca065334c3e5355f762a6fb9052bdb7551ec80e039705adbea1b14b2a
+    "@arkitektum/altinn-studio-custom-components-utils": "npm:^1.2.2"
+  checksum: 10c0/cfd06b977b137ffd51a4b50b7ba5ced21697511a1ab6252059f5508f5693c8c17ad926cb38011e16d67431dcf506d3079d4bed1faa06eb5ef2df2607246e7c68
   languageName: node
   linkType: hard
 
@@ -1234,7 +1234,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "altinn-studio-custom-components-docs@workspace:."
   dependencies:
-    "@arkitektum/altinn-studio-custom-components": "npm:^13.12.0"
+    "@arkitektum/altinn-studio-custom-components": "npm:^13.13.1"
     "@arkitektum/altinn-studio-custom-components-utils": "npm:^1.2.2"
     "@eslint/js": "npm:^10.0.1"
     css-loader: "npm:^7.1.4"
@@ -2111,9 +2111,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.5.263":
-  version: 1.5.321
-  resolution: "electron-to-chromium@npm:1.5.321"
-  checksum: 10c0/1272703857b8ac9868a75d495c141b71bad36adcb0df53393196da3819012fa2596ba48fccac750bdcb746a523d2a33543b36e9dc0ae727a55e7a6f00b2b155a
+  version: 1.5.322
+  resolution: "electron-to-chromium@npm:1.5.322"
+  checksum: 10c0/f8f338389879aae117143a7e28601b8129a51ff82bc641303c0def61ec68833828ca39f5252de30c0b0faf2139ce45ec16a126a6e02df4e7a1db9a138c5b024c
   languageName: node
   linkType: hard
 
@@ -3888,16 +3888,16 @@ __metadata:
   linkType: hard
 
 "picomatch@npm:^2.0.4, picomatch@npm:^2.2.1, picomatch@npm:^2.3.1":
-  version: 2.3.1
-  resolution: "picomatch@npm:2.3.1"
-  checksum: 10c0/26c02b8d06f03206fc2ab8d16f19960f2ff9e81a658f831ecb656d8f17d9edc799e8364b1f4a7873e89d9702dff96204be0fa26fe4181f6843f040f819dac4be
+  version: 2.3.2
+  resolution: "picomatch@npm:2.3.2"
+  checksum: 10c0/a554d1709e59be97d1acb9eaedbbc700a5c03dbd4579807baed95100b00420bc729335440ef15004ae2378984e2487a7c1cebd743cfdb72b6fa9ab69223c0d61
   languageName: node
   linkType: hard
 
 "picomatch@npm:^4.0.3":
-  version: 4.0.3
-  resolution: "picomatch@npm:4.0.3"
-  checksum: 10c0/9582c951e95eebee5434f59e426cddd228a7b97a0161a375aed4be244bd3fe8e3a31b846808ea14ef2c8a2527a6eeab7b3946a67d5979e81694654f939473ae2
+  version: 4.0.4
+  resolution: "picomatch@npm:4.0.4"
+  checksum: 10c0/e2c6023372cc7b5764719a5ffb9da0f8e781212fa7ca4bd0562db929df8e117460f00dff3cb7509dacfc06b86de924b247f504d0ce1806a37fac4633081466b0
   languageName: node
   linkType: hard
 
@@ -4939,22 +4939,22 @@ __metadata:
   linkType: hard
 
 "tapable@npm:^2.0.0, tapable@npm:^2.2.1, tapable@npm:^2.3.0":
-  version: 2.3.0
-  resolution: "tapable@npm:2.3.0"
-  checksum: 10c0/cb9d67cc2c6a74dedc812ef3085d9d681edd2c1fa18e4aef57a3c0605fdbe44e6b8ea00bd9ef21bc74dd45314e39d31227aa031ebf2f5e38164df514136f2681
+  version: 2.3.2
+  resolution: "tapable@npm:2.3.2"
+  checksum: 10c0/45ec8bd8963907f35bba875f9b3e9a5afa5ba11a9a4e4a2d7b2313d983cb2741386fd7dd3e54b13055b2be942971aac369d197e02263ec9216c59c0a8069ed7f
   languageName: node
   linkType: hard
 
 "tar@npm:^7.5.4":
-  version: 7.5.12
-  resolution: "tar@npm:7.5.12"
+  version: 7.5.13
+  resolution: "tar@npm:7.5.13"
   dependencies:
     "@isaacs/fs-minipass": "npm:^4.0.0"
     chownr: "npm:^3.0.0"
     minipass: "npm:^7.1.2"
     minizlib: "npm:^3.1.0"
     yallist: "npm:^5.0.0"
-  checksum: 10c0/3825c5974f5fde792981f47ee9ffea021ee7f4b552b7ab95eeb98e5dfadfd5a5d5861f01fb772e2e5637a41980d3c019fd6cdad1be48b462b886abd7fe0fa17c
+  checksum: 10c0/5c65b8084799bde7a791593a1c1a45d3d6ee98182e3700b24c247b7b8f8654df4191642abbdb07ff25043d45dcff35620827c3997b88ae6c12040f64bed5076b
   languageName: node
   linkType: hard
 

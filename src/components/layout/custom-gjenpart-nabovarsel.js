@@ -22,8 +22,8 @@ const defaultResourceBindings = {
     naboGjenboerEiendom: {
         title: "resource.naboGjenboer.title"
     },
-    soeknadGjelderHeader: {
-        title: "resource.soeknadGjelder.title"
+    metadataProsjektnavn: {
+        title: "resource.metadata.prosjekt.title"
     },
     eiendomByggested: {
         title: "resource.eiendomByggested.eiendom.title"
@@ -59,15 +59,15 @@ const defaultResourceBindings = {
     eiendomMatrikkelinformasjon: {
         title: "resource.eiendom.matrikkelinformasjon.title"
     },
-    detVarslesHervedOmHeader: {
-        title: "resource.detVarslesHervedOm.title"
+    detErVarsletOm: {
+        title: "resource.detErVarsletOm.title"
     },
     soeknadGjelderType: {
-        title: "resource.soeknadGjelder.type.title",
+        title: "resource.soeknadGjelder.type.kode.kodebeskrivelse",
         emptyFieldText: "resource.emptyFieldText.default"
     },
     soeknadGjelderBrukTiltaksformaal: {
-        title: "resource.soeknadGjelder.bruk.tiltaksformaal.title",
+        title: "resource.soeknadGjelder.bruk.tiltaksformaal.kode.kodebeskrivelse",
         emptyFieldText: "resource.emptyFieldText.default"
     },
     soeknadGjelderBrukBeskrivPlanlagtFormaal: {
@@ -82,9 +82,6 @@ const defaultResourceBindings = {
     },
     planerGjeldendePlanPlantype: {
         title: "resource.planer.gjeldendePlan.plantype.title"
-    },
-    spoersmaalRettesTil: {
-        title: "resource.spoersmaalRettesTil.title"
     },
     kontaktpersonForNabovarselet: {
         title: "resource.kontaktpersonForNabovarselet.title",
@@ -102,42 +99,11 @@ const defaultResourceBindings = {
         title: "resource.part.epost.title",
         emptyFieldText: "resource.emptyFieldText.default"
     },
-    merknaderSendesTil: {
-        title: "resource.merknaderSendesTil.title"
-    },
     ansvarligSoeker: {
         title: "resource.ansvarligSoeker.title"
     },
-    ansvarligSoekerNavn: {
-        title: "resource.part.navn.title",
-        emptyFieldText: "resource.emptyFieldText.default"
-    },
-    ansvarligSoekerTelefonnummer: {
-        title: "resource.part.telefonnummer.title",
-        emptyFieldText: "resource.emptyFieldText.default"
-    },
-    ansvarligSoekerEpost: {
-        title: "resource.part.epost.title",
-        emptyFieldText: "resource.emptyFieldText.default"
-    },
     tiltakshaver: {
         title: "resource.tiltakshaver.title"
-    },
-    tiltakshaverNavn: {
-        title: "resource.part.navn.title",
-        emptyFieldText: "resource.emptyFieldText.default"
-    },
-    tiltakshaverTelefonnummer: {
-        title: "resource.part.telefonnummer.title",
-        emptyFieldText: "resource.emptyFieldText.default"
-    },
-    tiltakshaverEpost: {
-        title: "resource.part.epost.title",
-        emptyFieldText: "resource.emptyFieldText.default"
-    },
-    eiendomMatrikkelinformasjonAdresse: {
-        title: "resource.eiendom.adresse.title",
-        emptyFieldText: "resource.emptyFieldText.address"
     },
     eiendomMatrikkelinformasjonEiendomsidentifikasjonGaardsnummer: {
         title: "resource.eiendom.gaardsnummer.title",

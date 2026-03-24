@@ -1723,6 +1723,9 @@ export default [
                         telefonnummer: "99887766",
                         epost: "kari.nordmann@example.com"
                     },
+                    metadata: {
+                        prosjektnavn: "Eksempelsak Nabovarsel"
+                    },
                     naboGjenboerEiendommer: {
                         naboGjenboerEiendom: [
                             {

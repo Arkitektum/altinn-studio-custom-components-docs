@@ -6,6 +6,7 @@ const markup = {
         ansvarligSoeker: "customLayout.gjenpartNabovarsel.ansvarligSoeker",
         eiendomByggested: "customLayout.gjenpartNabovarsel.eiendomByggested",
         kontaktpersonForNabovarselet: "customLayout.gjenpartNabovarsel.kontaktpersonForNabovarselet",
+        metadata: "customLayout.gjenpartNabovarsel.metadata",
         naboGjenboerEiendommer: "customLayout.gjenpartNabovarsel.naboGjenboerEiendommer",
         planer: "customLayout.gjenpartNabovarsel.planer",
         soeknadGjelder: "customLayout.gjenpartNabovarsel.soeknadGjelder",

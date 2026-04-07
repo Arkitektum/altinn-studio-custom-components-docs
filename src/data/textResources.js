@@ -126,6 +126,10 @@ export default {
             value: "Kommentar"
         },
         {
+            id: "resource.customTable.data.navn.title",
+            value: "Navn"
+        },
+        {
             id: "resource.naboGjenboer.eiendommer.eiendom.matrikkelinformasjon.emptyFieldText",
             value: "Ingen eiendommer registrert"
         },

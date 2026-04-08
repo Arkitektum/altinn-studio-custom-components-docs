@@ -3,26 +3,28 @@ const markup = {
     type: "Custom",
     tagName: "custom-dispensasjon",
     dataModelBindings: {
-        dispensasjonBeskrivelse: "customLayout.dispensasjon.dispensasjonBeskrivelse",
-        dispensasjonReferanse: "customLayout.dispensasjon.dispensasjonReferanse",
-        soeknadstype: "customLayout.dispensasjon.soeknadstype",
+        begrunnelse: "customLayout.dispensasjon.begrunnelse",
+        bestemmelsestype: "customLayout.dispensasjon.bestemmelsestype",
+        dispensasjonsbeskrivelse: "customLayout.dispensasjon.dispensasjonsbeskrivelse",
+        dispensasjonsreferanse: "customLayout.dispensasjon.dispensasjonsreferanse",
+        dispensasjonstema: "customLayout.dispensasjon.dispensasjonstema",
+        eiendomByggested: "customLayout.dispensasjon.eiendomByggested",
+        generelleVilkaar: "customLayout.dispensasjon.generelleVilkaar",
         kommunensSaksnummer: "customLayout.dispensasjon.kommunensSaksnummer",
         metadata: "customLayout.dispensasjon.metadata",
-        eiendomByggested: "customLayout.dispensasjon.eiendomByggested",
-        tiltakstyper: "customLayout.dispensasjon.tiltakstyper",
-        tiltakshaver: "customLayout.dispensasjon.tiltakshaver",
-        ansvarligSoeker: "customLayout.dispensasjon.ansvarligSoeker",
-        dispensasjonFra: "customLayout.dispensasjon.dispensasjonFra",
+        nasjonalArealplanId: "customLayout.dispensasjon.nasjonalArealplanId",
+        paragrafnummer: "customLayout.dispensasjon.paragrafnummer",
+        plannavn: "customLayout.dispensasjon.plannavn",
         stedfesting: "customLayout.dispensasjon.stedfesting",
-        varighet: "customLayout.dispensasjon.varighet",
-        begrunnelse: "customLayout.dispensasjon.begrunnelse",
-        generelleVilkaar: "customLayout.dispensasjon.generelleVilkaar"
+        tiltakshaver: "customLayout.dispensasjon.tiltakshaver",
+        tiltakstyper: "customLayout.dispensasjon.tiltakstyper",
+        varighet: "customLayout.dispensasjon.varighet"
     }
 };
 
 const defaultResourceBindings = {
-    dispensasjonReferanse: {
-        title: "resource.dispensasjon.dispensasjonReferanse.title"
+    dispensasjonsreferanse: {
+        title: "resource.dispensasjon.dispensasjonsreferanse.title"
     },
     metadataFtbId: {
         title: "resource.metadata.ftbId.title"
@@ -33,38 +35,100 @@ const defaultResourceBindings = {
     soeknadGjelderHeader: {
         title: "resource.soeknadGjelder.title"
     },
-    tiltakstyperTypeHeader: {
+    eiendomByggested: {
+        title: "resource.eiendomByggested.eiendom.title"
+    },
+    adresse: {
+        title: "resource.eiendom.adresse.title",
+        emptyFieldText: "resource.emptyFieldText.address"
+    },
+    eiendomsidentifikasjonGaardsnummer: {
+        title: "resource.eiendom.gaardsnummer.title",
+        emptyFieldText: "resource.emptyFieldText.default"
+    },
+    eiendomsidentifikasjonBruksnummer: {
+        title: "resource.eiendom.bruksnummer.title",
+        emptyFieldText: "resource.emptyFieldText.default"
+    },
+    eiendomsidentifikasjonSeksjonsnummer: {
+        title: "resource.eiendom.seksjonsnummer.title",
+        emptyFieldText: "resource.emptyFieldText.default"
+    },
+    eiendomsidentifikasjonFestenummer: {
+        title: "resource.eiendom.festenummer.title",
+        emptyFieldText: "resource.emptyFieldText.default"
+    },
+    bolignummer: {
+        title: "resource.eiendom.bolignummer.title",
+        emptyFieldText: "resource.emptyFieldText.default"
+    },
+    bygningsnummer: {
+        title: "resource.eiendom.bygningsnummer.title",
+        emptyFieldText: "resource.emptyFieldText.default"
+    },
+    tiltakstyperHeader: {
         title: "resource.tiltakstyper.type.header"
     },
-    tiltakstyperTypeKode: {
+    tiltakstyperKode: {
         title: "resource.tiltakstyper.type.kode.title"
+    },
+    tiltakshaver: {
+        title: "resource.tiltakshaver.title"
+    },
+    tiltakshaverNavn: {
+        title: "resource.part.navn.title",
+        emptyFieldText: "resource.emptyFieldText.default"
+    },
+    tiltakshaverTelefonnummer: {
+        title: "resource.part.telefonnummer.title",
+        emptyFieldText: "resource.emptyFieldText.default"
+    },
+    tiltakshaverEpost: {
+        title: "resource.part.epost.title",
+        emptyFieldText: "resource.emptyFieldText.default"
     },
     tiltakshaverAdresse: {
         title: "resource.eiendom.adresse.title"
     },
-    ansvarligSoekerAdresse: {
+
+    tiltakshaverKontaktperson: {
+        title: "resource.tiltakshaver.kontaktperson.title"
+    },
+    tiltakshaverKontaktpersonNavn: {
+        title: "resource.part.navn.title",
+        emptyFieldText: "resource.emptyFieldText.default"
+    },
+    tiltakshaverKontaktpersonTelefonnummer: {
+        title: "resource.part.telefonnummer.title",
+        emptyFieldText: "resource.emptyFieldText.default"
+    },
+    tiltakshaverKontaktpersonEpost: {
+        title: "resource.part.epost.title",
+        emptyFieldText: "resource.emptyFieldText.default"
+    },
+    tiltakshaverKontaktpersonAdresse: {
         title: "resource.eiendom.adresse.title"
     },
-    dispensasjonBeskrivelseBeskrivelse: {
-        title: "resource.dispensasjonBeskrivelse.beskrivelse.title"
+    dispensasjonsbeskrivelse: {
+        title: "resource.dispensasjonsbeskrivelse.title"
     },
     dispensasjonFraHeader: {
         title: "resource.dispensasjonFra.header"
     },
-    dispensasjonPlanBestemmelseNavn: {
-        title: "resource.dispensasjonFra.dispensasjonPlanBestemmelse.navn.title"
+    plannavn: {
+        title: "resource.navn.title"
     },
     nasjonalArealplanIdPlanIdentifikasjon: {
         title: "resource.dispensasjonFra.nasjonalArealplanId.planidentifikasjon.title"
     },
-    bestemmelserType: {
-        title: "resource.dispensasjonFra.bestemmelserType.title"
+    bestemmelsestype: {
+        title: "resource.dispensasjonFra.bestemmelsestype.title"
     },
-    planBestemmelseNummerering: {
-        title: "resource.dispensasjonFra.dispensasjonPlanBestemmelse.planbestemmelse.nummerering.title"
+    paragrafnummer: {
+        title: "resource.planbestemmelse.title"
     },
-    stedfestingHeader: {
-        title: "resource.stedfesting.header"
+    stedfesting: {
+        title: "resource.stedfesting.title"
     },
     stedfestingPosisjonKoordinatsystem: {
         title: "resource.stedfesting.posisjon.koordinatsystem.title"
@@ -75,17 +139,17 @@ const defaultResourceBindings = {
     stedfestingVertikalnivaa: {
         title: "resource.stedfesting.vertikalnivaa.title"
     },
-    varighetHeader: {
-        title: "resource.varighet.header"
+    varighet: {
+        title: "resource.varighet.title"
     },
     varighetOenskesVarigDispensasjon: {
-        trueText: "resource.varighet.oenskesVarigDispensasjon.true.title"
+        trueText: "resource.varighet.oenskesVarigDispensasjon.trueText"
     },
     varighetOensketVarighetTil: {
         title: "resource.varighet.oensketVarighetTil.title"
     },
-    begrunnelseHeader: {
-        title: "resource.begrunnelse.header"
+    begrunnelse: {
+        title: "resource.begrunnelse.title"
     },
     begrunnelseHensynBakBestemmelsen: {
         title: "resource.begrunnelse.hensynBakBestemmelsen.title"

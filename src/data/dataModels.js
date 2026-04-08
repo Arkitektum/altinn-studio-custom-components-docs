@@ -1260,83 +1260,29 @@ export default [
             },
             customLayout: {
                 dispensasjon: {
-                    dispensasjonBeskrivelse: {
-                        dispensasjonTittel: {
-                            kodeverdi: "byggeGrense",
-                            kodebeskrivelse: "Byggegrenser"
+                    begrunnelse: {
+                        hensynBakBestemmelsen: "Bestemmelsen er satt for å sikre tilstrekkelig avstand til vei og naboeiendommer",
+                        vurderingHensynBakBestemmelsen:
+                            "I dette tilfellet vil plassering utenfor byggegrensen ikke medføre ulempe for omkringliggende eiendommer eller trafikk.",
+                        vurderingHensynOverordnet: "Nasjonale og regionale interesser blir ikke vesentlig tilsidesatt av av endringen.",
+                        fordeler: {
+                            effekt: ["Bedre utnyttelse av tomten", "Bevaring av eksisterende trær og grøntområder"]
                         },
-                        inngangsbeskrivelse: {
-                            kodeverdi: "byggeLinje",
-                            kodebeskrivelse: "Vi vil plassere tiltaket utenfor regulert byggelinje"
+                        ulemper: {
+                            effekt: ["Redusert mulighet for fremtidig utvidelse av veien"]
                         },
-                        annenInngangsbeskrivelse: "Jeg vil bygge i en sikrings-, støy- og faresone",
-                        beskrivelse:
-                            "Vi ønsker å plassere garasjen 4,9 meter fra tomtegrensen mot veien, for å unngå å felle det fine eiketreet i hagen."
+                        samletBegrunnelse: "Etter en helhetsvurdering mener vi at fordelene ved å gi dispensasjon veier tyngre enn ulempene."
                     },
-                    dispensasjonReferanse: "89fa33df-079a-407c-8371-4e85df5cf418",
-                    soeknadstype: {
-                        kodeverdi: "NV",
-                        kodebeskrivelse: "Nabovarsel"
+                    bestemmelsestype: {
+                        kodeverdi: "REG",
+                        kodebeskrivelse: "Reguleringsplan"
                     },
-                    kommunensSaksnummer: {
-                        saksaar: 2024,
-                        sakssekvensnummer: 12345
-                    },
-                    metadata: {
-                        fraSluttbrukersystem: "eByggesøknadssystem X",
-                        ftbId: "FTB123",
-                        prosjektnavn: "Eksempelsak Dispensasjon",
-                        prosjektnr: "2024-54-A",
-                        foretrukketSpraak: {
-                            kodeverdi: "nb",
-                            kodebeskrivelse: "Bokmål"
-                        }
-                    },
-                    tiltakshaver: {
-                        partstype: {
-                            kodeverdi: "Foretak",
-                            kodebeskrivelse: "Foretak"
-                        },
-                        foedselsnummer: null,
-                        organisasjonsnummer: "123456789",
-                        navn: "Organisasjon AS",
-                        adresse: {
-                            adresselinje1: "Organisasjonsvegen 1",
-                            adresselinje2: null,
-                            adresselinje3: null,
-                            postnr: "1234",
-                            poststed: "Eksempelbyen",
-                            landkode: "NO"
-                        },
-                        telefonnummer: "111223344",
-                        mobilnummer: "12034043",
-                        epost: "eksempel@organisasjon.no"
-                    },
-                    ansvarligSoeker: {
-                        partstype: {
-                            kodeverdi: "Person",
-                            kodebeskrivelse: "Person"
-                        },
-                        foedselsnummer: "01020312345",
-                        organisasjonsnummer: null,
-                        navn: "Ola Nordmann",
-                        adresse: {
-                            adresselinje1: "Søkervegen 2",
-                            adresselinje2: null,
-                            adresselinje3: null,
-                            postnr: "5678",
-                            poststed: "Søkerbyen",
-                            landkode: "NO"
-                        },
-                        telefonnummer: "99887766",
-                        mobilnummer: "91234567",
-                        epost: "ola.nordmann@eksempel.no",
-                        kontaktperson: {
-                            navn: "Kari Nordmann",
-                            telefonnummer: "99887766",
-                            mobilnummer: "91234567",
-                            epost: "kari.nordmann@eksempel.no"
-                        }
+                    dispensasjonsbeskrivelse:
+                        "Vi ønsker å plassere garasjen 4,9 meter fra tomtegrensen mot veien, for å unngå å felle det fine eiketreet i hagen.",
+                    dispensasjonsreferanse: "89fa33df-079a-407c-8371-4e85df5cf418",
+                    dispensasjonstema: {
+                        kodeverdi: "byggegrenseVei",
+                        kodebeskrivelse: "Byggegrense mot vei"
                     },
                     eiendomByggested: {
                         eiendom: [
@@ -1388,42 +1334,29 @@ export default [
                             }
                         ]
                     },
-                    tiltakstyper: {
-                        type: [
-                            {
-                                kodeverdi: "nybygg",
-                                kodebeskrivelse: "Nybygg"
-                            },
-                            {
-                                kodeverdi: "tilbygg",
-                                kodebeskrivelse: "Tilbygg"
-                            }
-                        ]
+                    generelleVilkaar: {
+                        norskSvenskDansk: true
                     },
-                    dispensasjonFra: {
-                        bestemmelserType: {
-                            kodeverdi: "reguleringsPlan",
-                            kodebeskrivelse: "Reguleringsplan"
-                        },
-                        dispensasjonPlanBestemmelse: {
-                            navn: "Reguleringsplan for Sentrum Øst",
-                            nasjonalArealplanId: {
-                                administrativEnhet: "0301",
-                                planidentifikasjon: "RP-2020-1234"
-                            },
-                            planbestemmelse: {
-                                nummerering: "8-9",
-                                overskrift: "Byggegrenser og plassering",
-                                bestemmelsestekst: "Bygninger skal plasseres innenfor angitte byggegrenser på plankartet."
-                            },
-                            gradAvUtnytting: "17",
-                            beregningsregelGradAvUtnytting: {
-                                kodeverdi: "annet",
-                                kodebeskrivelse: "Annet i m2"
-                            }
-                        },
-                        lovbestemmelse: "§ 29-4 i plan- og bygningsloven"
+                    kommunensSaksnummer: {
+                        saksaar: 2024,
+                        sakssekvensnummer: 12345
                     },
+                    metadata: {
+                        fraSluttbrukersystem: "eByggesøknadssystem X",
+                        ftbId: "FTB123",
+                        prosjektnavn: "Eksempelsak Dispensasjon",
+                        prosjektnr: "2024-54-A",
+                        foretrukketSpraak: {
+                            kodeverdi: "nb",
+                            kodebeskrivelse: "Bokmål"
+                        }
+                    },
+                    nasjonalArealplanId: {
+                        administrativEnhet: 3901,
+                        planidentifikasjon: 20210003
+                    },
+                    paragrafnummer: 3.1,
+                    plannavn: "Reguleringsplan for Stavern sentrum",
                     stedfesting: {
                         posisjon: {
                             type: null,
@@ -1440,25 +1373,41 @@ export default [
                             kodebeskrivelse: "På grunnen/vannoverflate"
                         }
                     },
+                    tiltakshaver: {
+                        partstype: {
+                            kodeverdi: "Foretak",
+                            kodebeskrivelse: "Foretak"
+                        },
+                        foedselsnummer: null,
+                        organisasjonsnummer: "123456789",
+                        navn: "Organisasjon AS",
+                        adresse: {
+                            adresselinje1: "Organisasjonsvegen 1",
+                            adresselinje2: null,
+                            adresselinje3: null,
+                            postnr: "1234",
+                            poststed: "Eksempelbyen",
+                            landkode: "NO"
+                        },
+                        telefonnummer: "111223344",
+                        mobilnummer: "12034043",
+                        epost: "eksempel@organisasjon.no"
+                    },
+                    tiltakstyper: {
+                        type: [
+                            {
+                                kodeverdi: "nybygg",
+                                kodebeskrivelse: "Nybygg"
+                            },
+                            {
+                                kodeverdi: "tilbygg",
+                                kodebeskrivelse: "Tilbygg"
+                            }
+                        ]
+                    },
                     varighet: {
                         oenskesVarigDispensasjon: true,
                         oensketVarighetTil: "2025-12-31T00:00:00"
-                    },
-                    begrunnelse: {
-                        hensynBakBestemmelsen: "Bestemmelsen er satt for å sikre tilstrekkelig avstand til vei og naboeiendommer",
-                        vurderingHensynBakBestemmelsen:
-                            "I dette tilfellet vil plassering utenfor byggegrensen ikke medføre ulempe for omkringliggende eiendommer eller trafikk.",
-                        vurderingHensynOverordnet: "Nasjonale og regionale interesser blir ikke vesentlig tilsidesatt av av endringen.",
-                        fordeler: {
-                            effekt: ["Bedre utnyttelse av tomten", "Bevaring av eksisterende trær og grøntområder"]
-                        },
-                        ulemper: {
-                            effekt: ["Redusert mulighet for fremtidig utvidelse av veien"]
-                        },
-                        samletBegrunnelse: "Etter en helhetsvurdering mener vi at fordelene ved å gi dispensasjon veier tyngre enn ulempene."
-                    },
-                    generelleVilkaar: {
-                        norskSvenskDansk: true
                     }
                 },
                 dispensasjonsvarsel: {

@@ -1579,8 +1579,8 @@ export default [
                         hovedinnsendingsnummer: "2024-78910-A"
                     },
                     kommunensSaksnummer: {
-                        saksaar: "2004",
-                        sakssekvensnummer: "456"
+                        saksaar: 2004,
+                        sakssekvensnummer: 456
                     },
                     eiendomByggested: {
                         eiendom: [

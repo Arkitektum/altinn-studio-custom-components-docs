@@ -314,7 +314,7 @@ export default [
                                 festenummer: 0,
                                 seksjonsnummer: 0
                             },
-                            address: {
+                            addresse: {
                                 adresselinje1: "",
                                 adresselinje2: "",
                                 adresselinje3: "",
@@ -559,7 +559,7 @@ export default [
                                         festenummer: 0,
                                         seksjonsnummer: 0
                                     },
-                                    address: {
+                                    addresse: {
                                         adresselinje1: "",
                                         adresselinje2: "",
                                         adresselinje3: "",

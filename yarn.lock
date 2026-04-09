@@ -5,19 +5,19 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"@arkitektum/altinn-studio-custom-components-utils@npm:^1.3.2, @arkitektum/altinn-studio-custom-components-utils@npm:^1.3.3":
+"@arkitektum/altinn-studio-custom-components-utils@npm:^1.3.3":
   version: 1.3.3
   resolution: "@arkitektum/altinn-studio-custom-components-utils@npm:1.3.3"
   checksum: 10c0/90ee4025271c9d90fbb2e5d95c0ba74d0d3ad174f7b8d8766e11985dc8df613ed4010619d60da1ad9dd82b502aea12140bde9edf3e6b2d9a28b5044a71a8e696
   languageName: node
   linkType: hard
 
-"@arkitektum/altinn-studio-custom-components@npm:^14.0.5":
-  version: 14.0.5
-  resolution: "@arkitektum/altinn-studio-custom-components@npm:14.0.5"
+"@arkitektum/altinn-studio-custom-components@npm:^14.2.0":
+  version: 14.2.0
+  resolution: "@arkitektum/altinn-studio-custom-components@npm:14.2.0"
   dependencies:
-    "@arkitektum/altinn-studio-custom-components-utils": "npm:^1.3.2"
-  checksum: 10c0/b14acfa3eb259a5240a5f94e1120ea462e2ddf9f73cc50b9bdc59047ece0b430d4d144fe9ad8b053b5c8021b39596897406787f342a0e34175454a6ad7f3af39
+    "@arkitektum/altinn-studio-custom-components-utils": "npm:^1.3.3"
+  checksum: 10c0/82b9d183756749e94b8d1a8a15a089813cbe3b89f8beee8a71666d853b50bcd6f50f74297e1d691bcd5116b290e1a603ccd086a9f30355ff5c7a342500263f4e
   languageName: node
   linkType: hard
 
@@ -54,31 +54,31 @@ __metadata:
   linkType: hard
 
 "@eslint/config-array@npm:^0.23.4":
-  version: 0.23.4
-  resolution: "@eslint/config-array@npm:0.23.4"
+  version: 0.23.5
+  resolution: "@eslint/config-array@npm:0.23.5"
   dependencies:
-    "@eslint/object-schema": "npm:^3.0.4"
+    "@eslint/object-schema": "npm:^3.0.5"
     debug: "npm:^4.3.1"
     minimatch: "npm:^10.2.4"
-  checksum: 10c0/813ce3588e67d615218219e77526ca4c742405c293f209f5c0ff945fec50a9a8007c7d82c5af8fa82c1a506b57f4dc37cef0e96b2366c41c257dd267862ece95
+  checksum: 10c0/b24833c4c76e78ee075d306cd3f095db46b2db0f90cc13a6ee6e4275f9889731c05bf5403ab5fefb79c756e07ac9184ed0e04570341382f9eccbccc80e6d1a0c
   languageName: node
   linkType: hard
 
 "@eslint/config-helpers@npm:^0.5.4":
-  version: 0.5.4
-  resolution: "@eslint/config-helpers@npm:0.5.4"
+  version: 0.5.5
+  resolution: "@eslint/config-helpers@npm:0.5.5"
   dependencies:
-    "@eslint/core": "npm:^1.2.0"
-  checksum: 10c0/211bbfaba53fde341768eafbfdcceeca5587264c0a952d4c70b8b72c440df60e5b0e9bac33893c671dc556275a1b0c5d28c8023e843a127be216a773a11ae762
+    "@eslint/core": "npm:^1.2.1"
+  checksum: 10c0/18889c062cd6bdbd4cd92fe57318c44465ea66184aa0ba204a4420712c66764c64093a7905b6c2ffde23e51b268ca2cec1a39c605d336bebf17ee1ba4f0fc0bb
   languageName: node
   linkType: hard
 
-"@eslint/core@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "@eslint/core@npm:1.2.0"
+"@eslint/core@npm:^1.2.0, @eslint/core@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "@eslint/core@npm:1.2.1"
   dependencies:
     "@types/json-schema": "npm:^7.0.15"
-  checksum: 10c0/e564945218f7f3910dfd0f57bf7852072060f560c241f5ed96a7b13e9f7fed4cc5707ee5eb44653f2bf4f9576ee7b7921f55cc5ac96f72343d0c5e80818fe2bf
+  checksum: 10c0/10979b40588ecfef771fcb5013a542a35fb30692cc95a65f3481b0b36fbd89f5679efeb30d57f4eed35203d859aabace2a620177d6c536f71b299a1af2f3398f
   languageName: node
   linkType: hard
 
@@ -94,20 +94,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/object-schema@npm:^3.0.4":
-  version: 3.0.4
-  resolution: "@eslint/object-schema@npm:3.0.4"
-  checksum: 10c0/fedfc0acf5d899c9f58106c9d718fae4f4d5e6e21f0aa33b2333c746873d979ff9e295a09668bd7bf2a41f82dd886ebd3a73d023ce3c8722a1f24bd143842162
+"@eslint/object-schema@npm:^3.0.5":
+  version: 3.0.5
+  resolution: "@eslint/object-schema@npm:3.0.5"
+  checksum: 10c0/1db337431f520b99e9edda64ef5fafd7ec6a029843eeb608753025125b6649d861d843cffafafd3c4e37926d7d5f9ec0c6a8e3665c13c3da2144e8132892e92e
   languageName: node
   linkType: hard
 
 "@eslint/plugin-kit@npm:^0.7.0":
-  version: 0.7.0
-  resolution: "@eslint/plugin-kit@npm:0.7.0"
+  version: 0.7.1
+  resolution: "@eslint/plugin-kit@npm:0.7.1"
   dependencies:
-    "@eslint/core": "npm:^1.2.0"
+    "@eslint/core": "npm:^1.2.1"
     levn: "npm:^0.4.1"
-  checksum: 10c0/ea96c393dc1424f1a74fdd253478eda6cf864f31527d9472bd379decc5195da0b141fcb2dc767d7fe296184a3f26c91a19b2e5445be9b6a9b48b1bed9d18b737
+  checksum: 10c0/335b0c1c46fd906cb50bd5ce442b9cee18dc44342ce35c718ba4a63d1aa51d2797f16a517b2f4fe371ccd777b6862fafb2dc8195e00e69197ef4cb17ab32c01b
   languageName: node
   linkType: hard
 
@@ -1241,7 +1241,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "altinn-studio-custom-components-docs@workspace:."
   dependencies:
-    "@arkitektum/altinn-studio-custom-components": "npm:^14.0.5"
+    "@arkitektum/altinn-studio-custom-components": "npm:^14.2.0"
     "@arkitektum/altinn-studio-custom-components-utils": "npm:^1.3.3"
     "@eslint/js": "npm:^10.0.1"
     css-loader: "npm:^7.1.4"
@@ -1251,7 +1251,7 @@ __metadata:
     highlight.js: "npm:^11.11.1"
     html-webpack-plugin: "npm:^5.6.6"
     mini-css-extract-plugin: "npm:^2.10.2"
-    webpack: "npm:^5.105.4"
+    webpack: "npm:^5.106.0"
     webpack-cli: "npm:^7.0.2"
     webpack-dev-server: "npm:^5.2.3"
   languageName: unknown
@@ -1332,11 +1332,11 @@ __metadata:
   linkType: hard
 
 "baseline-browser-mapping@npm:^2.10.12":
-  version: 2.10.16
-  resolution: "baseline-browser-mapping@npm:2.10.16"
+  version: 2.10.17
+  resolution: "baseline-browser-mapping@npm:2.10.17"
   bin:
     baseline-browser-mapping: dist/cli.cjs
-  checksum: 10c0/9947243bb8f16db3f8e05397c5c3e7a91243dcf2d1ec6a681ad5ffabeadee36c1061cd18e5f0432088df6798fa0689890ba26db173b9ad23c5650709b7b2e7cf
+  checksum: 10c0/e792a92a6b206521681e3ab3a72770023f74a3274450bfe11ba55a075ba26f5820d5d2d02d92e25224b8d01e327b78fbf3e116bdc6ac74b3d9c52f5e3f4a048a
   languageName: node
   linkType: hard
 
@@ -2111,9 +2111,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.5.328":
-  version: 1.5.333
-  resolution: "electron-to-chromium@npm:1.5.333"
-  checksum: 10c0/263eeaa6d97c6fee37d151640870ec6d2e93bda872be2cc19e477b8bbabf696888e9cbb15fa9c40e30ec758dd9ae7294aca913cc14b88aecd17db866e634fcd4
+  version: 1.5.334
+  resolution: "electron-to-chromium@npm:1.5.334"
+  checksum: 10c0/4fa700f920d6f6a52f1a777f9cbbaf95ed7247fd6d89d9ff5d26255779c2c0297be5162e56e8e9a7ec40ff42d656d5e1b06ee6e7cf60dd8baec2e0d8f0f1bc77
   languageName: node
   linkType: hard
 
@@ -3310,9 +3310,9 @@ __metadata:
   linkType: hard
 
 "lru-cache@npm:^11.0.0, lru-cache@npm:^11.1.0, lru-cache@npm:^11.2.1":
-  version: 11.3.2
-  resolution: "lru-cache@npm:11.3.2"
-  checksum: 10c0/1981baec397c1e7875ac7456ea123e1f8016b878bf3a88b083bbe3f791ba77212d0507751a069f3d4c12441d70ca255d150c2a1c489d3cbe5ed6b8c625bb1be2
+  version: 11.3.3
+  resolution: "lru-cache@npm:11.3.3"
+  checksum: 10c0/f0053c0d6f58caca93b62c0037c8c913dfc02d9bc63b6c90f34279116e301ce051197796640ed5e71d96404fe6cfa5e841f40594dab30b8938f1d4f0b52e1883
   languageName: node
   linkType: hard
 
@@ -3698,7 +3698,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"object-inspect@npm:^1.13.3":
+"object-inspect@npm:^1.13.3, object-inspect@npm:^1.13.4":
   version: 1.13.4
   resolution: "object-inspect@npm:1.13.4"
   checksum: 10c0/d7f8711e803b96ea3191c745d6f8056ce1f2496e530e6a19a0e92d89b0fa3c76d910c31f0aa270432db6bd3b2f85500a376a83aaba849a8d518c8845b3211692
@@ -4697,12 +4697,12 @@ __metadata:
   linkType: hard
 
 "side-channel-list@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "side-channel-list@npm:1.0.0"
+  version: 1.0.1
+  resolution: "side-channel-list@npm:1.0.1"
   dependencies:
     es-errors: "npm:^1.3.0"
-    object-inspect: "npm:^1.13.3"
-  checksum: 10c0/644f4ac893456c9490ff388bf78aea9d333d5e5bfc64cfb84be8f04bf31ddc111a8d4b83b85d7e7e8a7b845bc185a9ad02c052d20e086983cf59f0be517d9b3d
+    object-inspect: "npm:^1.13.4"
+  checksum: 10c0/d346c787fd2f9f1c2fdea14f00e8250118db0e7596d85a6cb9faa75f105d31a73a8f7a341c93d7df2a2429098c3d37a77bd3be9e88c37094b8c01807bc77c7a2
   languageName: node
   linkType: hard
 
@@ -5289,9 +5289,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack@npm:^5.105.4":
-  version: 5.105.4
-  resolution: "webpack@npm:5.105.4"
+"webpack@npm:^5.106.0":
+  version: 5.106.0
+  resolution: "webpack@npm:5.106.0"
   dependencies:
     "@types/eslint-scope": "npm:^3.7.7"
     "@types/estree": "npm:^1.0.8"
@@ -5323,7 +5323,7 @@ __metadata:
       optional: true
   bin:
     webpack: bin/webpack.js
-  checksum: 10c0/e9896d20bac351b119d59942b7efae5b117056ecf203acc0d1a84ecbf0a5a9a80ca733735f96bd163e3530be6ab7f615cd67e5320bd3c47d709c9bfe376c3280
+  checksum: 10c0/6ae5889438c3138691abbc030162fa4112968c01ccc6c8bb5e215d37c290d999eb47479212897590d9b1391985d928b90599c0aade0531bffa0bcc11e5565c08
   languageName: node
   linkType: hard
 

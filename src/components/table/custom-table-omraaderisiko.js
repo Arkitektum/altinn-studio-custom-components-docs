@@ -20,7 +20,6 @@ const defaultResourceBindings = {
         emptyFieldText: "resource.emptyFieldText.default"
     },
     title: "resource.kravTilByggegrunn.muligeOmraadeRisikoer.omraadeRisiko.title",
-    description: "resource.kravTilByggegrunn.muligeOmraadeRisikoer.omraadeRisiko.description",
     emptyFieldText: "resource.emptyFieldText.default"
 };
 

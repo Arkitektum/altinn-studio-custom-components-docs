@@ -56,9 +56,6 @@ const defaultResourceBindings = {
         title: "resource.eiendom.bygningsnummer.title",
         emptyFieldText: "resource.emptyFieldText.default"
     },
-    eiendomMatrikkelinformasjon: {
-        title: "resource.eiendom.matrikkelinformasjon.title"
-    },
     detErVarsletOm: {
         title: "resource.detErVarsletOm.title"
     },
@@ -104,6 +101,13 @@ const defaultResourceBindings = {
     },
     tiltakshaver: {
         title: "resource.tiltakshaver.title"
+    },
+    eiendomMatrikkelinformasjon: {
+        title: "resource.naboGjenboer.eiendommer.eiendom.matrikkelinformasjon.title"
+    },
+    eiendomMatrikkelinformasjonAdresse: {
+        title: "resource.eiendom.adresse.title",
+        emptyFieldText: "resource.emptyFieldText.address"
     },
     eiendomMatrikkelinformasjonEiendomsidentifikasjonGaardsnummer: {
         title: "resource.eiendom.gaardsnummer.title",

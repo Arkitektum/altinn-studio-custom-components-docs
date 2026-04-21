@@ -613,6 +613,43 @@ export default [
                     ledesOvervannTilTerreng: true,
                     ledesOvervannTilAvloepssystem: false
                 },
+                rammebetingelserKravTilByggegrunn: {
+                    harMiljoeforhold: true,
+                    muligeOmraadeRisikoer: {
+                        omraadeRisiko: [
+                            {
+                                risikotype: {
+                                    kodeverdi: "flom",
+                                    kodebeskrivelse: "Fare for flom"
+                                },
+                                sikkerhetsklasse: {
+                                    kodeverdi: "F1",
+                                    kodebeskrivelse: "Mindre fare for flom"
+                                }
+                            },
+                            {
+                                risikotype: {
+                                    kodeverdi: "skred",
+                                    kodebeskrivelse: "Fare for skred"
+                                },
+                                sikkerhetsklasse: {
+                                    kodeverdi: "S1",
+                                    kodebeskrivelse: "Mindre fare for skred"
+                                }
+                            },
+                            {
+                                risikotype: {
+                                    kodeverdi: "kvikkleire",
+                                    kodebeskrivelse: "Fare for kvikkleire"
+                                },
+                                sikkerhetsklasse: {
+                                    kodeverdi: "K1",
+                                    kodebeskrivelse: "Mindre fare for kvikkleire"
+                                }
+                            }
+                        ]
+                    }
+                },
                 rammebetingelserTilknytninger: {
                     adkomst: {
                         erNyEllerEndretAdkomst: true,

@@ -47,6 +47,7 @@ import customGroupEttersending from "./group/custom-group-ettersending.js";
 import customGroupLoefteinnretninger from "./group/custom-group-loefteinnretninger.js";
 import customGroupNaboGjenboerEiendom from "./group/custom-group-nabo-gjenboer-eiendom.js";
 import customGroupOvervann from "./group/custom-group-overvann.js";
+import customGroupRammebetingelserKravTilByggegrunn from "./group/custom-group-rammebetingelser-krav-til-byggegrunn.js";
 import customGroupRammebetingelserTilknytninger from "./group/custom-group-rammebetingelser-tilknytninger.js";
 import customGroupSjekklistekrav from "./group/custom-group-sjekklistekrav.js";
 import customGroupUtfallSvar from "./group/custom-group-utfall-svar.js";
@@ -115,6 +116,7 @@ export const group = {
     customGroupLoefteinnretninger,
     customGroupNaboGjenboerEiendom,
     customGroupOvervann,
+    customGroupRammebetingelserKravTilByggegrunn,
     customGroupRammebetingelserTilknytninger,
     customGroupSjekklistekrav,
     customGroupUtfallSvar,

@@ -69,7 +69,7 @@ const defaultResourceBindings = {
         emptyFieldText: "resource.emptyFieldText.default"
     },
     responsErMerknadEllerSamtykkeMottatt: {
-        title: "resource.respons.erMerknadEllerSamtykkeMottatt.title",
+        title: "resource.status.title",
         falseText: "resource.respons.erMerknadEllerSamtykkeMottatt.falseText"
     },
     responsErMerknadMottatt: {

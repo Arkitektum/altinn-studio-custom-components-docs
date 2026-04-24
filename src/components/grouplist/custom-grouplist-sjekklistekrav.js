@@ -5,6 +5,11 @@ const markup = {
     hideTitle: false,
     hideIfEmpty: false,
     size: "h2",
+    resourceBindings: {
+        description: "resource.krav.sjekklistekrav.description",
+        sjekklistepunkt: "resource.krav.sjekklistekrav.sjekklistepunkt.title",
+        sjekklistepunktsvar: "resource.krav.sjekklistekrav.sjekklistepunksvar.title"
+    },
     dataModelBindings: {
         data: "customGrouplist.sjekklistekrav"
     }

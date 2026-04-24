@@ -76,7 +76,7 @@ const defaultResourceBindings = {
         title: "resource.tiltakshaver.title"
     },
     tiltakshaverNavn: {
-        title: "resource.part.navn.title",
+        title: "resource.navn.title",
         emptyFieldText: "resource.emptyFieldText.default"
     },
     tiltakshaverTelefonnummer: {
@@ -95,7 +95,7 @@ const defaultResourceBindings = {
         title: "resource.tiltakshaver.kontaktperson.title"
     },
     tiltakshaverKontaktpersonNavn: {
-        title: "resource.part.navn.title",
+        title: "resource.navn.title",
         emptyFieldText: "resource.emptyFieldText.default"
     },
     tiltakshaverKontaktpersonTelefonnummer: {

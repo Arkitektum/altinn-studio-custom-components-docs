@@ -14,7 +14,7 @@ const partType = "tiltakshaver.kontaktperson";
 
 const defaultResourceBindings = {
     navn: {
-        title: `resource.part.navn.title`,
+        title: `resource.navn.title`,
         emptyFieldText: "resource.emptyFieldText.default"
     },
     telefonnummer: {

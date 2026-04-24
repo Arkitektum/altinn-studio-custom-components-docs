@@ -46,7 +46,7 @@ const defaultResourceBindings = {
         title: "resource.eier.title"
     },
     eierNavn: {
-        title: "resource.part.navn.title",
+        title: "resource.navn.title",
         emptyFieldText: "resource.emptyFieldText.default"
     },
     eierTelefonnummer: {

@@ -170,7 +170,7 @@ const defaultResourceBindings = {
         title: "resource.begrunnelse.samletBegrunnelse.title"
     },
     generelleVilkaarNorskSvenskDansk: {
-        title: "resource.generelleVilkaar.norskSvenskDansk.header",
+        title: "resource.erklaeringer.title",
         trueText: "resource.generelleVilkaar.norskSvenskDansk.true.title"
     }
 };

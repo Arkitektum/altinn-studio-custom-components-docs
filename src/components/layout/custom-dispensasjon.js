@@ -39,7 +39,7 @@ const defaultResourceBindings = {
         title: "resource.eiendomByggested.eiendom.title"
     },
     adresse: {
-        title: "resource.eiendom.adresse.title",
+        title: "resource.adresse.title",
         emptyFieldText: "resource.emptyFieldText.address"
     },
     eiendomsidentifikasjonGaardsnummer: {
@@ -88,7 +88,7 @@ const defaultResourceBindings = {
         emptyFieldText: "resource.emptyFieldText.default"
     },
     tiltakshaverAdresse: {
-        title: "resource.eiendom.adresse.title"
+        title: "resource.adresse.title"
     },
 
     tiltakshaverKontaktperson: {
@@ -107,7 +107,7 @@ const defaultResourceBindings = {
         emptyFieldText: "resource.emptyFieldText.default"
     },
     tiltakshaverKontaktpersonAdresse: {
-        title: "resource.eiendom.adresse.title"
+        title: "resource.adresse.title"
     },
     dispensasjonsbeskrivelse: {
         title: "resource.dispensasjonsbeskrivelse.title"

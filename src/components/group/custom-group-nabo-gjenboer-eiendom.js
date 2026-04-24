@@ -15,7 +15,7 @@ const defaultResourceBindings = {
         title: "resource.naboGjenboer.eiendommer.eiendom.matrikkelinformasjon.title"
     },
     eiendomMatrikkelinformasjonAdresse: {
-        title: "resource.eiendom.adresse.title",
+        title: "resource.adresse.title",
         emptyFieldText: "resource.emptyFieldText.address"
     },
     eiendomMatrikkelinformasjonEiendomsidentifikasjonGaardsnummer: {
@@ -58,7 +58,7 @@ const defaultResourceBindings = {
         emptyFieldText: "resource.emptyFieldText.default"
     },
     eierAdresse: {
-        title: "resource.eiendom.adresse.title"
+        title: "resource.adresse.title"
     },
     responsNabovarselSendtVia: {
         title: "resource.respons.nabovarselSendtVia.title",

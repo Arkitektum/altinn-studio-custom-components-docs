@@ -8,13 +8,13 @@ const markup = {
         data: "customField.adresse"
     },
     resourceBindings: {
-        title: "resource.eiendom.adresse.title",
+        title: "resource.adresse.title",
         emptyFieldText: "resource.emptyFieldText.address"
     }
 };
 
 const defaultResourceBindings = {
-    title: "resource.eiendom.adresse.title",
+    title: "resource.adresse.title",
     emptyFieldText: "resource.emptyFieldText.address"
 };
 

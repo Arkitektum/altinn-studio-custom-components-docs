@@ -13,7 +13,7 @@ const markup = {
 
 const defaultResourceBindings = {
     adresse: {
-        title: "resource.eiendom.adresse.title",
+        title: "resource.adresse.title",
         emptyFieldText: "resource.emptyFieldText.address"
     },
     eiendomsidentifikasjonGaardsnummer: {

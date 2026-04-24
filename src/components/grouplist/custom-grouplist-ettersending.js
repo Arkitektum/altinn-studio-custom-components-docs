@@ -18,7 +18,7 @@ const defaultResourceBindings = {
         title: "resource.ettersendinger.ettersending.tema.kodebeskrivelse.title"
     },
     kommentar: {
-        title: "resource.ettersendinger.ettersending.kommentar.title"
+        title: "resource.kommentar.title"
     },
     vedleggsliste: {
         title: "resource.ettersendinger.ettersending.vedleggsliste.vedlegg.title"

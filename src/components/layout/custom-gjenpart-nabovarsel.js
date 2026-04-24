@@ -4,6 +4,7 @@ const markup = {
     tagName: "custom-gjenpart-nabovarsel",
     dataModelBindings: {
         ansvarligSoeker: "customLayout.gjenpartNabovarsel.ansvarligSoeker",
+        dispensasjonOversikt: "customLayout.gjenpartNabovarsel.dispensasjonOversikt",
         eiendomByggested: "customLayout.gjenpartNabovarsel.eiendomByggested",
         kontaktpersonForNabovarselet: "customLayout.gjenpartNabovarsel.kontaktpersonForNabovarselet",
         metadata: "customLayout.gjenpartNabovarsel.metadata",
@@ -174,6 +175,28 @@ const defaultResourceBindings = {
     },
     responsSamtykkeMottattDato: {
         title: "resource.respons.samtykkeMottattDato.title"
+    },
+    dispensasjonOversikt: {
+        title: "resource.dispensasjonOversikt.header"
+    },
+    dispensasjonOversiktCount: {
+        title: "resource.dispensasjonOversikt.dispensasjon.count.title",
+        emptyFieldText: "resource.emptyFieldText.zero"
+    },
+    dispensasjonKategori: {
+        title: "resource.dispensasjonOversikt.dispensasjon.dispensasjonKategori.title",
+        emptyFieldText: "resource.emptyFieldText.default"
+    },
+    dispensasjonTittel: {
+        title: "resource.emne.title",
+        emptyFieldText: "resource.emptyFieldText.default"
+    },
+    bestemmelserType: {
+        title: "resource.dispensasjonOversikt.dispensasjon.bestemmelserType.title",
+        emptyFieldText: "resource.emptyFieldText.default"
+    },
+    rowNumber: {
+        title: "resource.rowNumberTitle.default"
     }
 };
 

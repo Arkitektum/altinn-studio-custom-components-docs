@@ -1654,6 +1654,38 @@ export default [
                         telefonnummer: "99887766",
                         epost: "ola.nordmann@example.com"
                     },
+                    dispensasjonOversikt: {
+                        dispensasjon: [
+                            {
+                                dispensasjonKategori: {
+                                    kodeverdi: "plassering",
+                                    kodebeskrivelse: "Plassering"
+                                },
+                                dispensasjonTittel: {
+                                    kodeverdi: "byggegrenser",
+                                    kodebeskrivelse: "Byggegrenser"
+                                },
+                                bestemmelserType: {
+                                    kodeverdi: "RP",
+                                    kodebeskrivelse: "Reguleringsplan"
+                                }
+                            },
+                            {
+                                dispensasjonKategori: {
+                                    kodeverdi: "hoyde",
+                                    kodebeskrivelse: "Byggverkets høyde"
+                                },
+                                dispensasjonTittel: {
+                                    kodeverdi: "maksHoyde",
+                                    kodebeskrivelse: "Maksimal høyde"
+                                },
+                                bestemmelserType: {
+                                    kodeverdi: "RP",
+                                    kodebeskrivelse: "Reguleringsplan"
+                                }
+                            }
+                        ]
+                    },
                     eiendomByggested: {
                         eiendom: [
                             {

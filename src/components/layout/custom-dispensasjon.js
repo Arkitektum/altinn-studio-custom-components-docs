@@ -67,7 +67,7 @@ const defaultResourceBindings = {
         emptyFieldText: "resource.emptyFieldText.default"
     },
     tiltakstyperHeader: {
-        title: "resource.tiltakstyper.type.header"
+        title: "resource.tiltakByggeplaner.title"
     },
     tiltakstyperKode: {
         title: "resource.tiltakstyper.type.kode.title"

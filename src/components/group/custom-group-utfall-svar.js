@@ -16,7 +16,7 @@ const defaultResourceBindings = {
         erUtfallBesvart: "resource.utfallBesvarelse.utfallSvar.erUtfallBesvart"
     },
     tema: {
-        title: "resource.utfallBesvarelse.utfallSvar.tema.kodebeskrivelse.title"
+        title: "resource.tema.title"
     },
     kommentar: {
         title: "resource.utfallBesvarelse.utfallSvar.kommentar.title"

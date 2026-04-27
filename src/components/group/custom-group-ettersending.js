@@ -12,7 +12,7 @@ const markup = {
 const defaultResourceBindings = {
     emptyFieldText: "resource.emptyFieldText.default",
     tema: {
-        title: "resource.ettersendinger.ettersending.tema.kodebeskrivelse.title"
+        title: "resource.tema.title"
     },
     kommentar: {
         title: "resource.kommentar.title"

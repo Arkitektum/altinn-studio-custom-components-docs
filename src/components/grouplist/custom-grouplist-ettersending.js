@@ -15,7 +15,7 @@ const markup = {
 };
 const defaultResourceBindings = {
     tema: {
-        title: "resource.ettersendinger.ettersending.tema.kodebeskrivelse.title"
+        title: "resource.tema.title"
     },
     kommentar: {
         title: "resource.kommentar.title"

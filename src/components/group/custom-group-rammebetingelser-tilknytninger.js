@@ -45,7 +45,7 @@ const defaultResourceBindings = {
         falseText: "resource.falseText.default"
     },
     avloepTilknytningstype: {
-        title: "resource.rammebetingelser.avloep.tilknytningstype.title"
+        title: "resource.tilknytning.title"
     },
     overvann: {
         title: "resource.rammebetingelser.overvann.title",
@@ -79,7 +79,7 @@ const defaultResourceBindings = {
         falseText: "resource.falseText.default"
     },
     vannforsyningTilknytningstype: {
-        title: "resource.rammebetingelser.vannforsyning.tilknytningstype.title"
+        title: "resource.tilknytning.title"
     }
 };
 

@@ -26,7 +26,7 @@ const defaultResourceBindings = {
         falseText: `resource.falseText.default`
     },
     tilknytningstype: {
-        title: `resource.rammebetingelser.vannforsyning.tilknytningstype.title`
+        title: `resource.tilknytning.title`
     }
 };
 

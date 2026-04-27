@@ -23,7 +23,7 @@ const defaultResourceBindings = {
         falseText: `resource.falseText.default`
     },
     tilknytningstype: {
-        title: `resource.rammebetingelser.avloep.tilknytningstype.title`
+        title: `resource.tilknytning.title`
     }
 };
 

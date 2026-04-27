@@ -10,7 +10,7 @@ const markup = {
 const defaultResourceBindings = {
     emptyFieldText: "resource.emptyFieldText.default",
     utfallSvarStatus: {
-        title: "resource.utfallBesvarelse.utfallSvar.status.title",
+        title: "resource.status.title",
         status: "resource.utfallBesvarelse.utfallSvar.status",
         erUtfallBesvaresSenere: "resource.utfallBesvarelse.utfallSvar.erUtfallBesvaresSenere",
         erUtfallBesvart: "resource.utfallBesvarelse.utfallSvar.erUtfallBesvart"

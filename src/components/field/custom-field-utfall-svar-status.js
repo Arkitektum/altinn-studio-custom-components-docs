@@ -10,7 +10,7 @@ const markup = {
 };
 
 const defaultResourceBindings = {
-    title: "resource.utfallBesvarelse.utfallSvar.status.title",
+    title: "resource.status.title",
     erUtfallBesvaresSenere: "resource.utfallBesvarelse.utfallSvar.erUtfallBesvaresSenere",
     erUtfallBesvart: "resource.utfallBesvarelse.utfallSvar.erUtfallBesvart",
     status: "resource.utfallBesvarelse.utfallSvar.status"

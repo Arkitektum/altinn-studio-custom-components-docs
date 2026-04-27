@@ -24,7 +24,7 @@ const defaultResourceBindings = {
         title: `resource.utfallBesvarelse.utfallSvar.tema.kodebeskrivelse.title`
     },
     utfallSvarStatus: {
-        title: `resource.utfallBesvarelse.utfallSvar.status.title`
+        title: `resource.status.title`
     },
     vedleggsliste: {
         title: `resource.utfallBesvarelse.utfallSvar.vedleggsliste.vedlegg.title`

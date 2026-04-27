@@ -19,7 +19,7 @@
         "webpack-dev-server": "^5.2.3"
     },
     "dependencies": {
-        "@arkitektum/altinn-studio-custom-components": "^15.3.1",
+        "@arkitektum/altinn-studio-custom-components": "^15.3.3",
         "@arkitektum/altinn-studio-custom-components-utils": "^1.4.2"
     }
 }

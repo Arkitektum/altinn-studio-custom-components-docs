@@ -21,7 +21,7 @@ const defaultResourceBindings = {
         title: "resource.kommentar.title"
     },
     vedleggsliste: {
-        title: "resource.ettersendinger.ettersending.vedleggsliste.vedlegg.title"
+        title: "resource.vedlegg.title"
     },
     title: "resource.ettersendinger.title",
     emptyFieldText: "resource.emptyFieldText.default"

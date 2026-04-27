@@ -196,7 +196,7 @@ const defaultResourceBindings = {
         emptyFieldText: "resource.emptyFieldText.default"
     },
     rowNumber: {
-        title: "resource.rowNumberTitle.default"
+        title: "resource.nummer.short"
     }
 };
 

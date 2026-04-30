@@ -131,13 +131,13 @@ const defaultResourceBindings = {
         title: "resource.stedfesting.title"
     },
     stedfestingPosisjonKoordinatsystem: {
-        title: "resource.stedfesting.posisjon.koordinatsystem.title"
+        title: "resource.koordinatsystem.title"
     },
     stedfestingPosisjonKoordinater: {
-        title: "resource.stedfesting.posisjon.koordinater.title"
+        title: "resource.koordinater.title"
     },
     stedfestingVertikalnivaa: {
-        title: "resource.stedfesting.vertikalnivaa.title"
+        title: "resource.vertikalnivaa.title"
     },
     varighet: {
         title: "resource.varighet.title"

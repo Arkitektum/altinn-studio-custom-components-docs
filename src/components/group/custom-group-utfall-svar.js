@@ -22,7 +22,7 @@ const defaultResourceBindings = {
         title: "resource.utfallBesvarelse.utfallSvar.kommentar.title"
     },
     vedleggsliste: {
-        title: "resource.utfallBesvarelse.utfallSvar.vedleggsliste.vedlegg.title"
+        title: "resource.vedlegg.title"
     }
 };
 

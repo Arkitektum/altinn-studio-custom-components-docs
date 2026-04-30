@@ -27,7 +27,7 @@ const defaultResourceBindings = {
         title: `resource.status.title`
     },
     vedleggsliste: {
-        title: `resource.utfallBesvarelse.utfallSvar.vedleggsliste.vedlegg.title`
+        title: `resource.vedlegg.title`
     }
 };
 

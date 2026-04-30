@@ -32,7 +32,7 @@ const defaultResourceBindings = {
         emptyFieldText: "resource.emptyFieldText.default"
     },
     samsvarKontrollPlanlagtVedRammetillatelse: {
-        title: "resource.samsvarKontrollPlanlagtVedRammetillatelse.title"
+        title: "resource.rammesoeknad.title"
     },
     samsvarKontrollPlanlagtVedIgangsettingstillatelse: {
         title: "resource.samsvarKontrollPlanlagtVedIgangsettingstillatelse.title"

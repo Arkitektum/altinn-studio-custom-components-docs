@@ -31,7 +31,7 @@ const defaultResourceBindings = {
         defaultText: "resource.emptyFieldText.default"
     },
     avloep: {
-        title: "resource.rammebetingelser.avloep.title",
+        title: "resource.avloep.title",
         emptyFieldText: "resource.emptyFieldText.default"
     },
     avloepHarTinglystErklaering: {

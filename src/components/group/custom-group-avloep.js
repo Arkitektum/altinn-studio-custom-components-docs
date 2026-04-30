@@ -10,7 +10,7 @@ const markup = {
 };
 
 const defaultResourceBindings = {
-    title: "resource.rammebetingelser.avloep.title",
+    title: "resource.avloep.title",
     emptyFieldText: "resource.emptyFieldText.default",
     harTinglystErklaering: {
         title: `resource.rammebetingelser.avloep.harTinglystErklaering.title`,

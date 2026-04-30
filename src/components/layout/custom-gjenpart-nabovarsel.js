@@ -184,7 +184,7 @@ const defaultResourceBindings = {
         emptyFieldText: "resource.emptyFieldText.zero"
     },
     dispensasjonKategori: {
-        title: "resource.dispensasjonOversikt.dispensasjon.dispensasjonKategori.title",
+        title: "resource.kategori.title",
         emptyFieldText: "resource.emptyFieldText.default"
     },
     dispensasjonTittel: {

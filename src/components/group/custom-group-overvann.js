@@ -10,7 +10,7 @@ const markup = {
 };
 
 const defaultResourceBindings = {
-    title: "resource.rammebetingelser.overvann.title",
+    title: "resource.overvann.title",
     emptyFieldText: "resource.emptyFieldText.default",
     ledesOvervannTilTerreng: {
         title: `resource.rammebetingelser.overvann.ledesOvervannTilTerreng.title`,

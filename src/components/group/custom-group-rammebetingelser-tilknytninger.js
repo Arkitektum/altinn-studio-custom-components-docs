@@ -48,7 +48,7 @@ const defaultResourceBindings = {
         title: "resource.tilknytning.title"
     },
     overvann: {
-        title: "resource.rammebetingelser.overvann.title",
+        title: "resource.overvann.title",
         emptyFieldText: "resource.emptyFieldText.default"
     },
     overvannLedesOvervannTilTerreng: {

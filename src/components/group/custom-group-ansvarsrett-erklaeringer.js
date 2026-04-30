@@ -10,7 +10,7 @@ const markup = {
 };
 
 const defaultResourceBindings = {
-    title: "resource.erklaeringer.title",
+    title: "resource.erklaering.title",
     emptyFieldText: "resource.emptyFieldText.default",
     ansvarsrettErklaeringTekst: {
         title: "resource.ansvarsrettErklaeringTekst.title",

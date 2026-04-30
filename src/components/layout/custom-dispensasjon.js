@@ -122,7 +122,7 @@ const defaultResourceBindings = {
         title: "resource.dispensasjonFra.nasjonalArealplanId.planidentifikasjon.title"
     },
     bestemmelsestype: {
-        title: "resource.dispensasjonFra.bestemmelsestype.title"
+        title: "resource.bestemmelsestype.title"
     },
     paragrafnummer: {
         title: "resource.planbestemmelse.title"

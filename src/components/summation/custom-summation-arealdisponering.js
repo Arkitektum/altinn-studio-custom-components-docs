@@ -15,7 +15,7 @@ const markup = {
 
 const defaultResourceBindings = {
     tomtearealet: {
-        title: `resource.rammebetingelser.arealdisponering.tomtearealet.title`
+        title: `resource.tomtearealet.title`
     },
     bebyggelsen: {
         title: `resource.rammebetingelser.arealdisponering.bebyggelsen.title`

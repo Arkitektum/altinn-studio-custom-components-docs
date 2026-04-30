@@ -62,7 +62,7 @@ const defaultResourceBindings = {
         falseText: "resource.falseText.default"
     },
     vannforsyning: {
-        title: "resource.rammebetingelser.vannforsyning.title",
+        title: "resource.vannforsyning.title",
         emptyFieldText: "resource.emptyFieldText.default"
     },
     vannforsyningBeskrivelse: {

@@ -10,7 +10,7 @@ const markup = {
 };
 
 const defaultResourceBindings = {
-    title: "resource.rammebetingelser.vannforsyning.title",
+    title: "resource.vannforsyning.title",
     emptyFieldText: "resource.emptyFieldText.default",
     beskrivelse: {
         title: `resource.beskrivelse.title`

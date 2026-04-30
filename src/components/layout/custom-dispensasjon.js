@@ -24,7 +24,7 @@ const markup = {
 
 const defaultResourceBindings = {
     dispensasjonsreferanse: {
-        title: "resource.dispensasjon.dispensasjonsreferanse.title"
+        title: "resource.dispensasjonsreferanse.title"
     },
     metadataFtbId: {
         title: "resource.metadata.ftbId.title"

@@ -113,7 +113,7 @@ const defaultResourceBindings = {
         title: "resource.dispensasjonsbeskrivelse.title"
     },
     dispensasjonFraHeader: {
-        title: "resource.dispensasjonFra.header"
+        title: "resource.bestemmelse.title"
     },
     plannavn: {
         title: "resource.navn.title"

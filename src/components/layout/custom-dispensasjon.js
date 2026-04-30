@@ -80,7 +80,7 @@ const defaultResourceBindings = {
         emptyFieldText: "resource.emptyFieldText.default"
     },
     tiltakshaverTelefonnummer: {
-        title: "resource.part.telefonnummer.title",
+        title: "resource.telefonnummer.title",
         emptyFieldText: "resource.emptyFieldText.default"
     },
     tiltakshaverEpost: {
@@ -99,7 +99,7 @@ const defaultResourceBindings = {
         emptyFieldText: "resource.emptyFieldText.default"
     },
     tiltakshaverKontaktpersonTelefonnummer: {
-        title: "resource.part.telefonnummer.title",
+        title: "resource.telefonnummer.title",
         emptyFieldText: "resource.emptyFieldText.default"
     },
     tiltakshaverKontaktpersonEpost: {

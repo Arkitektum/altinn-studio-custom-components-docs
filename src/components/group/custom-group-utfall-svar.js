@@ -19,7 +19,7 @@ const defaultResourceBindings = {
         title: "resource.tema.title"
     },
     kommentar: {
-        title: "resource.utfallBesvarelse.utfallSvar.kommentar.title"
+        title: "resource.kommentar.title"
     },
     vedleggsliste: {
         title: "resource.vedlegg.title"

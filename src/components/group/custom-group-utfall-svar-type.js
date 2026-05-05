@@ -18,7 +18,7 @@ const defaultResourceBindings = {
         title: `resource.utfallBesvarelse.utfallSvar.${utfallType?.toLowerCase()}.header`
     },
     kommentar: {
-        title: `resource.utfallBesvarelse.utfallSvar.kommentar.title`
+        title: `resource.kommentar.title`
     },
     tema: {
         title: `resource.tema.title`

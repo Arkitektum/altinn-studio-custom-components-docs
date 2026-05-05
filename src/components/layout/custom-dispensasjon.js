@@ -90,9 +90,8 @@ const defaultResourceBindings = {
     tiltakshaverAdresse: {
         title: "resource.adresse.title"
     },
-
     tiltakshaverKontaktperson: {
-        title: "resource.tiltakshaver.kontaktperson.title"
+        title: "resource.kontaktpersonForTiltakshaver.title"
     },
     tiltakshaverKontaktpersonNavn: {
         title: "resource.navn.title",

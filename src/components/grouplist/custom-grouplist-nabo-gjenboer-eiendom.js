@@ -43,7 +43,7 @@ const defaultResourceBindings = {
         emptyFieldText: "resource.emptyFieldText.default"
     },
     eier: {
-        title: "resource.eier.title"
+        title: "resource.eierFesterAvNaboeiendom.title"
     },
     eierNavn: {
         title: "resource.navn.title",

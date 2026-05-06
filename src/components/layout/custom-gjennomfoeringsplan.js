@@ -55,7 +55,7 @@ const defaultResourceBindings = {
         emptyFieldText: "resource.emptyFieldText.default"
     },
     ansvarligSoekerEpost: {
-        title: "resource.part.epost.title",
+        title: "resource.epostadresse.title",
         emptyFieldText: "resource.emptyFieldText.default"
     },
     foretak: {

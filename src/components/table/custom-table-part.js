@@ -19,7 +19,7 @@ const defaultResourceBindings = {
         emptyFieldText: "resource.emptyFieldText.default"
     },
     epost: {
-        title: `resource.part.epost.title`,
+        title: `resource.epostadresse.title`,
         emptyFieldText: "resource.emptyFieldText.default"
     },
     title: `resource.tiltakshaver.title`,

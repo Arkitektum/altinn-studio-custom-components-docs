@@ -98,7 +98,7 @@ const defaultResourceBindings = {
         emptyFieldText: "resource.emptyFieldText.default"
     },
     ansvarligSoeker: {
-        title: "resource.ansvarligSoeker.title"
+        title: "resource.soeker.title"
     },
     tiltakshaver: {
         title: "resource.tiltakshaver.title"

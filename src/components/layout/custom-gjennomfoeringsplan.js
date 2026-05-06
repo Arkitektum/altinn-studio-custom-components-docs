@@ -44,7 +44,7 @@ const defaultResourceBindings = {
         emptyFieldText: "resource.emptyFieldText.default"
     },
     ansvarligSoeker: {
-        title: "resource.ansvarligSoeker.title"
+        title: "resource.soeker.title"
     },
     ansvarligSoekerNavn: {
         title: "resource.navn.title",
@@ -59,7 +59,7 @@ const defaultResourceBindings = {
         emptyFieldText: "resource.emptyFieldText.default"
     },
     foretak: {
-        title: "resource.foretak.title",
+        title: "resource.ansvarligForetak.title",
         emptyFieldText: "resource.emptyFieldText.default"
     },
     planlagteSamsvarKontrollErklaeringer: {

@@ -1,6 +1,6 @@
 {
     "name": "altinn-studio-custom-components-docs",
-    "packageManager": "yarn@4.5.0",
+    "packageManager": "yarn@4.15.0",
     "scripts": {
         "start": "webpack serve --mode development --config webpack.config.js",
         "build": "webpack --mode production --config webpack.config.js"

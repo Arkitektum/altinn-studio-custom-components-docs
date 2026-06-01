@@ -44,6 +44,10 @@ module.exports = {
     optimization: {
         minimizer: [`...`, new CssMinimizerPlugin()]
     },
+    performance: {
+        maxAssetSize: 512000,
+        maxEntrypointSize: 512000
+    },
     devServer: {
         static: [
             {

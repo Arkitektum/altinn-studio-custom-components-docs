@@ -60,26 +60,31 @@ export function getResults(componentExamples, dataModels) {
     const resultsElements = Object.keys(componentExamples)
         .map((componentType) => {
             const componentsInType = componentExamples[componentType];
-            const components = Object.keys(componentsInType).map((componentKey) => {
-                const component = componentsInType[componentKey];
-                if (!component?.markup?.tagName) {
-                    return;
-                }
-                const data = getDataForComponent(component?.markup, dataModels);
-                return {
-                    element: getPreviewElement(component?.markup, data),
-                    markup: component?.markup,
-                    options: component?.options,
-                    data,
-                    resources: getTextResourcesFromResourceBindings({ ...component?.defaultResourceBindings, ...component?.markup?.resourceBindings })
-                };
-            });
+            const components = Object.keys(componentsInType)
+                .map((componentKey) => {
+                    const component = componentsInType[componentKey];
+                    if (!component?.markup?.tagName) {
+                        return;
+                    }
+                    const data = getDataForComponent(component?.markup, dataModels);
+                    return {
+                        element: getPreviewElement(component?.markup, data),
+                        markup: component?.markup,
+                        options: component?.options,
+                        data,
+                        resources: getTextResourcesFromResourceBindings({
+                            ...component?.defaultResourceBindings,
+                            ...component?.markup?.resourceBindings
+                        })
+                    };
+                })
+                // Drop examples without a valid tagName here, so no undefined holes reach renderResults.
+                .filter(Boolean);
             return {
                 type: componentType,
                 components
             };
-        })
-        .filter((attr) => attr !== undefined);
+        });
     return resultsElements;
 }
 

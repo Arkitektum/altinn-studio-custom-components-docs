@@ -232,7 +232,6 @@ export function renderSidebar(results) {
         const typeTitleElement = document.createElement("summary");
         typeTitleElement.textContent = getComponentTypeNameFromKey(componentType?.type);
         typeDetailsElement.appendChild(typeTitleElement);
-        typeDetailsElement.appendChild(typeTitleElement);
 
         const componentsUlElement = document.createElement("ul");
         componentsUlElement.classList.add("component-list");

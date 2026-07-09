@@ -1,5 +1,5 @@
 const markup = {
-    id: "custom-grouplist-utfall-svar-type",
+    id: "custom-grouplist-utfall-svar",
     type: "Custom",
     tagName: "custom-grouplist-utfall-svar",
     hideIfEmpty: false,

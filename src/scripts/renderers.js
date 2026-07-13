@@ -303,7 +303,7 @@ export function setupSidebarSearch() {
     const groups = Array.from(nav.querySelectorAll(":scope > details"));
     const emptyState = document.getElementById("sidebar-empty");
 
-    input.addEventListener("input", () => {
+    const applyFilter = () => {
         const query = input.value.trim().toLowerCase();
         let anyVisible = false;
         groups.forEach((group) => {
@@ -322,6 +322,28 @@ export function setupSidebarSearch() {
         });
         if (emptyState) {
             emptyState.hidden = anyVisible;
+        }
+    };
+
+    input.addEventListener("input", applyFilter);
+
+    // Escape clears the filter while the field is focused.
+    input.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            input.value = "";
+            applyFilter();
+            input.blur();
+        }
+    });
+
+    // "/" focuses the filter from anywhere, unless the user is already typing.
+    document.addEventListener("keydown", (event) => {
+        const active = document.activeElement;
+        const isTyping = active?.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(active?.tagName);
+        if (event.key === "/" && !event.metaKey && !event.ctrlKey && !event.altKey && !isTyping) {
+            event.preventDefault();
+            input.focus();
+            input.select();
         }
     });
 }

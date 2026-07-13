@@ -144,6 +144,13 @@
     height: 22px;
 }
 
+/* Fallback shown inside a preview when an example fails to render. */
+.component-example-error {
+    margin: 0;
+    color: #c92a2a;
+    font-size: 14px;
+}
+
 /* Theme toggle, fixed top-right on every viewport. */
 .theme-toggle {
     display: inline-flex;

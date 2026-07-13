@@ -53,6 +53,20 @@ function getPreviewElement(component, data) {
 }
 
 /**
+ * Builds a fallback preview element shown when a component example fails to render.
+ *
+ * @param {string} tagName - The tag name of the component that failed.
+ * @param {unknown} error - The error thrown while building the preview.
+ * @returns {HTMLElement} A container element describing the failure.
+ */
+function getErrorPreviewElement(tagName, error) {
+    const element = document.createElement("div");
+    element.classList.add("component-example-error");
+    element.textContent = `Failed to render <${tagName}>: ${error?.message ?? error}`;
+    return element;
+}
+
+/**
  * Generates a structured list of component preview results based on provided examples and data models.
  *
  * @param {Object} componentExamples - An object containing component examples grouped by type.
@@ -72,20 +86,31 @@ export function getResults(componentExamples, dataModels) {
             const components = Object.keys(componentsInType)
                 .map((componentKey) => {
                     const component = componentsInType[componentKey];
-                    if (!component?.markup?.tagName) {
+                    const markup = component?.markup;
+                    if (!markup?.tagName) {
                         return;
                     }
-                    const data = getDataForComponent(component?.markup, dataModels);
-                    return {
-                        element: getPreviewElement(component?.markup, data),
-                        markup: component?.markup,
-                        options: component?.options,
-                        data,
-                        resources: getTextResourcesFromResourceBindings({
-                            ...component?.defaultResourceBindings,
-                            ...component?.markup?.resourceBindings
-                        })
-                    };
+                    try {
+                        const data = getDataForComponent(markup, dataModels);
+                        return {
+                            element: getPreviewElement(markup, data),
+                            markup,
+                            options: component?.options,
+                            data,
+                            resources: getTextResourcesFromResourceBindings({
+                                ...component?.defaultResourceBindings,
+                                ...markup?.resourceBindings
+                            })
+                        };
+                    } catch (error) {
+                        // A single broken example must not blank the whole gallery.
+                        console.error(`Failed to render component "${markup.tagName}"`, error);
+                        return {
+                            element: getErrorPreviewElement(markup.tagName, error),
+                            markup,
+                            options: component?.options
+                        };
+                    }
                 })
                 // Drop examples without a valid tagName here, so no undefined holes reach renderResults.
                 .filter(Boolean);

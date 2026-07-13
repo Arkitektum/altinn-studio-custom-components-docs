@@ -9,7 +9,7 @@
     --color-text-default: #1c1b1d;
 }
 
-& * {
+* {
     box-sizing: border-box;
 }
 

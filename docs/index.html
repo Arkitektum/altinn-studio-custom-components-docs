@@ -1,1 +1,15 @@
-<!doctype html><html lang="nb" xml:lang="nb"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Altinn Studio Custom Components</title><meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="stylesheet" href="main.css"/><link href="main.css" rel="stylesheet"></head><body class="docs"><aside id="sidebar" class="sidebar"></aside><section class="page-container"><main><h1>Altinn Studio Custom Components</h1><div id="component-docs-container"></div></main></section><script defer="defer" src="main.js"></script></body></html>
+<!doctype html><html lang="nb" xml:lang="nb"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Altinn Studio Custom Components</title><meta name="viewport" content="width=device-width,initial-scale=1"/><script>// Apply the saved (or system) theme before paint to avoid a flash.
+            (function () {
+                try {
+                    var stored = localStorage.getItem("theme");
+                    var theme = "light";
+                    if (stored === "dark" || stored === "light") {
+                        theme = stored;
+                    } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                        theme = "dark";
+                    }
+                    document.documentElement.dataset.theme = theme;
+                } catch (e) {
+                    document.documentElement.dataset.theme = "light";
+                }
+            })();</script><link rel="stylesheet" href="main.css"/><link href="main.css" rel="stylesheet"></head><body class="docs"><button id="sidebar-toggle" class="sidebar-toggle" type="button" aria-label="Meny" aria-controls="sidebar" aria-expanded="false"><span class="sidebar-toggle-icon"></span></button><div id="sidebar-backdrop" class="sidebar-backdrop"></div><button id="theme-toggle" class="theme-toggle" type="button" aria-label="Bytt tema" aria-pressed="false"><svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg> <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button><aside id="sidebar" class="sidebar"></aside><section class="page-container"><main><h1>Altinn Studio Custom Components</h1><div id="component-docs-container"></div></main></section><script defer="defer" src="main.js"></script></body></html>

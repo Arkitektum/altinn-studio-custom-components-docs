@@ -504,3 +504,31 @@ export function setupThemeToggle() {
         }
     });
 }
+
+/**
+ * Wires up the back-to-top button.
+ *
+ * Shows the button once the main content is scrolled past a threshold and
+ * scrolls the content back to the top on click. Scrolling defers to the
+ * container's CSS scroll-behavior, so it respects reduced-motion preferences.
+ *
+ * No-ops when the button or scroll container is unavailable.
+ *
+ * @returns {void}
+ */
+export function setupBackToTop() {
+    const button = document.getElementById("back-to-top");
+    const scrollContainer = document.querySelector(".page-container");
+    if (!button || !scrollContainer) {
+        return;
+    }
+
+    const toggleVisibility = () => {
+        button.hidden = scrollContainer.scrollTop < 400;
+    };
+    toggleVisibility();
+    scrollContainer.addEventListener("scroll", toggleVisibility, { passive: true });
+    button.addEventListener("click", () => {
+        scrollContainer.scrollTo({ top: 0 });
+    });
+}

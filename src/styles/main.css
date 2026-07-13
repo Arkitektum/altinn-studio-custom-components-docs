@@ -109,6 +109,41 @@
     opacity: 0.7;
 }
 
+/* Back-to-top button, fixed bottom-right, clear of the top toggles. */
+.back-to-top {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 55;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    color: #fff;
+    background-color: var(--docs-color-accent-markup);
+    border: none;
+    border-radius: 50%;
+    box-shadow: var(--docs-shadow-card);
+    cursor: pointer;
+    transition: var(--docs-background-transition-default);
+}
+
+/* Re-assert hidden: the base display above would otherwise beat the UA rule. */
+.back-to-top[hidden] {
+    display: none;
+}
+
+.back-to-top:hover {
+    background-color: var(--docs-color-accent-markup-hover);
+}
+
+.back-to-top svg {
+    width: 22px;
+    height: 22px;
+}
+
 /* Theme toggle, fixed top-right on every viewport. */
 .theme-toggle {
     display: inline-flex;

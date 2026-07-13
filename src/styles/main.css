@@ -4,29 +4,52 @@
 }
 
 :root {
-    --background-transition-default: background-color 150ms;
-    --font-family-default: "Roboto Flex", Arial, sans-serif;
+    color-scheme: light;
 
-    --color-text-default: #1c1b1d;
-    --color-background: #efeded;
-    --color-surface: #ffffff;
-    --color-sidebar: #f9f7f7;
-    --color-border: #cccccc;
-    --color-border-subtle: #dddddd;
-    --color-hover: #e6e3e3;
+    --docs-background-transition-default: background-color 150ms;
+    --docs-font-family-default: "Roboto Flex", Arial, sans-serif;
 
-    --color-code-background: #1e1e1e;
+    --docs-color-text-default: #1c1b1d;
+    --docs-color-background: #efeded;
+    --docs-color-surface: #ffffff;
+    --docs-color-sidebar: #f9f7f7;
+    --docs-color-border: #cccccc;
+    --docs-color-border-subtle: #dddddd;
+    --docs-color-hover: #e6e3e3;
 
-    --color-accent-markup: #4263eb;
-    --color-accent-markup-hover: #3b5bdb;
-    --color-accent-data: #7048e8;
-    --color-accent-data-hover: #6741d9;
-    --color-accent-resources: #1098ad;
-    --color-accent-resources-hover: #0c8599;
+    --docs-color-code-background: #1e1e1e;
 
-    --radius-default: 4px;
-    --shadow-card: 0 2px 2px -2px rgba(0, 0, 0, 0.25);
-    --focus-ring: 2px solid var(--color-accent-markup);
+    /* The preview surface stays light in every theme so rendered example
+       components look as intended; these are never overridden per theme. */
+    --docs-color-preview-background: #ffffff;
+    --docs-color-preview-text: #1c1b1d;
+    --docs-color-preview-border: #dddddd;
+
+    --docs-color-accent-markup: #4263eb;
+    --docs-color-accent-markup-hover: #3b5bdb;
+    --docs-color-accent-data: #7048e8;
+    --docs-color-accent-data-hover: #6741d9;
+    --docs-color-accent-resources: #1098ad;
+    --docs-color-accent-resources-hover: #0c8599;
+
+    --docs-radius-default: 4px;
+    --docs-shadow-card: 0 2px 2px -2px rgba(0, 0, 0, 0.25);
+    --docs-focus-ring: 2px solid var(--docs-color-accent-markup);
+}
+
+/* Dark theme overrides the docs chrome only. The accent, code-background and
+   preview-* variables are intentionally left untouched. */
+[data-theme="dark"] {
+    color-scheme: dark;
+
+    --docs-color-text-default: #e7e3df;
+    --docs-color-background: #161618;
+    --docs-color-surface: #232326;
+    --docs-color-sidebar: #1c1c1f;
+    --docs-color-border: #3a3a3e;
+    --docs-color-border-subtle: #2c2c30;
+    --docs-color-hover: #2a2a2e;
+    --docs-shadow-card: 0 2px 8px rgba(0, 0, 0, 0.45);
 }
 
 /* Box-sizing applies to the docs chrome only. The exclusion stops the rule
@@ -42,7 +65,7 @@
 .sidebar a:focus-visible,
 .sidebar summary:focus-visible,
 .component-example-code summary:focus-visible {
-    outline: var(--focus-ring);
+    outline: var(--docs-focus-ring);
     outline-offset: 2px;
 }
 
@@ -61,11 +84,51 @@
     display: none;
 }
 
+/* Theme toggle, fixed top-right on every viewport. */
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 60;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    color: var(--docs-color-text-default);
+    background-color: var(--docs-color-surface);
+    border: 1px solid var(--docs-color-border);
+    border-radius: var(--docs-radius-default);
+    box-shadow: var(--docs-shadow-card);
+    cursor: pointer;
+    transition: var(--docs-background-transition-default);
+}
+
+.theme-icon {
+    display: block;
+    width: 22px;
+    height: 22px;
+}
+
+/* Show the moon in light mode (switch to dark) and the sun in dark mode. */
+.theme-icon-sun {
+    display: none;
+}
+
+[data-theme="dark"] .theme-icon-sun {
+    display: block;
+}
+
+[data-theme="dark"] .theme-icon-moon {
+    display: none;
+}
+
 .docs {
     box-sizing: border-box;
-    background-color: var(--color-background);
-    font-family: var(--font-family-default);
-    color: var(--color-text-default);
+    background-color: var(--docs-color-background);
+    font-family: var(--docs-font-family-default);
+    color: var(--docs-color-text-default);
     margin: 0;
     padding: 0;
     font-size: 16px;
@@ -75,8 +138,8 @@
     & aside.sidebar {
         width: 300px;
         height: 100vh;
-        background-color: var(--color-sidebar);
-        border-right: 1px solid var(--color-border);
+        background-color: var(--docs-color-sidebar);
+        border-right: 1px solid var(--docs-color-border);
         box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
         display: flex;
         flex-direction: column;
@@ -84,28 +147,32 @@
             font-size: 20px;
             font-weight: bold;
             padding: 16px 10px;
-            border-bottom: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--docs-color-border);
             margin: 0;
             display: block;
+            /* Override the component package's global heading color so docs
+               headings follow the theme. */
+            color: var(--docs-color-text-default);
         }
         & nav.component-type-list {
             flex: 1;
             min-height: 0;
             overflow-y: auto;
             & details {
-                border-bottom: 1px solid var(--color-border-subtle);
+                border-bottom: 1px solid var(--docs-color-border-subtle);
                 padding: 8px 0;
                 & summary {
                     font-weight: 500;
                     text-transform: capitalize;
                     cursor: pointer;
                     padding: 4px 0 8px 10px;
-                    transition: var(--background-transition-default);
+                    color: var(--docs-color-text-default);
+                    transition: var(--docs-background-transition-default);
                     &:hover {
-                        background-color: var(--color-hover);
+                        background-color: var(--docs-color-hover);
                     }
                     &.active-group {
-                        color: var(--color-accent-markup);
+                        color: var(--docs-color-accent-markup);
                     }
                 }
                 & ul {
@@ -117,17 +184,17 @@
                         padding: 0;
                         & a {
                             text-decoration: none;
-                            color: var(--color-text-default);
+                            color: var(--docs-color-text-default);
                             padding: 4px 0 4px 28px;
                             display: block;
-                            transition: var(--background-transition-default);
+                            transition: var(--docs-background-transition-default);
                             &:hover {
-                                background-color: var(--color-hover);
+                                background-color: var(--docs-color-hover);
                             }
                             &.active {
-                                background-color: var(--color-hover);
+                                background-color: var(--docs-color-hover);
                                 font-weight: 600;
-                                box-shadow: inset 3px 0 0 var(--color-accent-markup);
+                                box-shadow: inset 3px 0 0 var(--docs-color-accent-markup);
                             }
                             img {
                                 width: 16px;
@@ -157,17 +224,19 @@
                 margin: 52px 0;
                 margin-bottom: 32px;
                 display: block;
+                color: var(--docs-color-text-default);
             }
             & .component-type-section {
                 margin-bottom: 48px;
                 & > h2 {
                     text-transform: capitalize;
                     text-align: center;
-                    border-bottom: 1px solid var(--color-border);
+                    border-bottom: 1px solid var(--docs-color-border);
                     padding-bottom: 2px;
                     display: block;
                     max-width: 940px;
                     margin: 76px auto 10px;
+                    color: var(--docs-color-text-default);
                 }
                 & .components-container {
                     display: flex;
@@ -187,49 +256,58 @@
                         & > h3 {
                             margin-top: 0;
                             margin-bottom: 16px;
+                            color: var(--docs-color-text-default);
                         }
                         & .component-example-preview {
                             padding: 16px;
                             margin-bottom: 16px;
-                            background-color: var(--color-surface);
-                            border: 1px solid var(--color-border-subtle);
-                            border-radius: var(--radius-default);
-                            box-shadow: var(--shadow-card);
+                            /* Fixed light values (not the themed variables) so the
+                               rendered example components look identical in every
+                               docs theme. The explicit color also stops the dark
+                               theme's light text from being inherited here, and
+                               color-scheme keeps the examples' native controls and
+                               scrollbars light. */
+                            color-scheme: light;
+                            color: var(--docs-color-preview-text);
+                            background-color: var(--docs-color-preview-background);
+                            border: 1px solid var(--docs-color-preview-border);
+                            border-radius: var(--docs-radius-default);
+                            box-shadow: var(--docs-shadow-card);
                         }
                         & .component-example-code {
-                            background-color: var(--color-code-background);
-                            border-radius: var(--radius-default);
+                            background-color: var(--docs-color-code-background);
+                            border-radius: var(--docs-radius-default);
                             font-size: 14px;
                             overflow-x: auto;
                             margin-bottom: 8px;
                             border: none;
-                            box-shadow: var(--shadow-card);
+                            box-shadow: var(--docs-shadow-card);
                             & summary {
                                 font-weight: bold;
                                 padding: 8px;
                                 font-size: 16px;
                                 cursor: pointer;
-                                transition: var(--background-transition-default);
+                                transition: var(--docs-background-transition-default);
                                 border: none;
                                 &.component-example-resources-title {
-                                    background-color: var(--color-accent-resources);
+                                    background-color: var(--docs-color-accent-resources);
                                     color: #fff;
                                     &:hover {
-                                        background-color: var(--color-accent-resources-hover);
+                                        background-color: var(--docs-color-accent-resources-hover);
                                     }
                                 }
                                 &.component-example-data-title {
-                                    background-color: var(--color-accent-data);
+                                    background-color: var(--docs-color-accent-data);
                                     color: #fff;
                                     &:hover {
-                                        background-color: var(--color-accent-data-hover);
+                                        background-color: var(--docs-color-accent-data-hover);
                                     }
                                 }
                                 &.component-example-markup-title {
-                                    background-color: var(--color-accent-markup);
+                                    background-color: var(--docs-color-accent-markup);
                                     color: #fff;
                                     &:hover {
-                                        background-color: var(--color-accent-markup-hover);
+                                        background-color: var(--docs-color-accent-markup-hover);
                                     }
                                 }
                                 & .summary-icon {
@@ -283,10 +361,10 @@
         width: 44px;
         height: 44px;
         padding: 0;
-        background-color: var(--color-surface);
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius-default);
-        box-shadow: var(--shadow-card);
+        background-color: var(--docs-color-surface);
+        border: 1px solid var(--docs-color-border);
+        border-radius: var(--docs-radius-default);
+        box-shadow: var(--docs-shadow-card);
         cursor: pointer;
     }
     .sidebar-toggle-icon,
@@ -297,7 +375,7 @@
         width: 20px;
         height: 2px;
         border-radius: 2px;
-        background-color: var(--color-text-default);
+        background-color: var(--docs-color-text-default);
         transition:
             transform 150ms ease,
             opacity 150ms ease;

@@ -406,3 +406,39 @@ export function setupMobileNav() {
         }
     });
 }
+
+/**
+ * Wires up the light/dark theme toggle.
+ *
+ * The initial theme is applied by an inline script in the document head to
+ * avoid a flash of the wrong theme, so this only reflects the current theme on
+ * the button and flips it on click, persisting the choice to localStorage.
+ *
+ * No-ops when the toggle button is unavailable.
+ *
+ * @returns {void}
+ */
+export function setupThemeToggle() {
+    const toggle = document.getElementById("theme-toggle");
+    if (!toggle) {
+        return;
+    }
+
+    const root = document.documentElement;
+    const apply = (theme) => {
+        root.dataset.theme = theme;
+        toggle.setAttribute("aria-label", theme === "dark" ? "Bytt til lyst tema" : "Bytt til mørkt tema");
+        toggle.setAttribute("aria-pressed", String(theme === "dark"));
+    };
+
+    apply(root.dataset.theme === "dark" ? "dark" : "light");
+    toggle.addEventListener("click", () => {
+        const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
+        apply(nextTheme);
+        try {
+            localStorage.setItem("theme", nextTheme);
+        } catch {
+            // Ignore storage failures (e.g. private mode); the theme still applies.
+        }
+    });
+}

@@ -11,93 +11,85 @@ import iconDataObject from "../assets/svg/data-object.svg";
 import iconDictionary from "../assets/svg/dictionary.svg";
 
 /**
- * Renders a markup example for a component as a collapsible <details> element.
+ * Copies text to the clipboard, resolving to whether the copy succeeded.
  *
- * The rendered element includes a summary titled "Markup" and a code block
- * displaying the JSON representation of the component's markup.
- *
- * @param {Object} componentExample - The example object containing markup to render.
- * @param {any} componentExample.markup - The markup data to be displayed as JSON.
- * @returns {HTMLDetailsElement} The constructed <details> element containing the markup example.
+ * @param {string} text - The text to copy.
+ * @returns {Promise<boolean>} Whether the clipboard write succeeded.
  */
-function renderComponentExampleMarkup(componentExample) {
-    const containerElement = document.createElement("details");
-    containerElement.classList.add("component-example-code");
-
-    const titleElement = document.createElement("summary");
-    titleElement.classList.add("component-example-markup-title");
-    const iconElement = document.createElement("img");
-    iconElement.src = iconCodeBlocks;
-    iconElement.alt = "Markup Icon";
-    iconElement.classList.add("summary-icon");
-    titleElement.textContent = "Markup";
-    titleElement.prepend(iconElement);
-    containerElement.appendChild(titleElement);
-
-    const codeElement = document.createElement("pre");
-    const codeContentElement = document.createElement("code");
-    codeContentElement.classList.add("language-json");
-    codeContentElement.textContent = JSON.stringify(componentExample?.markup, null, 2);
-    codeElement.appendChild(codeContentElement);
-    containerElement.appendChild(codeElement);
-
-    return containerElement;
+async function copyText(text) {
+    try {
+        await navigator.clipboard.writeText(text);
+        return true;
+    } catch {
+        // Clipboard API unavailable (e.g. insecure context) or denied.
+        return false;
+    }
 }
 
 /**
- * Renders a collapsible details element displaying the provided component example data as formatted JSON.
+ * Creates a "Copy" button that writes the given text to the clipboard and shows
+ * brief feedback. Clicks are prevented from toggling the surrounding <details>.
  *
- * @param {Object} componentExampleData - The example data to display in the rendered component.
- * @returns {HTMLElement} The DOM element containing the formatted example data.
+ * @param {string} label - Section label, used for the accessible name.
+ * @param {string} text - The text copied to the clipboard.
+ * @returns {HTMLButtonElement} The copy button.
  */
-function renderComponentExampleData(componentExampleData) {
-    const containerElement = document.createElement("details");
-    containerElement.classList.add("component-example-code");
+function createCopyButton(label, text) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.classList.add("code-copy-button");
+    button.textContent = "Copy";
+    button.setAttribute("aria-label", `Copy ${label} JSON`);
 
-    const titleElement = document.createElement("summary");
-    titleElement.classList.add("component-example-data-title");
-    const iconElement = document.createElement("img");
-    iconElement.src = iconDataObject;
-    iconElement.alt = "Data Icon";
-    iconElement.classList.add("summary-icon");
-    titleElement.textContent = "Data";
-    titleElement.prepend(iconElement);
-    containerElement.appendChild(titleElement);
+    let resetTimer;
+    button.addEventListener("click", async (event) => {
+        // Keep the click from toggling the surrounding <details>.
+        event.preventDefault();
+        const copied = await copyText(text);
+        button.textContent = copied ? "Copied" : "Failed";
+        button.classList.toggle("is-copied", copied);
+        window.clearTimeout(resetTimer);
+        resetTimer = window.setTimeout(() => {
+            button.textContent = "Copy";
+            button.classList.remove("is-copied");
+        }, 1500);
+    });
 
-    const codeElement = document.createElement("pre");
-    const codeContentElement = document.createElement("code");
-    codeContentElement.classList.add("language-json");
-    codeContentElement.textContent = JSON.stringify(componentExampleData, null, 2);
-    codeElement.appendChild(codeContentElement);
-    containerElement.appendChild(codeElement);
-
-    return containerElement;
+    return button;
 }
 
 /**
- * Renders a collapsible "Resources" section displaying the given component example resources as formatted JSON.
+ * Renders a collapsible code section (Markup, Data, or Resources) that shows a
+ * value as formatted JSON inside a <details> element, with a copy button.
  *
- * @param {Object} componentExampleResources - The resources object to display in the code block.
- * @returns {HTMLElement} The DOM element containing the rendered resources section.
+ * @param {Object} options - The section configuration.
+ * @param {string} options.title - The summary label.
+ * @param {string} options.icon - The summary icon source.
+ * @param {string} options.titleClassName - Modifier class applied to the summary.
+ * @param {any} options.value - The value serialized into the code block.
+ * @returns {HTMLDetailsElement} The <details> element containing the code block.
  */
-function renderComponentExampleResources(componentExampleResources) {
+function renderCodeBlock({ title, icon, titleClassName, value }) {
+    const jsonString = JSON.stringify(value, null, 2);
+
     const containerElement = document.createElement("details");
     containerElement.classList.add("component-example-code");
 
     const titleElement = document.createElement("summary");
-    titleElement.classList.add("component-example-resources-title");
+    titleElement.classList.add(titleClassName);
     const iconElement = document.createElement("img");
-    iconElement.src = iconDictionary;
-    iconElement.alt = "Resources Icon";
+    iconElement.src = icon;
+    iconElement.alt = "";
     iconElement.classList.add("summary-icon");
-    titleElement.textContent = "Resources";
+    titleElement.textContent = title;
     titleElement.prepend(iconElement);
+    titleElement.appendChild(createCopyButton(title, jsonString));
     containerElement.appendChild(titleElement);
 
     const codeElement = document.createElement("pre");
     const codeContentElement = document.createElement("code");
     codeContentElement.classList.add("language-json");
-    codeContentElement.textContent = JSON.stringify(componentExampleResources, null, 2);
+    codeContentElement.textContent = jsonString;
     codeElement.appendChild(codeContentElement);
     containerElement.appendChild(codeElement);
 
@@ -148,18 +140,33 @@ function renderComponentExample(componentExample) {
     const previewElement = renderPreviewElement(componentExample);
     containerElement.appendChild(previewElement);
 
-    const markupElement = renderComponentExampleMarkup(componentExample);
+    const markupElement = renderCodeBlock({
+        title: "Markup",
+        icon: iconCodeBlocks,
+        titleClassName: "component-example-markup-title",
+        value: componentExample?.markup
+    });
     containerElement.appendChild(markupElement);
 
     const componentExampleData = componentExample?.data;
     if (hasValue(componentExampleData)) {
-        const dataElement = renderComponentExampleData(componentExampleData);
+        const dataElement = renderCodeBlock({
+            title: "Data",
+            icon: iconDataObject,
+            titleClassName: "component-example-data-title",
+            value: componentExampleData
+        });
         containerElement.appendChild(dataElement);
     }
 
     const componentExampleResources = componentExample?.resources;
     if (hasValue(componentExampleResources)) {
-        const resourcesElement = renderComponentExampleResources(componentExampleResources);
+        const resourcesElement = renderCodeBlock({
+            title: "Resources",
+            icon: iconDictionary,
+            titleClassName: "component-example-resources-title",
+            value: componentExampleResources
+        });
         containerElement.appendChild(resourcesElement);
     }
 

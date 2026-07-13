@@ -15,8 +15,15 @@ import hljs from "highlight.js/lib/core";
 import json from "highlight.js/lib/languages/json";
 
 // Local functions
-import { renderResults, renderSidebar, setupMobileNav, setupScrollSpy, setupThemeToggle } from "./scripts/renderers.js";
+import {
+    renderResults,
+    renderSidebar,
+    setupBackToTop,
+    setupMobileNav,
+    setupScrollSpy,
     setupSidebarSearch,
+    setupThemeToggle
+} from "./scripts/renderers.js";
 import componentExamples from "./components/index.js";
 
 // Data
@@ -85,7 +92,9 @@ export function getResults(componentExamples, dataModels) {
                 type: componentType,
                 components
             };
-        });
+        })
+        // Drop types with no valid examples so no empty section/heading renders.
+        .filter((componentType) => componentType.components.length > 0);
     return resultsElements;
 }
 
@@ -109,4 +118,5 @@ globalThis.onload = async function () {
     setupSidebarSearch();
     setupMobileNav();
     setupThemeToggle();
+    setupBackToTop();
 };

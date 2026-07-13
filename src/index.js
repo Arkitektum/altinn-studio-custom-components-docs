@@ -18,6 +18,7 @@ import json from "highlight.js/lib/languages/json";
 import {
     renderResults,
     renderSidebar,
+    scrollToHash,
     setupBackToTop,
     setupMobileNav,
     setupScrollSpy,
@@ -119,4 +120,5 @@ globalThis.onload = async function () {
     setupMobileNav();
     setupThemeToggle();
     setupBackToTop();
+    scrollToHash();
 };

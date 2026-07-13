@@ -539,3 +539,29 @@ export function setupBackToTop() {
         scrollContainer.scrollTo({ top: 0 });
     });
 }
+
+/**
+ * Scrolls to the component named in the current URL hash, if any.
+ *
+ * The gallery is rendered during window load — after the browser's own attempt
+ * to scroll to a hash target — so deep links (e.g. #component-custom-field-data)
+ * would otherwise land at the top. Call this once after rendering. The jump is
+ * instant to avoid a long animated scroll on load; the scroll-spy then reflects
+ * the active component.
+ *
+ * @returns {void}
+ */
+export function scrollToHash() {
+    const { hash } = window.location;
+    if (hash.length < 2) {
+        return;
+    }
+    let target;
+    try {
+        target = document.getElementById(decodeURIComponent(hash.slice(1)));
+    } catch {
+        // Malformed hash; nothing to scroll to.
+        return;
+    }
+    target?.scrollIntoView({ behavior: "instant", block: "start" });
+}

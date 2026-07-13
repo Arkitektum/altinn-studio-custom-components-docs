@@ -49,15 +49,6 @@ module.exports = {
         maxEntrypointSize: 512000
     },
     devServer: {
-        static: [
-            {
-                directory: path.join(__dirname, "public/docs")
-            },
-            {
-                directory: path.join(__dirname, "src"),
-                publicPath: "/src/"
-            }
-        ],
         compress: true,
         port: 9000
     }

@@ -1,8 +1,6 @@
 name: Build
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
@@ -45,15 +43,3 @@ jobs:
       # ------------------------------
       - name: Build
         run: yarn build
-
-      # ------------------------------
-      # 6. Fail if the committed docs/ is out of date
-      # ------------------------------
-      - name: Check docs/ is up to date
-        run: |
-          if [ -n "$(git status --porcelain docs)" ]; then
-            echo "::error::docs/ is out of date. Run 'yarn build' and commit the result."
-            git status --porcelain docs
-            git diff -- docs | head -200
-            exit 1
-          fi

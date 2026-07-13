@@ -45,7 +45,7 @@ For an overview of how the site is built and rendered, read [ARCHITECTURE.md](./
 | Command | What it does |
 | ------- | ------------ |
 | `yarn start` | Webpack dev server (port `9000`). |
-| `yarn build` | Production build into `docs/` (the published site). |
+| `yarn build` | Production build into `docs/` (git-ignored; published to GitHub Pages by CI). |
 | `npx eslint .` | Lint the source (ESLint flat config in `eslint.config.mjs`). |
 
 ---
@@ -92,5 +92,5 @@ For an overview of how the site is built and rendered, read [ARCHITECTURE.md](./
 
 ## Publishing the site
 
-The live site is served by **GitHub Pages** from the `docs/` folder on `main`.
-Run `yarn build` and commit the regenerated `docs/` to update <https://arkitektum.github.io/altinn-studio-custom-components-docs/>.
+The live site is built and published to **GitHub Pages by the `Deploy` GitHub Actions workflow** on every push to `main`.
+There is no need to build or commit `docs/` — merging to `main` updates <https://arkitektum.github.io/altinn-studio-custom-components-docs/> automatically.

@@ -69,7 +69,7 @@ src/
 ├── styles/main.css
 └── fonts/ assets/
 
-docs/                        # Build output, served by GitHub Pages (committed)
+docs/                        # Build output, published to GitHub Pages by CI (git-ignored)
 ```
 
 A component **example** is just a module exporting a `markup` object — the component's tag name plus the attributes/bindings that drive the demo. For example (`src/components/field/custom-field-data.js`):
@@ -97,8 +97,7 @@ export default { markup };
 | `yarn start` | Webpack dev server on port `9000`. |
 | `yarn build` | Production build into `docs/`. |
 
-The build output goes to **`docs/`**, which GitHub Pages serves directly from the `main` branch.
-Updating the live site means rebuilding and committing the `docs/` folder.
+The build output goes to **`docs/`** (git-ignored). The `Deploy` GitHub Actions workflow builds the site and publishes it to GitHub Pages on every push to `main`, so `docs/` no longer needs to be built or committed by hand. Pages is configured with **Source: GitHub Actions**.
 
 **Tooling:** Webpack 5 (with `html-webpack-plugin`, `mini-css-extract-plugin`, `css-minimizer-webpack-plugin`), highlight.js, ESLint (flat config), Yarn 4 via Corepack.
 CI runs an ESLint scan (`.github/workflows/eslint.yml`) that uploads results to the GitHub Security tab.

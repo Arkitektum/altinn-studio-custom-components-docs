@@ -15,5 +15,8 @@
 # Dependency directories
 node_modules/
 
+# Build output (published to GitHub Pages by the Deploy workflow)
+/docs
+
 # macOS
 .DS_Store

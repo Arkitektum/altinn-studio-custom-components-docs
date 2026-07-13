@@ -32,8 +32,8 @@ The page renders every component example with live previews and reloads on chang
 yarn build
 ```
 
-The production build is written to `docs/`, which **GitHub Pages serves directly from the `main` branch**.
-Updating the live site means rebuilding and committing the `docs/` folder.
+The production build is written to `docs/` (git-ignored).
+The live site is built and published to **GitHub Pages by the `Deploy` GitHub Actions workflow** on every push to `main` — there is no need to build or commit `docs/` by hand.
 
 ---
 

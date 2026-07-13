@@ -9,17 +9,17 @@
         "@eslint/js": "^10.0.1",
         "css-loader": "^7.1.4",
         "css-minimizer-webpack-plugin": "^8.0.0",
-        "eslint": "^10.6.0",
+        "eslint": "^10.7.0",
         "globals": "^17.7.0",
         "highlight.js": "^11.11.1",
         "html-webpack-plugin": "^5.6.7",
         "mini-css-extract-plugin": "^2.10.2",
-        "webpack": "^5.108.2",
-        "webpack-cli": "^7.1.0",
-        "webpack-dev-server": "^5.2.5"
+        "webpack": "^5.108.4",
+        "webpack-cli": "^7.2.1",
+        "webpack-dev-server": "^6.0.0"
     },
     "dependencies": {
-        "@arkitektum/altinn-studio-custom-components": "^16.5.1",
-        "@arkitektum/altinn-studio-custom-components-utils": "^1.4.12"
+        "@arkitektum/altinn-studio-custom-components": "^16.6.0",
+        "@arkitektum/altinn-studio-custom-components-utils": "^1.5.0"
     }
 }

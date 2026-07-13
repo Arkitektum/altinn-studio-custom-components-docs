@@ -222,6 +222,14 @@ export function renderSidebar(results) {
     sidebarTitleElement.textContent = "Components";
     sidebarElement.appendChild(sidebarTitleElement);
 
+    const searchElement = document.createElement("input");
+    searchElement.type = "search";
+    searchElement.id = "sidebar-search";
+    searchElement.classList.add("sidebar-search");
+    searchElement.placeholder = "Filter components…";
+    searchElement.setAttribute("aria-label", "Filter components");
+    sidebarElement.appendChild(searchElement);
+
     const navElement = document.createElement("nav");
 
     navElement.classList.add("component-type-list");
@@ -237,15 +245,18 @@ export function renderSidebar(results) {
         componentsUlElement.classList.add("component-list");
 
         componentType.components.forEach((componentExample) => {
+            const tagName = componentExample?.markup?.tagName;
+            const componentName = getComponentNameFromTagName(tagName);
             const componentLiElement = document.createElement("li");
+            componentLiElement.dataset.searchText = `${componentName} ${tagName ?? ""}`.toLowerCase();
             const componentLinkElement = document.createElement("a");
             const iconElement = document.createElement("img");
             iconElement.src = iconBrick;
-            iconElement.alt = "Component Icon";
+            iconElement.alt = "";
             iconElement.classList.add("component-icon");
-            componentLinkElement.textContent = getComponentNameFromTagName(componentExample?.markup?.tagName);
+            componentLinkElement.textContent = componentName;
             componentLinkElement.prepend(iconElement);
-            componentLinkElement.href = `#component-${componentExample?.markup?.tagName}`;
+            componentLinkElement.href = `#component-${tagName}`;
             componentLiElement.appendChild(componentLinkElement);
             componentsUlElement.appendChild(componentLiElement);
         });
@@ -254,7 +265,58 @@ export function renderSidebar(results) {
         navElement.appendChild(typeDetailsElement);
     });
 
+    const emptyStateElement = document.createElement("p");
+    emptyStateElement.id = "sidebar-empty";
+    emptyStateElement.classList.add("sidebar-empty");
+    emptyStateElement.textContent = "No components match your search.";
+    emptyStateElement.hidden = true;
+    navElement.appendChild(emptyStateElement);
+
     sidebarElement.appendChild(navElement);
+}
+
+/**
+ * Wires up the sidebar filter input.
+ *
+ * Filters the component links by name/tag as the user types, hides component
+ * groups with no matches, expands groups while a query is active so matches are
+ * visible, and toggles an empty-state message when nothing matches.
+ *
+ * No-ops when the search input or nav is unavailable.
+ *
+ * @returns {void}
+ */
+export function setupSidebarSearch() {
+    const input = document.getElementById("sidebar-search");
+    const nav = document.querySelector("nav.component-type-list");
+    if (!input || !nav) {
+        return;
+    }
+
+    const groups = Array.from(nav.querySelectorAll(":scope > details"));
+    const emptyState = document.getElementById("sidebar-empty");
+
+    input.addEventListener("input", () => {
+        const query = input.value.trim().toLowerCase();
+        let anyVisible = false;
+        groups.forEach((group) => {
+            let groupHasMatch = false;
+            group.querySelectorAll("li").forEach((item) => {
+                const isMatch = !query || (item.dataset.searchText ?? "").includes(query);
+                item.hidden = !isMatch;
+                groupHasMatch = groupHasMatch || isMatch;
+            });
+            group.hidden = !groupHasMatch;
+            anyVisible = anyVisible || groupHasMatch;
+            // Expand matching groups while filtering so the hits are visible.
+            if (query) {
+                group.open = true;
+            }
+        });
+        if (emptyState) {
+            emptyState.hidden = anyVisible;
+        }
+    });
 }
 
 /**

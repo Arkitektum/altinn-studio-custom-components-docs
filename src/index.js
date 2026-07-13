@@ -16,6 +16,7 @@ import json from "highlight.js/lib/languages/json";
 
 // Local functions
 import { renderResults, renderSidebar, setupMobileNav, setupScrollSpy, setupThemeToggle } from "./scripts/renderers.js";
+    setupSidebarSearch,
 import componentExamples from "./components/index.js";
 
 // Data
@@ -105,6 +106,7 @@ globalThis.onload = async function () {
     renderSidebar(results);
     hljs.highlightAll();
     setupScrollSpy();
+    setupSidebarSearch();
     setupMobileNav();
     setupThemeToggle();
 };

@@ -89,6 +89,26 @@
     display: none;
 }
 
+/* Sidebar filter input, fixed above the scrolling nav. */
+.sidebar-search {
+    margin: 10px;
+    padding: 8px 10px;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--docs-color-text-default);
+    background-color: var(--docs-color-surface);
+    border: 1px solid var(--docs-color-border);
+    border-radius: var(--docs-radius-default);
+}
+
+.sidebar-empty {
+    margin: 0;
+    padding: 12px 10px;
+    font-size: 14px;
+    color: var(--docs-color-text-default);
+    opacity: 0.7;
+}
+
 /* Theme toggle, fixed top-right on every viewport. */
 .theme-toggle {
     display: inline-flex;

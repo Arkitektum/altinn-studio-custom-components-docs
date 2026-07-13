@@ -32,6 +32,9 @@
     --docs-color-accent-resources: #1098ad;
     --docs-color-accent-resources-hover: #0c8599;
 
+    /* Darker than the accent so it reads well as text on the pale sidebar. */
+    --docs-color-active-group: #2f43a8;
+
     --docs-radius-default: 4px;
     --docs-shadow-card: 0 2px 2px -2px rgba(0, 0, 0, 0.25);
     --docs-focus-ring: 2px solid var(--docs-color-accent-markup);
@@ -50,6 +53,8 @@
     --docs-color-border-subtle: #2c2c30;
     --docs-color-hover: #2a2a2e;
     --docs-shadow-card: 0 2px 8px rgba(0, 0, 0, 0.45);
+    /* Lighter than the accent so it stays legible on the dark sidebar. */
+    --docs-color-active-group: #91a7ff;
 }
 
 /* Box-sizing applies to the docs chrome only. The exclusion stops the rule
@@ -172,7 +177,7 @@
                         background-color: var(--docs-color-hover);
                     }
                     &.active-group {
-                        color: var(--docs-color-accent-markup);
+                        color: var(--docs-color-active-group);
                     }
                 }
                 & ul {

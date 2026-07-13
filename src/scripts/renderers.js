@@ -364,3 +364,45 @@ export function setupScrollSpy() {
         });
     });
 }
+
+/**
+ * Wires up the mobile navigation drawer.
+ *
+ * Below the responsive breakpoint the sidebar is an off-canvas drawer toggled by
+ * the hamburger button. This opens/closes it via a class on <body>, keeps the
+ * button's aria-expanded state in sync, and closes it on backdrop click, the
+ * Escape key, or after a component is chosen from the menu.
+ *
+ * No-ops when the toggle, backdrop, or sidebar elements are unavailable.
+ *
+ * @returns {void}
+ */
+export function setupMobileNav() {
+    const toggle = document.getElementById("sidebar-toggle");
+    const backdrop = document.getElementById("sidebar-backdrop");
+    const sidebar = document.getElementById("sidebar");
+    if (!toggle || !backdrop || !sidebar) {
+        return;
+    }
+
+    const setOpen = (open) => {
+        document.body.classList.toggle("sidebar-open", open);
+        toggle.setAttribute("aria-expanded", String(open));
+    };
+
+    toggle.addEventListener("click", () => {
+        setOpen(!document.body.classList.contains("sidebar-open"));
+    });
+    backdrop.addEventListener("click", () => setOpen(false));
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            setOpen(false);
+        }
+    });
+    // Close the drawer once a component is chosen from the menu.
+    sidebar.addEventListener("click", (event) => {
+        if (event.target.closest("a[href^='#component-']")) {
+            setOpen(false);
+        }
+    });
+}

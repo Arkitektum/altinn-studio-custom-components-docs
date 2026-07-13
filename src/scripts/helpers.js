@@ -12,8 +12,7 @@ import componentTypeNames from "../constants/componentTypeNames";
  * @returns {string} The corresponding component name, or the original tag name if not found.
  */
 export function getComponentNameFromTagName(tagName) {
-    const componentNameEntry = Object.entries(componentNames).find(([key]) => key === tagName);
-    return componentNameEntry ? componentNameEntry[1] : tagName;
+    return componentNames[tagName] ?? tagName;
 }
 
 /**
@@ -24,6 +23,5 @@ export function getComponentNameFromTagName(tagName) {
  * @returns {string} The component type name if found, otherwise the original key.
  */
 export function getComponentTypeNameFromKey(key) {
-    const componentTypeNameEntry = Object.entries(componentTypeNames).find(([typeKey]) => typeKey === key);
-    return componentTypeNameEntry ? componentTypeNameEntry[1] : key;
+    return componentTypeNames[key] ?? key;
 }

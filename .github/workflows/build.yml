@@ -1,0 +1,59 @@
+name: Build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: Verify build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      # ------------------------------
+      # 1. Checkout repository
+      # ------------------------------
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      # ------------------------------
+      # 2. Setup Node.js
+      # ------------------------------
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      # ------------------------------
+      # 3. Enable Corepack (Yarn 4)
+      # ------------------------------
+      - name: Enable Corepack
+        run: corepack enable
+
+      # ------------------------------
+      # 4. Install dependencies
+      # ------------------------------
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      # ------------------------------
+      # 5. Build the site
+      # ------------------------------
+      - name: Build
+        run: yarn build
+
+      # ------------------------------
+      # 6. Fail if the committed docs/ is out of date
+      # ------------------------------
+      - name: Check docs/ is up to date
+        run: |
+          if [ -n "$(git status --porcelain docs)" ]; then
+            echo "::error::docs/ is out of date. Run 'yarn build' and commit the result."
+            git status --porcelain docs
+            git diff -- docs | head -200
+            exit 1
+          fi

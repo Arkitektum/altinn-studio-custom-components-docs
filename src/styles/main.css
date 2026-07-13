@@ -6,16 +6,55 @@
 :root {
     --background-transition-default: background-color 150ms;
     --font-family-default: "Roboto Flex", Arial, sans-serif;
+
     --color-text-default: #1c1b1d;
+    --color-background: #efeded;
+    --color-surface: #ffffff;
+    --color-sidebar: #f9f7f7;
+    --color-border: #cccccc;
+    --color-border-subtle: #dddddd;
+    --color-hover: #e6e3e3;
+
+    --color-code-background: #1e1e1e;
+
+    --color-accent-markup: #4263eb;
+    --color-accent-markup-hover: #3b5bdb;
+    --color-accent-data: #7048e8;
+    --color-accent-data-hover: #6741d9;
+    --color-accent-resources: #1098ad;
+    --color-accent-resources-hover: #0c8599;
+
+    --radius-default: 4px;
+    --shadow-card: 0 2px 2px -2px rgba(0, 0, 0, 0.25);
+    --focus-ring: 2px solid var(--color-accent-markup);
 }
 
-* {
+/* Box-sizing applies to the docs chrome only. The exclusion stops the rule
+   at the preview boundary so rendered example components keep their own box
+   model rather than inheriting the docs page's. */
+.docs,
+.docs *:not(.component-example-preview *) {
     box-sizing: border-box;
+}
+
+/* Focus outlines are limited to the docs' own interactive elements, so they
+   never alter focus styling inside the rendered example components. */
+.sidebar a:focus-visible,
+.sidebar summary:focus-visible,
+.component-example-code summary:focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .page-container {
+        scroll-behavior: smooth;
+    }
 }
 
 .docs {
     box-sizing: border-box;
-    background-color: #efeded;
+    background-color: var(--color-background);
     font-family: var(--font-family-default);
     color: var(--color-text-default);
     margin: 0;
@@ -26,8 +65,9 @@
     letter-spacing: normal;
     & aside.sidebar {
         width: 300px;
-        background-color: #f9f7f7;
-        border-right: 1px solid #ccc;
+        height: 100vh;
+        background-color: var(--color-sidebar);
+        border-right: 1px solid var(--color-border);
         box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
         display: flex;
         flex-direction: column;
@@ -35,15 +75,16 @@
             font-size: 20px;
             font-weight: bold;
             padding: 16px 10px;
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid var(--color-border);
             margin: 0;
             display: block;
         }
         & nav.component-type-list {
-            height: calc(100vh - 55px);
+            flex: 1;
+            min-height: 0;
             overflow-y: auto;
             & details {
-                border-bottom: 1px solid #ddd;
+                border-bottom: 1px solid var(--color-border-subtle);
                 padding: 8px 0;
                 & summary {
                     font-weight: 500;
@@ -52,7 +93,7 @@
                     padding: 4px 0 8px 10px;
                     transition: var(--background-transition-default);
                     &:hover {
-                        background-color: #efeded;
+                        background-color: var(--color-hover);
                     }
                 }
                 & ul {
@@ -69,7 +110,12 @@
                             display: block;
                             transition: var(--background-transition-default);
                             &:hover {
-                                background-color: #efeded;
+                                background-color: var(--color-hover);
+                            }
+                            &.active {
+                                background-color: var(--color-hover);
+                                font-weight: 600;
+                                box-shadow: inset 3px 0 0 var(--color-accent-markup);
                             }
                             img {
                                 width: 16px;
@@ -90,6 +136,7 @@
         padding: 16px;
         overflow-y: auto;
         height: 100vh;
+        scroll-padding-top: 16px;
         & main {
             max-width: 1200px;
             margin: 0 auto;
@@ -104,7 +151,7 @@
                 & > h2 {
                     text-transform: capitalize;
                     text-align: center;
-                    border-bottom: 1px solid #ccc;
+                    border-bottom: 1px solid var(--color-border);
                     padding-bottom: 2px;
                     display: block;
                     max-width: 940px;
@@ -132,19 +179,19 @@
                         & .component-example-preview {
                             padding: 16px;
                             margin-bottom: 16px;
-                            background-color: #fff;
-                            border: 1px solid #ddd;
-                            border-radius: 4px;
-                            box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.25);
+                            background-color: var(--color-surface);
+                            border: 1px solid var(--color-border-subtle);
+                            border-radius: var(--radius-default);
+                            box-shadow: var(--shadow-card);
                         }
                         & .component-example-code {
-                            background-color: rgb(30, 30, 30);
-                            border-radius: 4px;
+                            background-color: var(--color-code-background);
+                            border-radius: var(--radius-default);
                             font-size: 14px;
                             overflow-x: auto;
                             margin-bottom: 8px;
                             border: none;
-                            box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.25);
+                            box-shadow: var(--shadow-card);
                             & summary {
                                 font-weight: bold;
                                 padding: 8px;
@@ -153,25 +200,24 @@
                                 transition: var(--background-transition-default);
                                 border: none;
                                 &.component-example-resources-title {
-                                    background-color: #4a90e2;
+                                    background-color: var(--color-accent-resources);
                                     color: #fff;
                                     &:hover {
-                                        background-color: #357abd;
+                                        background-color: var(--color-accent-resources-hover);
                                     }
                                 }
                                 &.component-example-data-title {
-                                    background-color: #9013fe;
+                                    background-color: var(--color-accent-data);
                                     color: #fff;
                                     &:hover {
-                                        background-color: #6e0eda;
+                                        background-color: var(--color-accent-data-hover);
                                     }
                                 }
-                                /* use a better red color for this*/
                                 &.component-example-markup-title {
-                                    background-color: #e94e77;
+                                    background-color: var(--color-accent-markup);
                                     color: #fff;
                                     &:hover {
-                                        background-color: #c43c61;
+                                        background-color: var(--color-accent-markup-hover);
                                     }
                                 }
                                 & .summary-icon {

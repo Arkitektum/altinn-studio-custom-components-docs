@@ -95,6 +95,9 @@
                     &:hover {
                         background-color: var(--color-hover);
                     }
+                    &.active-group {
+                        color: var(--color-accent-markup);
+                    }
                 }
                 & ul {
                     list-style: none;

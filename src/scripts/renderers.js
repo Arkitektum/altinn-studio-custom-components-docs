@@ -256,3 +256,111 @@ export function renderSidebar(results) {
 
     sidebarElement.appendChild(navElement);
 }
+
+/**
+ * Wires up scroll-spy so the sidebar reflects the component currently in view.
+ *
+ * Observes every rendered component section within the main scroll container
+ * and, as the user scrolls, marks the matching sidebar link as active, tags its
+ * component-type group, opens that group if collapsed, and keeps the active link
+ * visible within the nav. This complements click navigation, which scrolls from
+ * the menu to the content, by mirroring the scroll position back into the menu.
+ *
+ * No-ops when the required elements or IntersectionObserver are unavailable.
+ *
+ * @returns {void}
+ */
+export function setupScrollSpy() {
+    const scrollContainer = document.querySelector(".page-container");
+    const links = Array.from(document.querySelectorAll("nav.component-type-list a[href^='#component-']"));
+    if (!scrollContainer || !links.length || typeof IntersectionObserver === "undefined") {
+        return;
+    }
+
+    const linkBySection = new Map();
+    const sections = [];
+    links.forEach((link) => {
+        const sectionId = decodeURIComponent(link.getAttribute("href").slice(1));
+        const section = document.getElementById(sectionId);
+        if (section) {
+            linkBySection.set(section, link);
+            sections.push(section);
+        }
+    });
+
+    let activeLink = null;
+    let activeSummary = null;
+    const setActive = (link) => {
+        if (!link || link === activeLink) {
+            return;
+        }
+        activeLink?.classList.remove("active");
+        activeSummary?.classList.remove("active-group");
+        activeLink = link;
+        activeLink.classList.add("active");
+        const parentDetails = activeLink.closest("details");
+        if (parentDetails) {
+            parentDetails.open = true;
+        }
+        activeSummary = parentDetails?.querySelector(":scope > summary") ?? null;
+        activeSummary?.classList.add("active-group");
+        activeLink.scrollIntoView({ block: "nearest" });
+    };
+
+    // Sections stack in document (and sidebar) order, so the one being read is
+    // the last whose top has passed a line a short way down the scroll area.
+    // Measuring against that line ignores sections that have scrolled off the
+    // top, which is what previously caused the wrong item to be selected.
+    const sectionAtScrollLine = () => {
+        const line = scrollContainer.getBoundingClientRect().top + scrollContainer.clientHeight * 0.25;
+        let current = sections[0];
+        for (const section of sections) {
+            if (section.getBoundingClientRect().top <= line) {
+                current = section;
+            } else {
+                break;
+            }
+        }
+        return current;
+    };
+
+    // A clicked link stays authoritative until its smooth scroll settles, so
+    // intermediate scroll positions can't briefly select a neighbouring item.
+    let clickLocked = false;
+    let unlockTimer = null;
+    const syncFromScroll = () => {
+        if (!clickLocked) {
+            setActive(linkBySection.get(sectionAtScrollLine()));
+        }
+    };
+    const unlock = () => {
+        clickLocked = false;
+        if (unlockTimer !== null) {
+            clearTimeout(unlockTimer);
+            unlockTimer = null;
+        }
+        syncFromScroll();
+    };
+
+    const observer = new IntersectionObserver(syncFromScroll, {
+        root: scrollContainer,
+        // A thin band ~25% down the scroll area, so the observer fires as a
+        // section boundary crosses the line that sectionAtScrollLine() measures.
+        rootMargin: "-25% 0px -74% 0px",
+        threshold: 0
+    });
+    sections.forEach((section) => observer.observe(section));
+
+    scrollContainer.addEventListener("scrollend", unlock);
+    links.forEach((link) => {
+        link.addEventListener("click", () => {
+            clickLocked = true;
+            setActive(link);
+            // Fallback in case scrollend never fires (unsupported, or no scroll).
+            if (unlockTimer !== null) {
+                clearTimeout(unlockTimer);
+            }
+            unlockTimer = setTimeout(unlock, 800);
+        });
+    });
+}

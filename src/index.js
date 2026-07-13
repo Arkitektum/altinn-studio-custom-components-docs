@@ -15,7 +15,7 @@ import hljs from "highlight.js/lib/core";
 import json from "highlight.js/lib/languages/json";
 
 // Local functions
-import { renderResults, renderSidebar } from "./scripts/renderers.js";
+import { renderResults, renderSidebar, setupScrollSpy } from "./scripts/renderers.js";
 import componentExamples from "./components/index.js";
 
 // Data
@@ -104,4 +104,5 @@ globalThis.onload = async function () {
     renderResults(results);
     renderSidebar(results);
     hljs.highlightAll();
+    setupScrollSpy();
 };

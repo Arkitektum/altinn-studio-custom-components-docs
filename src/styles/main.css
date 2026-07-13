@@ -90,15 +90,44 @@
 }
 
 /* Sidebar filter input, fixed above the scrolling nav. */
-.sidebar-search {
+.sidebar-search-wrap {
+    position: relative;
     margin: 10px;
-    padding: 8px 10px;
+}
+
+.sidebar-search {
+    display: block;
+    width: 100%;
+    padding: 8px 30px 8px 10px;
     font-family: inherit;
     font-size: 14px;
     color: var(--docs-color-text-default);
     background-color: var(--docs-color-surface);
     border: 1px solid var(--docs-color-border);
     border-radius: var(--docs-radius-default);
+}
+
+/* "/" shortcut hint, shown only while the field is empty and unfocused. */
+.sidebar-search-kbd {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-family: inherit;
+    font-size: 12px;
+    line-height: 1;
+    padding: 2px 6px;
+    color: var(--docs-color-text-default);
+    background-color: var(--docs-color-hover);
+    border: 1px solid var(--docs-color-border);
+    border-radius: 4px;
+    opacity: 0.7;
+}
+
+.sidebar-search:focus ~ .sidebar-search-kbd,
+.sidebar-search:not(:placeholder-shown) ~ .sidebar-search-kbd {
+    display: none;
 }
 
 .sidebar-empty {

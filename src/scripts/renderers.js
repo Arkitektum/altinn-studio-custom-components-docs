@@ -229,13 +229,21 @@ export function renderSidebar(results) {
     sidebarTitleElement.textContent = "Components";
     sidebarElement.appendChild(sidebarTitleElement);
 
+    const searchWrapElement = document.createElement("div");
+    searchWrapElement.classList.add("sidebar-search-wrap");
     const searchElement = document.createElement("input");
     searchElement.type = "search";
     searchElement.id = "sidebar-search";
     searchElement.classList.add("sidebar-search");
     searchElement.placeholder = "Filter components…";
     searchElement.setAttribute("aria-label", "Filter components");
-    sidebarElement.appendChild(searchElement);
+    const searchHintElement = document.createElement("kbd");
+    searchHintElement.classList.add("sidebar-search-kbd");
+    searchHintElement.setAttribute("aria-hidden", "true");
+    searchHintElement.textContent = "/";
+    searchWrapElement.appendChild(searchElement);
+    searchWrapElement.appendChild(searchHintElement);
+    sidebarElement.appendChild(searchWrapElement);
 
     const navElement = document.createElement("nav");
 

@@ -3,7 +3,8 @@
     "packageManager": "yarn@4.15.0",
     "scripts": {
         "start": "webpack serve --mode development --config webpack.config.js",
-        "build": "webpack --mode production --config webpack.config.js"
+        "build": "webpack --mode production --config webpack.config.js",
+        "lint": "eslint ."
     },
     "devDependencies": {
         "@eslint/js": "^10.0.1",

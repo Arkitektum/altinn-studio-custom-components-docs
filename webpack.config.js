@@ -3,6 +3,19 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+/**
+ * Canonical location of the published site.
+ *
+ * Used for the canonical link and the Open Graph URL, so both point at one address no matter which host serves the
+ * files. Override with SITE_URL when publishing somewhere else, such as a custom domain.
+ */
+const siteUrl = process.env.SITE_URL || "https://arkitektum.github.io/altinn-studio-custom-components-docs/";
+
+const siteName = "Altinn Studio Custom Components";
+
+const siteDescription =
+    "Komponentgalleri for Altinn Studio: alle data- og layoutkomponenter i @arkitektum/altinn-studio-custom-components med eksempeldata, markup og tekstressurser.";
+
 module.exports = {
     entry: "./src/index.js",
     output: {
@@ -16,7 +29,13 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "./src/index.html",
             filename: "index.html",
-            inject: "body"
+            inject: "body",
+            favicon: "./src/assets/favicon.svg",
+            templateParameters: {
+                siteUrl,
+                siteName,
+                siteDescription
+            }
         })
     ],
     module: {

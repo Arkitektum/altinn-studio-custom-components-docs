@@ -1,10 +1,40 @@
 <!doctype html>
-<html lang="nb" xml:lang="nb">
+<html lang="nb">
     <head>
         <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Altinn Studio Custom Components</title>
+        <title><%= siteName %> | Komponentgalleri</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="<%= siteDescription %>" />
+        <link rel="canonical" href="<%= siteUrl %>" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="<%= siteName %>" />
+        <meta property="og:locale" content="nb_NO" />
+        <meta property="og:title" content="<%= siteName %> | Komponentgalleri" />
+        <meta property="og:description" content="<%= siteDescription %>" />
+        <meta property="og:url" content="<%= siteUrl %>" />
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="<%= siteName %> | Komponentgalleri" />
+        <meta name="twitter:description" content="<%= siteDescription %>" />
+
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": "<%= siteName %>",
+                "description": "<%= siteDescription %>",
+                "url": "<%= siteUrl %>",
+                "inLanguage": "nb-NO",
+                "publisher": { "@type": "Organization", "name": "Arkitektum" },
+                "about": {
+                    "@type": "SoftwareSourceCode",
+                    "name": "@arkitektum/altinn-studio-custom-components",
+                    "codeRepository": "https://github.com/Arkitektum/altinn-studio-custom-components",
+                    "programmingLanguage": "JavaScript"
+                }
+            }
+        </script>
         <script>
             // Apply the saved (or system) theme before paint to avoid a flash.
             (function () {

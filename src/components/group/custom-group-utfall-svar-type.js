@@ -1,11 +1,17 @@
 const utfallType = "svv";
 
+// The title depends on the utfall type, so the component has no default for it: the parent
+// custom-grouplist-utfall-svar-type passes it in as a flat `title` binding, and this example must do the same.
 const markup = {
     id: "custom-group-utfall-svar-type",
     type: "Custom",
     tagName: "custom-group-utfall-svar-type",
     dataModelBindings: {
         data: "customGroup.utfallSvarType"
+    },
+    resourceBindings: {
+        title: `resource.utfallBesvarelse.utfallSvar.${utfallType?.toLowerCase()}.header`,
+        emptyFieldText: "resource.emptyFieldText.default"
     },
     resourceValues: {
         utfallType
@@ -14,9 +20,6 @@ const markup = {
 
 const defaultResourceBindings = {
     emptyFieldText: "resource.emptyFieldText.default",
-    utfallSvarType: {
-        title: `resource.utfallBesvarelse.utfallSvar.${utfallType?.toLowerCase()}.header`
-    },
     kommentar: {
         title: `resource.kommentar.title`
     },

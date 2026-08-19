@@ -98,6 +98,9 @@ async function prerenderDocument(html, script) {
     });
 
     try {
+        // Tells the page to skip syntax highlighting, which is presentation only and would otherwise roughly triple
+        // the size of every prerendered code block. The client highlights them when it renders over the markup.
+        dom.window.__PRERENDERING__ = true;
         dom.window.eval(script);
         dom.window.dispatchEvent(new dom.window.Event("load"));
         // The load handler is async, so let its microtasks settle before serialising.
@@ -189,7 +192,10 @@ module.exports = {
     },
     performance: {
         maxAssetSize: 512000,
-        maxEntrypointSize: 512000
+        maxEntrypointSize: 512000,
+        // The prerendered index.html holds every component example, so it is expected to be far larger than a bundle.
+        // Keep the budget pointed at the JavaScript and CSS, which is what it is useful for.
+        assetFilter: (assetFilename) => !assetFilename.endsWith(".html")
     },
     devServer: {
         compress: true,

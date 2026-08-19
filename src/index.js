@@ -139,7 +139,11 @@ globalThis.onload = async function () {
     const results = getResults(componentExamples, dataModels);
     renderResults(results);
     renderSidebar(results);
-    hljs.highlightAll();
+    // Syntax highlighting is presentation only and roughly triples the size of every code block, so it is skipped
+    // while prerendering. The client highlights the prerendered blocks when it renders over them.
+    if (!globalThis.__PRERENDERING__) {
+        hljs.highlightAll();
+    }
     setupScrollSpy();
     setupSidebarSearch();
     setupMobileNav();

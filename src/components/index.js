@@ -27,12 +27,14 @@ import customDescriptionListData from "./description-list/custom-description-lis
 
 // Table
 import customTableAnsvarsomraade from "./table/custom-table-ansvarsomraade.js";
+import customTableAnsvarsrettAnsvarsomraade from "./table/custom-table-ansvarsrett-ansvarsomraade.js";
 import customTableArbeidsplasser from "./table/custom-table-arbeidsplasser.js";
 import customTableData from "./table/custom-table-data.js";
 import customTableEiendom from "./table/custom-table-eiendom.js";
 import customTableNaboGjenboerEiendom from "./table/custom-table-nabo-gjenboer-eiendom.js";
 import customTableOmraaderisiko from "./table/custom-table-omraaderisiko.js";
 import customTablePart from "./table/custom-table-part.js";
+import customTablePartGjennomfoeringsplan from "./table/custom-table-part-gjennomfoeringsplan.js";
 import customTablePlan from "./table/custom-table-plan.js";
 
 // Summation
@@ -43,13 +45,19 @@ import customSummationData from "./summation/custom-summation-data.js";
 import customGroupAdkomst from "./group/custom-group-adkomst.js";
 import customGroupAnsvarsrettErklaeringer from "./group/custom-group-ansvarsrett-erklaeringer.js";
 import customGroupAvloep from "./group/custom-group-avloep.js";
+import customGroupDispensasjonOversikt from "./group/custom-group-dispensasjon-oversikt.js";
 import customGroupEttersending from "./group/custom-group-ettersending.js";
+import customGroupKontrollAnsvarsomraade from "./group/custom-group-kontroll-ansvarsomraade.js";
+import customGroupKontrollErklaeringer from "./group/custom-group-kontroll-erklaeringer.js";
 import customGroupLoefteinnretninger from "./group/custom-group-loefteinnretninger.js";
 import customGroupNaboGjenboerEiendom from "./group/custom-group-nabo-gjenboer-eiendom.js";
 import customGroupOvervann from "./group/custom-group-overvann.js";
 import customGroupRammebetingelserKravTilByggegrunn from "./group/custom-group-rammebetingelser-krav-til-byggegrunn.js";
 import customGroupRammebetingelserTilknytninger from "./group/custom-group-rammebetingelser-tilknytninger.js";
+import customGroupSamsvarAnsvarsomraade from "./group/custom-group-samsvar-ansvarsomraade.js";
+import customGroupSamsvarErklaeringer from "./group/custom-group-samsvar-erklaeringer.js";
 import customGroupSjekklistekrav from "./group/custom-group-sjekklistekrav.js";
+import customGroupSjekklistekravHeaderText from "./group/custom-group-sjekklistekrav-header-text.js";
 import customGroupUtfallSvar from "./group/custom-group-utfall-svar.js";
 import customGroupUtfallSvarType from "./group/custom-group-utfall-svar-type.js";
 import customGroupVannforsyning from "./group/custom-group-vannforsyning.js";
@@ -59,6 +67,7 @@ import customGroupVegtypeTillatelse from "./group/custom-group-vegtype-tillatels
 import customGrouplistAnsvarsomraadeType from "./grouplist/custom-grouplist-ansvarsomraade-type.js";
 import customGrouplistEttersending from "./grouplist/custom-grouplist-ettersending.js";
 import customGrouplistNaboGjenboerEiendom from "./grouplist/custom-grouplist-nabo-gjenboer-eiendom.js";
+import customGrouplistSamsvarAnsvarsomraade from "./grouplist/custom-grouplist-samsvar-ansvarsomraade.js";
 import customGrouplistSjekklistekrav from "./grouplist/custom-grouplist-sjekklistekrav.js";
 import customGrouplistUtfallSvar from "./grouplist/custom-grouplist-utfall-svar.js";
 import customGrouplistUtfallSvarType from "./grouplist/custom-grouplist-utfall-svar-type.js";
@@ -97,12 +106,14 @@ export const descriptionList = { customDescriptionListData };
 
 export const table = {
     customTableAnsvarsomraade,
+    customTableAnsvarsrettAnsvarsomraade,
     customTableArbeidsplasser,
     customTableData,
     customTableEiendom,
     customTableNaboGjenboerEiendom,
     customTableOmraaderisiko,
     customTablePart,
+    customTablePartGjennomfoeringsplan,
     customTablePlan
 };
 
@@ -112,13 +123,19 @@ export const group = {
     customGroupAdkomst,
     customGroupAnsvarsrettErklaeringer,
     customGroupAvloep,
+    customGroupDispensasjonOversikt,
     customGroupEttersending,
+    customGroupKontrollAnsvarsomraade,
+    customGroupKontrollErklaeringer,
     customGroupLoefteinnretninger,
     customGroupNaboGjenboerEiendom,
     customGroupOvervann,
     customGroupRammebetingelserKravTilByggegrunn,
     customGroupRammebetingelserTilknytninger,
+    customGroupSamsvarAnsvarsomraade,
+    customGroupSamsvarErklaeringer,
     customGroupSjekklistekrav,
+    customGroupSjekklistekravHeaderText,
     customGroupUtfallSvar,
     customGroupUtfallSvarType,
     customGroupVannforsyning,
@@ -129,6 +146,7 @@ export const grouplist = {
     customGrouplistAnsvarsomraadeType,
     customGrouplistEttersending,
     customGrouplistNaboGjenboerEiendom,
+    customGrouplistSamsvarAnsvarsomraade,
     customGrouplistSjekklistekrav,
     customGrouplistUtfallSvarType,
     customGrouplistUtfallSvar,

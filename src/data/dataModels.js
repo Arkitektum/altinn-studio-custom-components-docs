@@ -378,7 +378,52 @@ export default [
                             kodebeskrivelse: "Reguleringsplan for Sentrum Øst"
                         }
                     }
-                ]
+                ],
+                ansvarsrettAnsvarsomraade: [
+                    {
+                        funksjon: {
+                            kodeverdi: "PRO",
+                            kodebeskrivelse: "Ansvarlig prosjekterende"
+                        },
+                        beskrivelseAvAnsvarsomraadet: "Prosjektering av bærekonstruksjoner",
+                        tiltaksklasse: {
+                            kodeverdi: "2",
+                            kodebeskrivelse: "Tiltaksklasse 2"
+                        },
+                        dekkesOmraadeAvSentralGodkjenning: true,
+                        faseSamsvarKontroll: {
+                            harSamsvarKontrollVedRammetillatelse: true,
+                            harSamsvarKontrollVedIgangsettingstillatelse: true,
+                            harSamsvarKontrollVedMidlertidigBrukstillatelse: false,
+                            harSamsvarKontrollVedFerdigattest: true
+                        },
+                        soeknadssystemetsReferanse: "100000001"
+                    },
+                    {
+                        funksjon: {
+                            kodeverdi: "UTF",
+                            kodebeskrivelse: "Ansvarlig utførende"
+                        },
+                        beskrivelseAvAnsvarsomraadet: "Utførelse av grunn- og betongarbeider",
+                        tiltaksklasse: {
+                            kodeverdi: "1",
+                            kodebeskrivelse: "Tiltaksklasse 1"
+                        },
+                        dekkesOmraadeAvSentralGodkjenning: false,
+                        faseSamsvarKontroll: {
+                            harSamsvarKontrollVedRammetillatelse: false,
+                            harSamsvarKontrollVedIgangsettingstillatelse: true,
+                            harSamsvarKontrollVedMidlertidigBrukstillatelse: true,
+                            harSamsvarKontrollVedFerdigattest: false
+                        },
+                        soeknadssystemetsReferanse: "100000002"
+                    }
+                ],
+                partGjennomfoeringsplan: {
+                    navn: "Byggmester Hansen AS",
+                    organisasjonsnummer: "987654321",
+                    tiltaksklasse: "Tiltaksklasse 2"
+                }
             },
             customSummation: {
                 arealdisponering: {
@@ -795,7 +840,111 @@ export default [
                         kodebeskrivelse: "Kommunal vei"
                     },
                     erTillatelseGitt: true
-                }
+                },
+                kontrollAnsvarsomraade: {
+                    funksjon: {
+                        kodeverdi: "KONTROLL",
+                        kodebeskrivelse: "Ansvarlig kontrollerende"
+                    },
+                    beskrivelseAvAnsvarsomraadet: "Kontroll av bygningsfysikk",
+                    kontrollerende: {
+                        harObserverteAvvik: true,
+                        harAapneAvvik: false,
+                        harIngenAvvik: false
+                    },
+                    datoAnsvarsrettErklaert: "2024-03-14",
+                    erAnsvarsomraadetAvsluttet: false,
+                    soeknadssystemetsReferanse: "200000001"
+                },
+                kontrollErklaering: {
+                    funksjon: {
+                        kodeverdi: "KONTROLL",
+                        kodebeskrivelse: "Ansvarlig kontrollerende"
+                    },
+                    beskrivelseAvAnsvarsomraadet: "Kontroll av våtrom",
+                    kontrollerende: {
+                        harObserverteAvvik: false,
+                        harAapneAvvik: false,
+                        harIngenAvvik: true
+                    },
+                    datoAnsvarsrettErklaert: "2024-05-02",
+                    erAnsvarsomraadetAvsluttet: true,
+                    soeknadssystemetsReferanse: "200000002"
+                },
+                samsvarAnsvarsomraade: {
+                    funksjon: {
+                        kodeverdi: "PRO",
+                        kodebeskrivelse: "Ansvarlig prosjekterende"
+                    },
+                    beskrivelseAvAnsvarsomraadet: "Prosjektering av brannsikkerhet",
+                    prosjekterende: {
+                        erOkForRammetillatelse: true,
+                        erOkForIgangsettingstillatelse: true,
+                        erOkForMidlertidigBrukstillatelse: false,
+                        erOkForFerdigattest: false
+                    },
+                    utfoerende: {
+                        erOkForFerdigattest: false,
+                        midlertidigBrukstillatelse: {
+                            erOkForMidlertidigBrukstillatelse: true,
+                            gjenstaaendeArbeider: {
+                                gjenstaaendeInnenfor: "Innvendig maling av trapperom",
+                                gjenstaaendeUtenfor: "Opparbeiding av uteareal"
+                            },
+                            sikkerhet: {
+                                harTilstrekkeligSikkerhet: true,
+                                typeArbeider: "Rekkverk og trapper",
+                                utfoertInnen: "2024-09-30"
+                            }
+                        }
+                    },
+                    datoAnsvarsrettErklaert: "2024-02-20",
+                    erAnsvarsomraadetAvsluttet: false,
+                    soeknadssystemetsReferanse: "300000001"
+                },
+                samsvarErklaering: [
+                    {
+                        funksjon: {
+                            kodeverdi: "PRO",
+                            kodebeskrivelse: "Ansvarlig prosjekterende"
+                        },
+                        beskrivelseAvAnsvarsomraadet: "Prosjektering av bærekonstruksjoner",
+                        prosjekterende: {
+                            erOkForRammetillatelse: true,
+                            erOkForIgangsettingstillatelse: true,
+                            erOkForMidlertidigBrukstillatelse: true,
+                            erOkForFerdigattest: true
+                        },
+                        datoAnsvarsrettErklaert: "2024-01-15",
+                        erAnsvarsomraadetAvsluttet: true,
+                        soeknadssystemetsReferanse: "300000002"
+                    },
+                    {
+                        funksjon: {
+                            kodeverdi: "UTF",
+                            kodebeskrivelse: "Ansvarlig utførende"
+                        },
+                        beskrivelseAvAnsvarsomraadet: "Utførelse av tømrerarbeider",
+                        utfoerende: {
+                            erOkForFerdigattest: false,
+                            midlertidigBrukstillatelse: {
+                                erOkForMidlertidigBrukstillatelse: true,
+                                gjenstaaendeArbeider: {
+                                    gjenstaaendeInnenfor: "Montering av innvendige dører",
+                                    gjenstaaendeUtenfor: "Terrasse og utvendig trapp"
+                                },
+                                sikkerhet: {
+                                    harTilstrekkeligSikkerhet: false,
+                                    typeArbeider: "Midlertidig rekkverk",
+                                    utfoertInnen: "2024-11-15"
+                                }
+                            }
+                        },
+                        datoAnsvarsrettErklaert: "2024-04-08",
+                        erAnsvarsomraadetAvsluttet: false,
+                        soeknadssystemetsReferanse: "300000003"
+                    }
+                ]
             },
             customGrouplist: {
                 ansvarsomraade: [
@@ -1248,7 +1397,50 @@ export default [
                     erTillatelseGittRiksFylkesveg: false,
                     erTillatelseGittKommunalVeg: true,
                     erTillatelseGittPrivatVeg: false
-                }
+                },
+                samsvarAnsvarsomraade: [
+                    {
+                        funksjon: {
+                            kodeverdi: "PRO",
+                            kodebeskrivelse: "Ansvarlig prosjekterende"
+                        },
+                        beskrivelseAvAnsvarsomraadet: "Prosjektering av bærekonstruksjoner",
+                        prosjekterende: {
+                            erOkForRammetillatelse: true,
+                            erOkForIgangsettingstillatelse: true,
+                            erOkForMidlertidigBrukstillatelse: false,
+                            erOkForFerdigattest: false
+                        },
+                        datoAnsvarsrettErklaert: "2024-01-15",
+                        erAnsvarsomraadetAvsluttet: false,
+                        soeknadssystemetsReferanse: "400000001"
+                    },
+                    {
+                        funksjon: {
+                            kodeverdi: "UTF",
+                            kodebeskrivelse: "Ansvarlig utførende"
+                        },
+                        beskrivelseAvAnsvarsomraadet: "Utførelse av tømrerarbeider",
+                        utfoerende: {
+                            erOkForFerdigattest: true,
+                            midlertidigBrukstillatelse: {
+                                erOkForMidlertidigBrukstillatelse: true,
+                                gjenstaaendeArbeider: {
+                                    gjenstaaendeInnenfor: "Listverk i 2. etasje",
+                                    gjenstaaendeUtenfor: "Utvendig kledning på nordvegg"
+                                },
+                                sikkerhet: {
+                                    harTilstrekkeligSikkerhet: true,
+                                    typeArbeider: "Sikring av byggegrop",
+                                    utfoertInnen: "2024-10-01"
+                                }
+                            }
+                        },
+                        datoAnsvarsrettErklaert: "2024-03-22",
+                        erAnsvarsomraadetAvsluttet: true,
+                        soeknadssystemetsReferanse: "400000002"
+                    }
+                ]
             },
             dispensasjonOversikt: {
                 dispensasjon: [
@@ -1265,6 +1457,21 @@ export default [
                         bestemmelserType: {
                             kodeverdi: "RP",
                             kodebeskrivelse: "Reguleringsplan"
+                        }
+                    },
+                    {
+                        dispensasjonReferanse: "5c1d0f5e-2f21-45cd-9a1a-1c0f7d2b9f34",
+                        dispensasjonKategori: {
+                            kodeverdi: "utnyttingsgrad",
+                            kodebeskrivelse: "Utnyttingsgrad"
+                        },
+                        dispensasjonTittel: {
+                            kodeverdi: "gradAvUtnytting",
+                            kodebeskrivelse: "Grad av utnytting"
+                        },
+                        bestemmelserType: {
+                            kodeverdi: "KP",
+                            kodebeskrivelse: "Kommuneplan"
                         }
                     }
                 ]

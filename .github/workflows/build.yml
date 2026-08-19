@@ -46,7 +46,13 @@ jobs:
         run: yarn lint
 
       # ------------------------------
-      # 6. Build the site
+      # 6. Tests
+      # ------------------------------
+      - name: Run tests
+        run: yarn test
+
+      # ------------------------------
+      # 7. Build the site
       # ------------------------------
       - name: Build
         run: yarn build

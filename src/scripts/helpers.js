@@ -1,6 +1,6 @@
 // Constants
-import componentNames from "../constants/componentNames";
-import componentTypeNames from "../constants/componentTypeNames";
+import componentNames from "../constants/componentNames.js";
+import componentTypeNames from "../constants/componentTypeNames.js";
 
 /**
  * Returns the component name corresponding to a given tag name.

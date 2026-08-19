@@ -38,19 +38,19 @@ function createCopyButton(label, text) {
     const button = document.createElement("button");
     button.type = "button";
     button.classList.add("code-copy-button");
-    button.textContent = "Copy";
-    button.setAttribute("aria-label", `Copy ${label} JSON`);
+    button.textContent = "Kopier";
+    button.setAttribute("aria-label", `Kopier ${label} som JSON`);
 
     let resetTimer;
     button.addEventListener("click", async (event) => {
         // Keep the click from toggling the surrounding <details>.
         event.preventDefault();
         const copied = await copyText(text);
-        button.textContent = copied ? "Copied" : "Failed";
+        button.textContent = copied ? "Kopiert" : "Feilet";
         button.classList.toggle("is-copied", copied);
         window.clearTimeout(resetTimer);
         resetTimer = window.setTimeout(() => {
-            button.textContent = "Copy";
+            button.textContent = "Kopier";
             button.classList.remove("is-copied");
         }, 1500);
     });
@@ -229,7 +229,7 @@ export function renderSidebar(results) {
     sidebarElement.innerHTML = "";
     const sidebarTitleElement = document.createElement("h2");
     sidebarTitleElement.classList.add("sidebar-title");
-    sidebarTitleElement.textContent = "Components";
+    sidebarTitleElement.textContent = "Komponenter";
     sidebarElement.appendChild(sidebarTitleElement);
 
     const searchWrapElement = document.createElement("div");
@@ -238,8 +238,8 @@ export function renderSidebar(results) {
     searchElement.type = "search";
     searchElement.id = "sidebar-search";
     searchElement.classList.add("sidebar-search");
-    searchElement.placeholder = "Filter components…";
-    searchElement.setAttribute("aria-label", "Filter components");
+    searchElement.placeholder = "Filtrer komponenter…";
+    searchElement.setAttribute("aria-label", "Filtrer komponenter");
     const searchHintElement = document.createElement("kbd");
     searchHintElement.classList.add("sidebar-search-kbd");
     searchHintElement.setAttribute("aria-hidden", "true");
@@ -286,7 +286,7 @@ export function renderSidebar(results) {
     const emptyStateElement = document.createElement("p");
     emptyStateElement.id = "sidebar-empty";
     emptyStateElement.classList.add("sidebar-empty");
-    emptyStateElement.textContent = "No components match your search.";
+    emptyStateElement.textContent = "Ingen komponenter samsvarer med søket.";
     emptyStateElement.hidden = true;
     navElement.appendChild(emptyStateElement);
 

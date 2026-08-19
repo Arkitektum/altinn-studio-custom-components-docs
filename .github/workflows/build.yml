@@ -39,7 +39,14 @@ jobs:
         run: yarn install --immutable
 
       # ------------------------------
-      # 5. Build the site
+      # 5. Lint
+      # ------------------------------
+      # The ESLint scanning workflow uploads SARIF with continue-on-error, so this is what actually gates a PR.
+      - name: Lint
+        run: yarn lint
+
+      # ------------------------------
+      # 6. Build the site
       # ------------------------------
       - name: Build
         run: yarn build

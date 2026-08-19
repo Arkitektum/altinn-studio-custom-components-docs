@@ -130,6 +130,30 @@ export default {
             value: "Navn"
         },
         {
+            id: "resource.customMatrix.data.title",
+            value: "Arealer per etasje"
+        },
+        {
+            id: "resource.customMatrix.data.emptyFieldText",
+            value: "Ingen arealer registrert"
+        },
+        {
+            id: "resource.customMatrix.data.etasje.title",
+            value: "Etasje"
+        },
+        {
+            id: "resource.customMatrix.data.bruksareal.title",
+            value: "Bruksareal (m²)"
+        },
+        {
+            id: "resource.customMatrix.data.bebygdAreal.title",
+            value: "Bebygd areal (m²)"
+        },
+        {
+            id: "resource.customMatrix.data.antallBoenheter.title",
+            value: "Antall boenheter"
+        },
+        {
             id: "resource.naboGjenboer.eiendommer.eiendom.matrikkelinformasjon.emptyFieldText",
             value: "Ingen eiendommer registrert"
         },

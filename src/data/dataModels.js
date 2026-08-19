@@ -425,6 +425,28 @@ export default [
                     tiltaksklasse: "Tiltaksklasse 2"
                 }
             },
+            customMatrix: {
+                data: [
+                    {
+                        etasje: "Kjeller",
+                        bruksareal: 84,
+                        bebygdAreal: 96,
+                        antallBoenheter: 0
+                    },
+                    {
+                        etasje: "1. etasje",
+                        bruksareal: 96,
+                        bebygdAreal: 96,
+                        antallBoenheter: 1
+                    },
+                    {
+                        etasje: "2. etasje",
+                        bruksareal: 88,
+                        bebygdAreal: 96,
+                        antallBoenheter: 1
+                    }
+                ]
+            },
             customSummation: {
                 arealdisponering: {
                     tomtearealByggeomraade: 95.15,

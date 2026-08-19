@@ -28,6 +28,7 @@ export default {
     "custom-table-part": "Part",
     "custom-table-part-gjennomfoeringsplan": "Part (gjennomføringsplan)",
     "custom-table-plan": "Plan",
+    "custom-matrix-data": "Data",
     "custom-summation-arealdisponering": "Arealdisponering",
     "custom-summation-data": "Data",
     "custom-group-adkomst": "Adkomst",

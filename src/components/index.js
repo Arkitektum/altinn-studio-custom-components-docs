@@ -37,6 +37,9 @@ import customTablePart from "./table/custom-table-part.js";
 import customTablePartGjennomfoeringsplan from "./table/custom-table-part-gjennomfoeringsplan.js";
 import customTablePlan from "./table/custom-table-plan.js";
 
+// Matrix
+import customMatrixData from "./matrix/custom-matrix-data.js";
+
 // Summation
 import customSummationArealdisponering from "./summation/custom-summation-arealdisponering.js";
 import customSummationData from "./summation/custom-summation-data.js";
@@ -117,6 +120,8 @@ export const table = {
     customTablePlan
 };
 
+export const matrix = { customMatrixData };
+
 export const summation = { customSummationArealdisponering, customSummationData };
 
 export const group = {
@@ -161,6 +166,7 @@ export default {
     list,
     descriptionList,
     table,
+    matrix,
     summation,
     group,
     grouplist,

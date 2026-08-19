@@ -64,6 +64,80 @@ class SeoFilesPlugin {
     }
 }
 
+/**
+ * Runs the built bundle once at build time and writes the resulting DOM into index.html.
+ *
+ * Without this the shipped page is an empty `<div id="component-docs-container">` plus an empty `<aside id="sidebar">`,
+ * because every component section, heading, code sample and sidebar link is created by JavaScript on load. Crawlers
+ * that do not execute JavaScript therefore see a page with no content and no internal links.
+ *
+ * The real bundle is executed rather than the rendering logic being duplicated, so the markup cannot drift from what
+ * the client produces. `initCustomComponents` in the components package early-returns when it cannot read an org and
+ * app from the URL path, which is the case both here and on the published site, so nothing is fetched during the build.
+ *
+ * The client still loads the same bundle and renders again on top of the prerendered markup, which is why
+ * `renderResults` and `renderSidebar` both clear their containers first.
+ *
+ * Failure is reported as a warning rather than an error: a client-rendered page still works, so a broken prerender
+ * should not block a deploy.
+ *
+ * @param {string} html - The emitted index.html.
+ * @param {string} script - The emitted bundle.
+ * @returns {Promise<string>} The prerendered document.
+ */
+async function prerenderDocument(html, script) {
+    // Required lazily so a missing jsdom degrades to a warning instead of breaking config loading.
+    const { JSDOM, VirtualConsole } = require("jsdom");
+
+    // Swallow page output: initCustomComponents logs that it cannot find an Altinn app in the URL, which is expected.
+    const dom = new JSDOM(html, {
+        url: siteUrl,
+        runScripts: "outside-only",
+        pretendToBeVisual: true,
+        virtualConsole: new VirtualConsole()
+    });
+
+    try {
+        dom.window.eval(script);
+        dom.window.dispatchEvent(new dom.window.Event("load"));
+        // The load handler is async, so let its microtasks settle before serialising.
+        await new Promise((resolve) => setTimeout(resolve, 0));
+        return `<!doctype html>\n${dom.window.document.documentElement.outerHTML}\n`;
+    } finally {
+        dom.window.close();
+    }
+}
+
+class PrerenderPlugin {
+    apply(compiler) {
+        const { Compilation, WebpackError } = compiler.webpack;
+        const { RawSource } = compiler.webpack.sources;
+
+        // Only for real builds: prerendering every incremental rebuild would slow the dev server down for no gain.
+        if (compiler.options.mode !== "production") {
+            return;
+        }
+
+        compiler.hooks.thisCompilation.tap("PrerenderPlugin", (compilation) => {
+            compilation.hooks.processAssets.tapPromise({ name: "PrerenderPlugin", stage: Compilation.PROCESS_ASSETS_STAGE_REPORT }, async () => {
+                const htmlAsset = compilation.getAsset("index.html");
+                const scriptAsset = compilation.getAsset("main.js");
+                if (!htmlAsset || !scriptAsset) {
+                    return;
+                }
+                try {
+                    const prerendered = await prerenderDocument(htmlAsset.source.source().toString(), scriptAsset.source.source().toString());
+                    compilation.updateAsset("index.html", new RawSource(prerendered));
+                } catch (error) {
+                    compilation.warnings.push(
+                        new WebpackError(`PrerenderPlugin: shipping the client-rendered page because prerendering failed: ${error.message}`)
+                    );
+                }
+            });
+        });
+    }
+}
+
 module.exports = {
     entry: "./src/index.js",
     output: {
@@ -85,7 +159,8 @@ module.exports = {
                 siteDescription
             }
         }),
-        new SeoFilesPlugin()
+        new SeoFilesPlugin(),
+        new PrerenderPlugin()
     ],
     module: {
         rules: [

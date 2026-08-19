@@ -224,6 +224,9 @@ export function renderResults(results) {
  */
 export function renderSidebar(results) {
     const sidebarElement = document.getElementById("sidebar");
+    // Cleared first so rendering twice replaces the sidebar rather than appending a second copy, which is what
+    // happens when the client hydrates a prerendered page.
+    sidebarElement.innerHTML = "";
     const sidebarTitleElement = document.createElement("h2");
     sidebarTitleElement.classList.add("sidebar-title");
     sidebarTitleElement.textContent = "Components";

@@ -35,6 +35,15 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
+      # Gate the deployment on the same checks the Build workflow runs for pull requests. Without these, a direct
+      # push to main — or a merge whose result nobody opened a PR against — publishes without ever being linted or
+      # tested, since Build only runs on pull_request.
+      - name: Lint
+        run: yarn lint
+
+      - name: Run tests
+        run: yarn test
+
       - name: Build
         run: yarn build
 

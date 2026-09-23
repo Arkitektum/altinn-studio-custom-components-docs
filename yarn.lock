@@ -12,6 +12,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@arkitektum/altinn-studio-custom-components-utils@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@arkitektum/altinn-studio-custom-components-utils@npm:2.0.0"
+  checksum: 10c0/404eb06338d5f748c601bd07f30a35d16d7e9c3fdf26f944fe6c5c978aed2c2e4813c9370d670666071c74fe59719d4f1346eb4f805f063b75f8ab77d653f083
+  languageName: node
+  linkType: hard
+
 "@arkitektum/altinn-studio-custom-components@npm:^16.8.1":
   version: 16.8.1
   resolution: "@arkitektum/altinn-studio-custom-components@npm:16.8.1"
@@ -3592,7 +3599,7 @@ __metadata:
   resolution: "altinn-studio-custom-components-docs@workspace:."
   dependencies:
     "@arkitektum/altinn-studio-custom-components": "npm:^16.8.1"
-    "@arkitektum/altinn-studio-custom-components-utils": "npm:^1.5.8"
+    "@arkitektum/altinn-studio-custom-components-utils": "npm:^2.0.0"
     "@babel/preset-env": "npm:^8.0.6"
     "@eslint/js": "npm:^10.0.1"
     "@microsoft/eslint-formatter-sarif": "npm:^3.1.0"

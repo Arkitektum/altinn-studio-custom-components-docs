@@ -1,4 +1,10 @@
-export default {
+/**
+ * The readable name shown for each component, keyed by its tag name.
+ *
+ * Typed as a plain string map rather than a literal object, because callers look a tag name up and fall back to
+ * the tag itself when it is not here. A component with no entry is not an error, only one shown by its tag.
+ */
+const componentNames: Record<string, string> = {
     "custom-header-text": "Tittel",
     "custom-subheader-text": "Undertittel",
     "custom-paragraph-text": "Tekst",
@@ -64,3 +70,5 @@ export default {
     "custom-gjennomfoeringsplan": "Gjennomføringsplan",
     "custom-gjenpart-nabovarsel": "Gjenpart nabovarsel"
 };
+
+export default componentNames;

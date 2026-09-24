@@ -21,6 +21,8 @@ The site is published with **GitHub Pages**: <https://arkitektum.github.io/altin
 The site is a static page built by Webpack.
 It imports the **published** custom components and renders each example in the browser — there is no server.
 
+That is the whole of its relationship with the other repositories: it pins `@arkitektum/altinn-studio-custom-components` and `@arkitektum/altinn-studio-custom-components-utils` from npm and nothing else. It does not talk to the statistics API, which is a local dev tool for the components repository, and it has nothing to do with `altinn-studio-api-tools`. An example here can only show what the pinned versions can render, which is why documenting an unreleased component means bumping the dependency first.
+
 ```text
   @arkitektum/altinn-studio-custom-components  (main.js + main.css + resource.nb.json)
   @arkitektum/altinn-studio-custom-components-utils  (createCustomElement, ...)

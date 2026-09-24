@@ -52,5 +52,5 @@ For the full build/render flow, see [ARCHITECTURE.md](./ARCHITECTURE.md).
 - [Architecture overview](./ARCHITECTURE.md)
 - [Contributing guide](./CONTRIBUTING.md)
 - [Security policy](./SECURITY.md)
-- [Custom components](https://github.com/Arkitektum/altinn-studio-custom-components)
-- [Shared utils](https://github.com/Arkitektum/altinn-studio-custom-components-utils)
+- [Custom components](https://github.com/Arkitektum/altinn-studio-custom-components) — the components this gallery shows
+- [Shared utils](https://github.com/Arkitektum/altinn-studio-custom-components-utils) — `createCustomElement` and the tag-name allow-list

@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "customField-kode",
     type: "Custom",
@@ -9,6 +11,6 @@ const markup = {
     resourceBindings: {
         title: "resource.customField.kode.title"
     }
-};
+} satisfies ComponentMarkup;
 
-export default { markup };
+export default { markup } satisfies ComponentExample;

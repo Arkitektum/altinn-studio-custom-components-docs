@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-list-vedlegg",
     type: "Custom",
@@ -11,6 +13,6 @@ const markup = {
         title: "resource.customList.vedlegg.title",
         emptyFieldText: "resource.emptyFieldText.default"
     }
-};
+} satisfies ComponentMarkup;
 
-export default { markup };
+export default { markup } satisfies ComponentExample;

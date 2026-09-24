@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "utfallBesvarelse-utfallSvar-status",
     type: "Custom",
@@ -7,7 +9,7 @@ const markup = {
     dataModelBindings: {
         data: "customField.utfallSvarStatus"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     title: "resource.status.title",
@@ -16,4 +18,4 @@ const defaultResourceBindings = {
     status: "resource.utfallBesvarelse.utfallSvar.status"
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-description-list-data",
     type: "Custom",
@@ -16,6 +18,6 @@ const markup = {
     styleOverride: {
         width: "250px"
     }
-};
+} satisfies ComponentMarkup;
 
-export default { markup };
+export default { markup } satisfies ComponentExample;

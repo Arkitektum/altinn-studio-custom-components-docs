@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "customField-boolean-text",
     type: "Custom",
@@ -11,7 +13,7 @@ const markup = {
     resourceBindings: {
         title: "resource.customField.booleanText.title"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     trueText: "resource.trueText.default",
@@ -20,4 +22,4 @@ const defaultResourceBindings = {
     emptyFieldText: "resource.emptyFieldText.default"
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

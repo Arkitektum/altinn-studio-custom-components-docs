@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 // A matrix renders the first column as a row header (scope="row") and the remaining columns as values, so the example
 // puts the labelling dimension first: one row per floor, one column per area figure.
 const markup = {
@@ -57,6 +59,6 @@ const markup = {
         title: "resource.customMatrix.data.title",
         emptyFieldText: "resource.customMatrix.data.emptyFieldText"
     }
-};
+} satisfies ComponentMarkup;
 
-export default { markup };
+export default { markup } satisfies ComponentExample;

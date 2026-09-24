@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "customField-data",
     type: "Custom",
@@ -13,6 +15,6 @@ const markup = {
         title: "resource.customField.data.title",
         emptyFieldText: "resource.emptyFieldText.default"
     }
-};
+} satisfies ComponentMarkup;
 
-export default { markup };
+export default { markup } satisfies ComponentExample;

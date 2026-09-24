@@ -1,29 +1,29 @@
 // Field
-import customFieldAdresse from "./field/custom-field-adresse.js";
-import customFieldBooleanData from "./field/custom-field-boolean-data.js";
-import customFieldBooleanText from "./field/custom-field-boolean-text.js";
-import customFieldCountData from "./field/custom-field-count-data.js";
-import customFieldData from "./field/custom-field-data.js";
-import customFieldKode from "./field/custom-field-kode.js";
-import customFieldKommunensSaksnummer from "./field/custom-field-kommunens-saksnummer.js";
-import customFieldListData from "./field/custom-field-list-data.js";
-import customFieldPartNavn from "./field/custom-field-part-navn.js";
-import customFieldProsjekt from "./field/custom-field-prosjekt.js";
-import customFieldTelefonnummer from "./field/custom-field-telefonnummer.js";
-import customFieldUtfallSvarStatus from "./field/custom-field-utfall-svar-status.js";
+import customFieldAdresse from "./field/custom-field-adresse.ts";
+import customFieldBooleanData from "./field/custom-field-boolean-data.ts";
+import customFieldBooleanText from "./field/custom-field-boolean-text.ts";
+import customFieldCountData from "./field/custom-field-count-data.ts";
+import customFieldData from "./field/custom-field-data.ts";
+import customFieldKode from "./field/custom-field-kode.ts";
+import customFieldKommunensSaksnummer from "./field/custom-field-kommunens-saksnummer.ts";
+import customFieldListData from "./field/custom-field-list-data.ts";
+import customFieldPartNavn from "./field/custom-field-part-navn.ts";
+import customFieldProsjekt from "./field/custom-field-prosjekt.ts";
+import customFieldTelefonnummer from "./field/custom-field-telefonnummer.ts";
+import customFieldUtfallSvarStatus from "./field/custom-field-utfall-svar-status.ts";
 
 // Typography
-import customHeaderText from "./typography/custom-header-text.js";
-import customParagraphText from "./typography/custom-paragraph-text.js";
-import customSubheaderText from "./typography/custom-subheader-text.js";
+import customHeaderText from "./typography/custom-header-text.ts";
+import customParagraphText from "./typography/custom-paragraph-text.ts";
+import customSubheaderText from "./typography/custom-subheader-text.ts";
 
 // List
-import customListData from "./list/custom-list-data.js";
-import customListPlanlagteLoefteinnretninger from "./list/custom-list-planlagte-loefteinnretninger.js";
-import customListVedlegg from "./list/custom-list-vedlegg.js";
+import customListData from "./list/custom-list-data.ts";
+import customListPlanlagteLoefteinnretninger from "./list/custom-list-planlagte-loefteinnretninger.ts";
+import customListVedlegg from "./list/custom-list-vedlegg.ts";
 
 // Description list
-import customDescriptionListData from "./description-list/custom-description-list-data.js";
+import customDescriptionListData from "./description-list/custom-description-list-data.ts";
 
 // Table
 import customTableAnsvarsomraade from "./table/custom-table-ansvarsomraade.js";
@@ -38,11 +38,11 @@ import customTablePartGjennomfoeringsplan from "./table/custom-table-part-gjenno
 import customTablePlan from "./table/custom-table-plan.js";
 
 // Matrix
-import customMatrixData from "./matrix/custom-matrix-data.js";
+import customMatrixData from "./matrix/custom-matrix-data.ts";
 
 // Summation
-import customSummationArealdisponering from "./summation/custom-summation-arealdisponering.js";
-import customSummationData from "./summation/custom-summation-data.js";
+import customSummationArealdisponering from "./summation/custom-summation-arealdisponering.ts";
+import customSummationData from "./summation/custom-summation-data.ts";
 
 // Group
 import customGroupAdkomst from "./group/custom-group-adkomst.js";

@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-summation-arealdisponering",
     type: "Custom",
@@ -11,7 +13,7 @@ const markup = {
         emptyFieldText: "resource.rammebetingelser.arealdisponering.emptyFieldText",
         title: "resource.rammebetingelser.arealdisponering.title"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     tomtearealet: {
@@ -81,4 +83,4 @@ const defaultResourceBindings = {
     emptyFieldText: "resource.emptyFieldText.default"
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

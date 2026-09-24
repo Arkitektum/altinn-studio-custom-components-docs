@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-field-list-data",
     type: "Custom",
@@ -8,6 +10,6 @@ const markup = {
     dataModelBindings: {
         data: "customField.listData"
     }
-};
+} satisfies ComponentMarkup;
 
-export default { markup };
+export default { markup } satisfies ComponentExample;

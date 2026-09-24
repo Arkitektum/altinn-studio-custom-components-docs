@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-list-planlagte-loefteinnretninger",
     type: "Custom",
@@ -9,7 +11,7 @@ const markup = {
     resourceBindings: {
         title: "resource.rammebetingelser.loefteinnretninger.title"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     planleggesHeis: {
@@ -28,4 +30,4 @@ const defaultResourceBindings = {
     emptyFieldText: "resource.emptyFieldText.default"
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

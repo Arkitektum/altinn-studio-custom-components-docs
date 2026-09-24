@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-gjenpart-nabovarsel",
     type: "Custom",
@@ -13,7 +15,7 @@ const markup = {
         soeknadGjelder: "customLayout.gjenpartNabovarsel.soeknadGjelder",
         tiltakshaver: "customLayout.gjenpartNabovarsel.tiltakshaver"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     gjenpartNabovarsel: {
@@ -200,4 +202,4 @@ const defaultResourceBindings = {
     }
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

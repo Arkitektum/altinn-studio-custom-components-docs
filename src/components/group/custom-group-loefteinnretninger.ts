@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-group-loefteinnretninger",
     type: "Custom",
@@ -7,7 +9,7 @@ const markup = {
     dataModelBindings: {
         data: "customGroup.loefteinnretninger"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     title: "resource.rammebetingelser.loefteinnretninger.title",
@@ -40,4 +42,4 @@ const defaultResourceBindings = {
     }
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

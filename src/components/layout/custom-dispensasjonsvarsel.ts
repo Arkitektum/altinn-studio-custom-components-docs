@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-dispensasjonsvarsel",
     type: "Custom",
@@ -12,7 +14,7 @@ const markup = {
         paragrafnummer: "customLayout.dispensasjonsvarsel.paragrafnummer",
         plannavn: "customLayout.dispensasjonsvarsel.plannavn"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     bestemmelse: {
@@ -38,4 +40,4 @@ const defaultResourceBindings = {
     }
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-group-rammebetingelser-tilknytninger",
     type: "Custom",
@@ -7,7 +9,7 @@ const markup = {
     dataModelBindings: {
         data: "customGroup.rammebetingelserTilknytninger"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     title: "resource.rammebetingelser.tilknytning.title",
@@ -83,4 +85,4 @@ const defaultResourceBindings = {
     }
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

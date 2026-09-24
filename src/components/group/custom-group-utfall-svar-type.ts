@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const utfallType = "svv";
 
 // The title depends on the utfall type, so the component has no default for it: the parent
@@ -14,7 +16,7 @@ const markup = {
         title: `resource.utfallBesvarelse.utfallSvar.${utfallType?.toLowerCase()}.header`,
         emptyFieldText: "resource.emptyFieldText.default"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     emptyFieldText: "resource.emptyFieldText.default",
@@ -32,4 +34,4 @@ const defaultResourceBindings = {
     }
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

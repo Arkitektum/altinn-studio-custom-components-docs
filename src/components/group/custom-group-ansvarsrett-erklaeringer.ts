@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-group-ansvarsrett-erklaeringer",
     type: "Custom",
@@ -7,7 +9,7 @@ const markup = {
     dataModelBindings: {
         data: "customGroup.ansvarsrettErklaering"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     title: "resource.erklaering.title",
@@ -34,4 +36,4 @@ const defaultResourceBindings = {
     }
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

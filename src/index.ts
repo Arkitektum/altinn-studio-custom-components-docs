@@ -29,7 +29,7 @@ import {
     setupSidebarSearch,
     setupThemeToggle
 } from "./scripts/renderers.ts";
-import componentExamples from "./components/index.js";
+import componentExamples from "./components/index.ts";
 
 // Data
 import dataModels from "./data/dataModels.ts";
@@ -141,9 +141,7 @@ export function getResults(componentExamples: ComponentExamples, dataModels: Dat
 globalThis.onload = async function () {
     globalThis.textResources = textResources;
     globalThis.defaultTextResources = defaultTextResources;
-    // The examples are still JavaScript, so their literals widen: `pageOrientation: "landscape"` infers as string
-    // rather than the two values an example may ask for. The assertion goes when those files are converted.
-    const results = getResults(componentExamples as ComponentExamples, dataModels);
+    const results = getResults(componentExamples, dataModels);
     renderResults(results);
     renderSidebar(results);
     // Syntax highlighting is presentation only and roughly triples the size of every code block, so it is skipped

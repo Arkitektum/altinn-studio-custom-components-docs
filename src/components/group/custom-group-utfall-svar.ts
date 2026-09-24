@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-group-utfall-svar",
     type: "Custom",
@@ -5,7 +7,7 @@ const markup = {
     dataModelBindings: {
         data: "customGroup.utfallSvar"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     emptyFieldText: "resource.emptyFieldText.default",
@@ -26,4 +28,4 @@ const defaultResourceBindings = {
     }
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

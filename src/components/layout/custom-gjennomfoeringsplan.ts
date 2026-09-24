@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentExampleOptions, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-gjennomfoeringsplan",
     type: "Custom",
@@ -10,7 +12,7 @@ const markup = {
         eiendomByggested: "customLayout.gjennomfoeringsplan.eiendomByggested",
         ansvarligSoeker: "customLayout.gjennomfoeringsplan.ansvarligSoeker"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     gjennomfoeringsplan: {
@@ -87,6 +89,6 @@ const defaultResourceBindings = {
 
 const options = {
     pageOrientation: "landscape"
-};
+} satisfies ComponentExampleOptions;
 
-export default { markup, defaultResourceBindings, options };
+export default { markup, defaultResourceBindings, options } satisfies ComponentExample;

@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-group-kontroll-erklaeringer",
     type: "Custom",
@@ -7,7 +9,7 @@ const markup = {
     dataModelBindings: {
         data: "customGroup.kontrollErklaering"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     kontrollErklaeringTekst: {
@@ -22,4 +24,4 @@ const defaultResourceBindings = {
     emptyFieldText: "resource.emptyFieldText.default"
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

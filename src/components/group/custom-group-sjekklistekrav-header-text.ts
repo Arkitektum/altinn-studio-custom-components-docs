@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-group-sjekklistekrav-header-text",
     type: "Custom",
@@ -6,9 +8,9 @@ const markup = {
         sjekklistepunkt: "resource.krav.sjekklistekrav.sjekklistepunkt.title",
         sjekklistepunktsvar: "resource.krav.sjekklistekrav.sjekklistepunksvar.title"
     }
-};
+} satisfies ComponentMarkup;
 
 // This component renders its header labels from resource bindings only, so it has no default bindings of its own.
 const defaultResourceBindings = {};
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

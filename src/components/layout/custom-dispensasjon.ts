@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-dispensasjon",
     type: "Custom",
@@ -20,7 +22,7 @@ const markup = {
         tiltakstyper: "customLayout.dispensasjon.tiltakstyper",
         varighet: "customLayout.dispensasjon.varighet"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     dispensasjonsreferanse: {
@@ -174,4 +176,4 @@ const defaultResourceBindings = {
     }
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

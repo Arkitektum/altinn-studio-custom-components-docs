@@ -1,4 +1,5 @@
-import componentGroups from "./index.js";
+import { describe, expect, it } from "@jest/globals";
+import componentGroups from "./index.ts";
 import { customElementTagNames } from "@arkitektum/altinn-studio-custom-components-utils";
 
 /**
@@ -52,8 +53,15 @@ const BUILT_BY_OTHER_COMPONENTS = ["custom-feedback-data", "custom-feedbacklist-
  */
 const SUPERSEDED = ["custom-field-grid", "custom-field-image", "custom-field-row", "custom-header-text-data"];
 
-/** Every example the docs offer, as { group, exportName, tagName }. */
-function documentedExamples() {
+/** One example as this test reads it: where it sits, what it is exported as, and which component it renders. */
+interface DocumentedExample {
+    group: string;
+    exportName: string;
+    tagName: string | undefined;
+}
+
+/** Every example the docs offer. */
+function documentedExamples(): DocumentedExample[] {
     return Object.entries(componentGroups).flatMap(([group, examples]) =>
         Object.entries(examples).map(([exportName, example]) => ({
             group,
@@ -80,7 +88,7 @@ describe("the examples the docs offer", () => {
     });
 
     it("demonstrates each component once, so no page silently replaces another", () => {
-        const counts = new Map();
+        const counts = new Map<string | undefined, number>();
         for (const { tagName } of documentedExamples()) {
             counts.set(tagName, (counts.get(tagName) ?? 0) + 1);
         }

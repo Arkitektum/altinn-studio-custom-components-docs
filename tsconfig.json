@@ -14,13 +14,9 @@
         // Relative imports name the .ts file they mean, the same convention as the utils package. Webpack and jest
         // both resolve that literally, so a renamed file needs no loader configuration to be found.
         "allowImportingTsExtensions": true,
-        // The conversion runs a directory at a time, so TypeScript and JavaScript sit side by side until it is done.
-        // Checking the JavaScript too would turn the whole repository red on day one; it is left to eslint.
-        "allowJs": true,
-        "checkJs": false,
-        // Webpack builds the site through babel, which strips the types. Nothing is emitted from here.
         // The components package ships its default text resources as JSON, which the page loads at startup.
         "resolveJsonModule": true,
+        // Webpack builds the site through babel, which strips the types. Nothing is emitted from here.
         "noEmit": true
     },
     "include": ["src"]

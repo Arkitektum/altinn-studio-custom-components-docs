@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-group-samsvar-erklaeringer",
     type: "Custom",
@@ -7,7 +9,7 @@ const markup = {
     dataModelBindings: {
         data: "customGroup.samsvarErklaering"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     samsvarErklaeringTekst: {
@@ -26,4 +28,4 @@ const defaultResourceBindings = {
     emptyFieldText: "resource.emptyFieldText.default"
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

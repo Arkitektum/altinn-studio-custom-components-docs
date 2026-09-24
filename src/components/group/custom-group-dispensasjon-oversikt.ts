@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-group-dispensasjon-oversikt",
     type: "Custom",
@@ -8,7 +10,7 @@ const markup = {
     dataModelBindings: {
         data: "dispensasjonOversikt"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     count: {
@@ -26,4 +28,4 @@ const defaultResourceBindings = {
     emptyFieldText: "resource.emptyFieldText.default"
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

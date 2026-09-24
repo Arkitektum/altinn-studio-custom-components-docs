@@ -45,26 +45,26 @@ import customSummationArealdisponering from "./summation/custom-summation-areald
 import customSummationData from "./summation/custom-summation-data.ts";
 
 // Group
-import customGroupAdkomst from "./group/custom-group-adkomst.js";
-import customGroupAnsvarsrettErklaeringer from "./group/custom-group-ansvarsrett-erklaeringer.js";
-import customGroupAvloep from "./group/custom-group-avloep.js";
-import customGroupDispensasjonOversikt from "./group/custom-group-dispensasjon-oversikt.js";
-import customGroupEttersending from "./group/custom-group-ettersending.js";
-import customGroupKontrollAnsvarsomraade from "./group/custom-group-kontroll-ansvarsomraade.js";
-import customGroupKontrollErklaeringer from "./group/custom-group-kontroll-erklaeringer.js";
-import customGroupLoefteinnretninger from "./group/custom-group-loefteinnretninger.js";
-import customGroupNaboGjenboerEiendom from "./group/custom-group-nabo-gjenboer-eiendom.js";
-import customGroupOvervann from "./group/custom-group-overvann.js";
-import customGroupRammebetingelserKravTilByggegrunn from "./group/custom-group-rammebetingelser-krav-til-byggegrunn.js";
-import customGroupRammebetingelserTilknytninger from "./group/custom-group-rammebetingelser-tilknytninger.js";
-import customGroupSamsvarAnsvarsomraade from "./group/custom-group-samsvar-ansvarsomraade.js";
-import customGroupSamsvarErklaeringer from "./group/custom-group-samsvar-erklaeringer.js";
-import customGroupSjekklistekrav from "./group/custom-group-sjekklistekrav.js";
-import customGroupSjekklistekravHeaderText from "./group/custom-group-sjekklistekrav-header-text.js";
-import customGroupUtfallSvar from "./group/custom-group-utfall-svar.js";
-import customGroupUtfallSvarType from "./group/custom-group-utfall-svar-type.js";
-import customGroupVannforsyning from "./group/custom-group-vannforsyning.js";
-import customGroupVegtypeTillatelse from "./group/custom-group-vegtype-tillatelse.js";
+import customGroupAdkomst from "./group/custom-group-adkomst.ts";
+import customGroupAnsvarsrettErklaeringer from "./group/custom-group-ansvarsrett-erklaeringer.ts";
+import customGroupAvloep from "./group/custom-group-avloep.ts";
+import customGroupDispensasjonOversikt from "./group/custom-group-dispensasjon-oversikt.ts";
+import customGroupEttersending from "./group/custom-group-ettersending.ts";
+import customGroupKontrollAnsvarsomraade from "./group/custom-group-kontroll-ansvarsomraade.ts";
+import customGroupKontrollErklaeringer from "./group/custom-group-kontroll-erklaeringer.ts";
+import customGroupLoefteinnretninger from "./group/custom-group-loefteinnretninger.ts";
+import customGroupNaboGjenboerEiendom from "./group/custom-group-nabo-gjenboer-eiendom.ts";
+import customGroupOvervann from "./group/custom-group-overvann.ts";
+import customGroupRammebetingelserKravTilByggegrunn from "./group/custom-group-rammebetingelser-krav-til-byggegrunn.ts";
+import customGroupRammebetingelserTilknytninger from "./group/custom-group-rammebetingelser-tilknytninger.ts";
+import customGroupSamsvarAnsvarsomraade from "./group/custom-group-samsvar-ansvarsomraade.ts";
+import customGroupSamsvarErklaeringer from "./group/custom-group-samsvar-erklaeringer.ts";
+import customGroupSjekklistekrav from "./group/custom-group-sjekklistekrav.ts";
+import customGroupSjekklistekravHeaderText from "./group/custom-group-sjekklistekrav-header-text.ts";
+import customGroupUtfallSvar from "./group/custom-group-utfall-svar.ts";
+import customGroupUtfallSvarType from "./group/custom-group-utfall-svar-type.ts";
+import customGroupVannforsyning from "./group/custom-group-vannforsyning.ts";
+import customGroupVegtypeTillatelse from "./group/custom-group-vegtype-tillatelse.ts";
 
 // Grouplist
 import customGrouplistAnsvarsomraadeType from "./grouplist/custom-grouplist-ansvarsomraade-type.ts";
@@ -77,10 +77,10 @@ import customGrouplistUtfallSvarType from "./grouplist/custom-grouplist-utfall-s
 import customGrouplistVegtypeTillatelse from "./grouplist/custom-grouplist-vegtype-tillatelse.ts";
 
 // Layout
-import customDispensasjon from "./layout/custom-dispensasjon.js";
-import customDispensasjonsvarsel from "./layout/custom-dispensasjonsvarsel.js";
-import customGjennomfoeringsplan from "./layout/custom-gjennomfoeringsplan.js";
-import customGjenpartNabovarsel from "./layout/custom-gjenpart-nabovarsel.js";
+import customDispensasjon from "./layout/custom-dispensasjon.ts";
+import customDispensasjonsvarsel from "./layout/custom-dispensasjonsvarsel.ts";
+import customGjennomfoeringsplan from "./layout/custom-gjennomfoeringsplan.ts";
+import customGjenpartNabovarsel from "./layout/custom-gjenpart-nabovarsel.ts";
 
 export const field = {
     customFieldAdresse,

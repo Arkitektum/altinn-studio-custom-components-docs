@@ -165,8 +165,18 @@ module.exports = {
         new SeoFilesPlugin(),
         new PrerenderPlugin()
     ],
+    // Webpack reads .js natively; .ts has to be stripped first. babel-loader does it through babel.config.js,
+    // the same presets jest uses, so the two cannot disagree about what the source means.
+    resolve: {
+        extensions: [".ts", ".js"]
+    },
     module: {
         rules: [
+            {
+                test: /\.ts$/i,
+                exclude: /node_modules/,
+                use: "babel-loader"
+            },
             {
                 test: /\.css$/i,
                 use: [MiniCssExtractPlugin.loader, "css-loader"]

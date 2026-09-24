@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "lib": ["esnext", "dom", "dom.iterable"],
+        "strict": true,
+        "skipLibCheck": true,
+        "isolatedModules": true,
+        "verbatimModuleSyntax": true,
+        // Relative imports name the .ts file they mean, the same convention as the utils package. Webpack and jest
+        // both resolve that literally, so a renamed file needs no loader configuration to be found.
+        "allowImportingTsExtensions": true,
+        // The conversion runs a directory at a time, so TypeScript and JavaScript sit side by side until it is done.
+        // Checking the JavaScript too would turn the whole repository red on day one; it is left to eslint.
+        "allowJs": true,
+        "checkJs": false,
+        // Webpack builds the site through babel, which strips the types. Nothing is emitted from here.
+        "noEmit": true
+    },
+    "include": ["src"]
+}

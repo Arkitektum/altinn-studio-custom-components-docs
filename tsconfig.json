@@ -19,6 +19,8 @@
         "allowJs": true,
         "checkJs": false,
         // Webpack builds the site through babel, which strips the types. Nothing is emitted from here.
+        // The components package ships its default text resources as JSON, which the page loads at startup.
+        "resolveJsonModule": true,
         "noEmit": true
     },
     "include": ["src"]

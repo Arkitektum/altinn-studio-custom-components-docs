@@ -14,6 +14,10 @@ import {
 import hljs from "highlight.js/lib/core";
 import json from "highlight.js/lib/languages/json";
 
+// Types
+import type { ComponentExample, ComponentExampleResult, ComponentExamples, ComponentMarkup, ComponentTypeResult } from "./types.ts";
+import type { DataModel } from "./data/dataModels.ts";
+
 // Local functions
 import {
     renderResults,
@@ -40,11 +44,11 @@ hljs.registerLanguage("json", json);
 /**
  * Generates a preview DOM element for a given custom component and its data.
  *
- * @param {Object} component - The component definition, expected to include at least a `tagName` property.
- * @param {Object} data - The form data to be passed to the component as attributes.
- * @returns {HTMLElement} The container element wrapping the custom component preview.
+ * @param component - The component definition, which must at least name the tag to render.
+ * @param data - The form data passed to the component as attributes.
+ * @returns The container element wrapping the custom component preview.
  */
-function getPreviewElement(component, data) {
+function getPreviewElement(component: ComponentMarkup, data: unknown): HTMLElement {
     const htmlAttributes = new CustomElementHtmlAttributes({
         ...component,
         formData: data
@@ -55,14 +59,14 @@ function getPreviewElement(component, data) {
 /**
  * Builds a fallback preview element shown when a component example fails to render.
  *
- * @param {string} tagName - The tag name of the component that failed.
- * @param {unknown} error - The error thrown while building the preview.
- * @returns {HTMLElement} A container element describing the failure.
+ * @param tagName - The tag name of the component that failed.
+ * @param error - The error thrown while building the preview.
+ * @returns A container element describing the failure.
  */
-function getErrorPreviewElement(tagName, error) {
+function getErrorPreviewElement(tagName: string, error: unknown): HTMLElement {
     const element = document.createElement("div");
     element.classList.add("component-example-error");
-    element.textContent = `Failed to render <${tagName}>: ${error?.message ?? error}`;
+    element.textContent = `Failed to render <${tagName}>: ${error instanceof Error ? error.message : error}`;
     return element;
 }
 
@@ -79,13 +83,14 @@ function getErrorPreviewElement(tagName, error) {
  *       - {Object} data: The data generated for the component.
  *       - {Object} resources: The text resources associated with the component.
  */
-export function getResults(componentExamples, dataModels) {
+export function getResults(componentExamples: ComponentExamples, dataModels: DataModel[]): ComponentTypeResult[] {
     const resultsElements = Object.keys(componentExamples)
         .map((componentType) => {
-            const componentsInType = componentExamples[componentType];
+            // Every key came from this object, so the lookup finds something; the fallback is only for the type.
+            const componentsInType = componentExamples[componentType] ?? {};
             const components = Object.keys(componentsInType)
-                .map((componentKey) => {
-                    const component = componentsInType[componentKey];
+                .map((componentKey): ComponentExampleResult | undefined => {
+                    const component: ComponentExample | undefined = componentsInType[componentKey];
                     const markup = component?.markup;
                     if (!markup?.tagName) {
                         return;
@@ -113,7 +118,7 @@ export function getResults(componentExamples, dataModels) {
                     }
                 })
                 // Drop examples without a valid tagName here, so no undefined holes reach renderResults.
-                .filter(Boolean);
+                .filter((component) => component !== undefined);
             return {
                 type: componentType,
                 components
@@ -136,7 +141,9 @@ export function getResults(componentExamples, dataModels) {
 globalThis.onload = async function () {
     globalThis.textResources = textResources;
     globalThis.defaultTextResources = defaultTextResources;
-    const results = getResults(componentExamples, dataModels);
+    // The examples are still JavaScript, so their literals widen: `pageOrientation: "landscape"` infers as string
+    // rather than the two values an example may ask for. The assertion goes when those files are converted.
+    const results = getResults(componentExamples as ComponentExamples, dataModels);
     renderResults(results);
     renderSidebar(results);
     // Syntax highlighting is presentation only and roughly triples the size of every code block, so it is skipped

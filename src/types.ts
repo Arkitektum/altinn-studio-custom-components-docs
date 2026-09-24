@@ -24,8 +24,13 @@ export interface ComponentMarkup {
     dataTitleItemKey?: string;
     /** Where in the data model each value comes from, keyed as the component names it. */
     dataModelBindings?: Record<string, string>;
-    /** Which text resource each label comes from. Nested, because a table names one per column. */
-    resourceBindings?: Record<string, unknown>;
+    /**
+     * Which text resource each label comes from. Nested, because a table names one per column.
+     *
+     * Typed as a plain object rather than a Record: an example that binds nothing writes `{}`, and an empty object
+     * literal has no index signature to satisfy a Record with.
+     */
+    resourceBindings?: object;
     tableColumns?: unknown[];
     styleOverride?: Record<string, string>;
 }
@@ -41,7 +46,7 @@ export interface ComponentExample {
     markup: ComponentMarkup;
     options?: ComponentExampleOptions;
     /** Bindings applied unless the markup names its own, so an example only writes what is interesting about it. */
-    defaultResourceBindings?: Record<string, unknown>;
+    defaultResourceBindings?: object;
 }
 
 /** Every example, grouped by the kind of component, as `src/components/index.js` collects them. */

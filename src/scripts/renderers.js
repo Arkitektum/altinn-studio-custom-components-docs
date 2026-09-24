@@ -2,7 +2,7 @@
 import { appendChildren, hasValue } from "@arkitektum/altinn-studio-custom-components-utils";
 
 // Global functions
-import { getComponentNameFromTagName, getComponentTypeNameFromKey } from "./helpers.js";
+import { getComponentNameFromTagName, getComponentTypeNameFromKey } from "./helpers.ts";
 
 // Assets
 import iconBrick from "../assets/svg/brick.svg";

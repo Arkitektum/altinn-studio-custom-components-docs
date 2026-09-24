@@ -1,4 +1,5 @@
-import { getComponentNameFromTagName, getComponentTypeNameFromKey } from "./helpers.js";
+import { describe, expect, it } from "@jest/globals";
+import { getComponentNameFromTagName, getComponentTypeNameFromKey } from "./helpers.ts";
 
 describe("getComponentNameFromTagName", () => {
     it("returns the display name for a known tag", () => {

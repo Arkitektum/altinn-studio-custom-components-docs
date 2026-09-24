@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-grouplist-ettersending",
     type: "Custom",
@@ -12,7 +14,7 @@ const markup = {
         title: "resource.customGrouplist.ettersending.title",
         emptyFieldText: "resource.customGrouplist.ettersending.emptyFieldText.default"
     }
-};
+} satisfies ComponentMarkup;
 const defaultResourceBindings = {
     tema: {
         title: "resource.tema.title"
@@ -27,4 +29,4 @@ const defaultResourceBindings = {
     emptyFieldText: "resource.emptyFieldText.default"
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

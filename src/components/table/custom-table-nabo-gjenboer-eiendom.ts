@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-table-nabo-gjenboer-eiendom",
     type: "Custom",
@@ -9,7 +11,7 @@ const markup = {
         title: "resource.naboGjenboer.eiendommer.eiendom.matrikkelinformasjon.title",
         emptyFieldText: "resource.naboGjenboer.eiendommer.eiendom.matrikkelinformasjon.emptyFieldText"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     adresse: {
@@ -44,4 +46,4 @@ const defaultResourceBindings = {
     emptyFieldText: "resource.emptyFieldText.default"
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

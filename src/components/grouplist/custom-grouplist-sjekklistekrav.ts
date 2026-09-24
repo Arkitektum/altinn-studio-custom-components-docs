@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-grouplist-sjekklistekrav",
     type: "Custom",
@@ -13,7 +15,7 @@ const markup = {
     dataModelBindings: {
         data: "customGrouplist.sjekklistekrav"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     trueText: "resource.trueText.default",
@@ -23,4 +25,4 @@ const defaultResourceBindings = {
     emptyFieldText: "resource.emptyFieldText.default"
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

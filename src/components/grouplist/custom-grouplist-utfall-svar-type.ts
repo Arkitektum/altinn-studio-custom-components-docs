@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "utfallBesvarelse-utfallSvar",
     type: "Custom",
@@ -8,7 +10,7 @@ const markup = {
     resourceBindings: {
         emptyFieldText: "resource.emptyFieldText.default"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     utfallSvarStatus: {
@@ -30,4 +32,4 @@ const defaultResourceBindings = {
     emptyFieldText: "resource.emptyFieldText.default"
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

@@ -1,14 +1,15 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
-    id: "custom-table-ansvarsomraade",
+    id: "custom-grouplist-ansvarsomraade-type",
     type: "Custom",
-    tagName: "custom-table-ansvarsomraade",
-    size: "h2",
-    hideTitle: false,
+    tagName: "custom-grouplist-ansvarsomraade-type",
     hideIfEmpty: false,
+    hideTitle: false,
     dataModelBindings: {
-        data: "customTable.ansvarsomraade"
+        data: "customGrouplist.ansvarsomraade"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     tiltaksklasse: {
@@ -48,4 +49,4 @@ const defaultResourceBindings = {
     emptyFieldText: "resource.emptyFieldText.default"
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

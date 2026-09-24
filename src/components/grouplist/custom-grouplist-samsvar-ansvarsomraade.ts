@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-grouplist-samsvar-ansvarsomraade",
     type: "Custom",
@@ -8,7 +10,7 @@ const markup = {
     dataModelBindings: {
         data: "customGrouplist.samsvarAnsvarsomraade"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     funksjon: {
@@ -85,4 +87,4 @@ const defaultResourceBindings = {
     }
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

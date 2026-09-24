@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-table-ansvarsrett-ansvarsomraade",
     type: "Custom",
@@ -8,7 +10,7 @@ const markup = {
     dataModelBindings: {
         data: "customTable.ansvarsrettAnsvarsomraade"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     funksjon: {
@@ -56,4 +58,4 @@ const defaultResourceBindings = {
     emptyFieldText: "resource.emptyFieldText.default"
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

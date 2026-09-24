@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "customTable-eiendom",
     type: "Custom",
@@ -10,7 +12,7 @@ const markup = {
     resourceBindings: {
         title: "resource.eiendomByggested.eiendom.title"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     adresse: {
@@ -45,4 +47,4 @@ const defaultResourceBindings = {
     emptyFieldText: "resource.emptyFieldText.default"
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

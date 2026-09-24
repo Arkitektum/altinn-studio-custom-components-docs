@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-grouplist-utfall-svar",
     type: "Custom",
@@ -11,7 +13,7 @@ const markup = {
     resourceBindings: {
         title: "resource.utfallBesvarelse.utfallSvar.svv.header"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     utfallSvarStatus: {
@@ -33,4 +35,4 @@ const defaultResourceBindings = {
     emptyFieldText: "resource.emptyFieldText.default"
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-table-arbeidsplasser",
     type: "Custom",
@@ -12,9 +14,11 @@ const markup = {
         title: "resource.arbeidsplasser.title",
         emptyFieldText: "resource.arbeidsplasser.emptyFieldText"
     }
-};
+} satisfies ComponentMarkup;
 
-const defaultResourceBindings = {
+// Keyed rather than written out: the five workplace kinds below are added in a loop, so this needs to be
+// indexable by name.
+const defaultResourceBindings: Record<string, unknown> = {
     arbeidsplasserKey: {
         title: `resource.arbeidsplasser.arbeidsplasserKey.title`
     },
@@ -34,4 +38,4 @@ for (const key of arbeidsplasserBeroertKeys) {
     };
 }
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

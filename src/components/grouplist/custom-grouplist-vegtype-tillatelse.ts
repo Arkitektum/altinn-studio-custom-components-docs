@@ -1,3 +1,5 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
 const markup = {
     id: "custom-grouplist-vegtype-tillatelse",
     type: "Custom",
@@ -6,7 +8,7 @@ const markup = {
     dataModelBindings: {
         data: "customGrouplist.vegtypeTillatelse"
     }
-};
+} satisfies ComponentMarkup;
 
 const defaultResourceBindings = {
     vegtype: {
@@ -21,4 +23,4 @@ const defaultResourceBindings = {
     emptyFieldText: "resource.emptyFieldText.default"
 };
 
-export default { markup, defaultResourceBindings };
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

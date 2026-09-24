@@ -24,7 +24,7 @@ import {
     setupScrollSpy,
     setupSidebarSearch,
     setupThemeToggle
-} from "./scripts/renderers.js";
+} from "./scripts/renderers.ts";
 import componentExamples from "./components/index.js";
 
 // Data

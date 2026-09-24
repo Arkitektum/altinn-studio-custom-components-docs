@@ -2,6 +2,7 @@
 import { appendChildren, hasValue } from "@arkitektum/altinn-studio-custom-components-utils";
 
 // Global functions
+import type { ComponentExampleResult, ComponentTypeResult } from "../types.ts";
 import { getComponentNameFromTagName, getComponentTypeNameFromKey } from "./helpers.ts";
 
 // Assets
@@ -11,12 +12,30 @@ import iconDataObject from "../assets/svg/data-object.svg";
 import iconDictionary from "../assets/svg/dictionary.svg";
 
 /**
+ * The element the gallery renders into.
+ *
+ * These containers ship with the page, so one missing means the page was built wrong. Saying which one is missing
+ * beats the "cannot set properties of null" this used to fail with.
+ *
+ * @param id - The id of the container.
+ * @returns The element.
+ * @throws If the page does not contain it.
+ */
+function requireElement(id: string): HTMLElement {
+    const element = document.getElementById(id);
+    if (!element) {
+        throw new Error(`The gallery cannot render without #${id} in the page`);
+    }
+    return element;
+}
+
+/**
  * Copies text to the clipboard, resolving to whether the copy succeeded.
  *
  * @param {string} text - The text to copy.
  * @returns {Promise<boolean>} Whether the clipboard write succeeded.
  */
-async function copyText(text) {
+async function copyText(text: string): Promise<boolean> {
     try {
         await navigator.clipboard.writeText(text);
         return true;
@@ -30,18 +49,18 @@ async function copyText(text) {
  * Creates a "Copy" button that writes the given text to the clipboard and shows
  * brief feedback. Clicks are prevented from toggling the surrounding <details>.
  *
- * @param {string} label - Section label, used for the accessible name.
- * @param {string} text - The text copied to the clipboard.
- * @returns {HTMLButtonElement} The copy button.
+ * @param label - Section label, used for the accessible name.
+ * @param text - The text copied to the clipboard.
+ * @returns The copy button.
  */
-function createCopyButton(label, text) {
+function createCopyButton(label: string, text: string): HTMLButtonElement {
     const button = document.createElement("button");
     button.type = "button";
     button.classList.add("code-copy-button");
     button.textContent = "Kopier";
     button.setAttribute("aria-label", `Kopier ${label} som JSON`);
 
-    let resetTimer;
+    let resetTimer: number | undefined;
     button.addEventListener("click", async (event) => {
         // Keep the click from toggling the surrounding <details>.
         event.preventDefault();
@@ -62,14 +81,24 @@ function createCopyButton(label, text) {
  * Renders a collapsible code section (Markup, Data, or Resources) that shows a
  * value as formatted JSON inside a <details> element, with a copy button.
  *
- * @param {Object} options - The section configuration.
- * @param {string} options.title - The summary label.
- * @param {string} options.icon - The summary icon source.
- * @param {string} options.titleClassName - Modifier class applied to the summary.
- * @param {any} options.value - The value serialized into the code block.
- * @returns {HTMLDetailsElement} The <details> element containing the code block.
+ * @param options - The section configuration.
+ * @returns The <details> element containing the code block.
  */
-function renderCodeBlock({ title, icon, titleClassName, value }) {
+function renderCodeBlock({
+    title,
+    icon,
+    titleClassName,
+    value
+}: {
+    /** The summary label. */
+    title: string;
+    /** The summary icon source. */
+    icon: string;
+    /** Modifier class applied to the summary. */
+    titleClassName: string;
+    /** The value serialized into the code block. */
+    value: unknown;
+}): HTMLDetailsElement {
     const jsonString = JSON.stringify(value, null, 2);
 
     const containerElement = document.createElement("details");
@@ -99,11 +128,10 @@ function renderCodeBlock({ title, icon, titleClassName, value }) {
 /**
  * Creates a container div element and appends the provided component example's element as its child.
  *
- * @param {Object} componentExample - The example object containing the element to preview.
- * @param {HTMLElement} componentExample.element - The HTML element to be rendered inside the preview container.
- * @returns {HTMLDivElement} The container div element with the preview element appended.
+ * @param componentExample - The example whose rendered element is previewed.
+ * @returns The container div element with the preview element appended.
  */
-function renderPreviewElement(componentExample) {
+function renderPreviewElement(componentExample: ComponentExampleResult): HTMLDivElement {
     const containerElement = document.createElement("div");
     containerElement.classList.add("component-example-preview");
 
@@ -116,14 +144,10 @@ function renderPreviewElement(componentExample) {
 /**
  * Renders a component example, including its title, preview, markup, data, and resources.
  *
- * @param {Object} componentExample - The component example object to render.
- * @param {Object} [componentExample.markup] - The markup information for the component.
- * @param {string} [componentExample.markup.tagName] - The tag name of the component.
- * @param {Object} [componentExample.data] - The data associated with the component example.
- * @param {Object} [componentExample.resources] - The resources related to the component example.
- * @returns {HTMLDivElement} The container element with the rendered component example.
+ * @param componentExample - The component example object to render.
+ * @returns The container element with the rendered component example.
  */
-function renderComponentExample(componentExample) {
+function renderComponentExample(componentExample: ComponentExampleResult): HTMLDivElement {
     const containerElement = document.createElement("div");
     containerElement.id = `component-${componentExample?.markup?.tagName}`;
     containerElement.classList.add("component-example");
@@ -134,7 +158,7 @@ function renderComponentExample(componentExample) {
     }
 
     const titleElement = document.createElement("h3");
-    titleElement.textContent = getComponentNameFromTagName(componentExample?.markup?.tagName);
+    titleElement.textContent = getComponentNameFromTagName(componentExample?.markup?.tagName) ?? "";
     containerElement.appendChild(titleElement);
 
     const previewElement = renderPreviewElement(componentExample);
@@ -176,29 +200,27 @@ function renderComponentExample(componentExample) {
 /**
  * Renders the given results into the component documentation container.
  *
- * @param {Array<Object>} results - An array of component type objects to render.
- * @param {string} results[].type - The name of the component type.
- * @param {Array<Object>} results[].components - An array of component example objects for the type.
- *
  * Each component example object is rendered using the `renderComponentExample` function.
  * The rendered elements are appended to the container with the ID "component-docs-container".
+ *
+ * @param results - The rendered examples, grouped by kind of component.
  */
-export function renderResults(results) {
-    const containerElement = document.getElementById("component-docs-container");
+export function renderResults(results: ComponentTypeResult[]): void {
+    const containerElement = requireElement("component-docs-container");
     containerElement.innerHTML = "";
-    const resultElements = results.map((componentType) => {
+    const resultElements = results.map((componentType: ComponentTypeResult) => {
         const typeContainerElement = document.createElement("div");
         typeContainerElement.classList.add("component-type-section");
 
         const typeTitleElement = document.createElement("h2");
         typeTitleElement.id = `component-type-${componentType.type}`;
-        typeTitleElement.textContent = getComponentTypeNameFromKey(componentType?.type);
+        typeTitleElement.textContent = getComponentTypeNameFromKey(componentType?.type) ?? "";
         typeContainerElement.appendChild(typeTitleElement);
 
         const componentsContainerElement = document.createElement("div");
         componentsContainerElement.classList.add("components-container");
 
-        const componentElements = componentType.components.map((componentExample) => {
+        const componentElements = componentType.components.map((componentExample: ComponentExampleResult) => {
             return renderComponentExample(componentExample);
         });
 
@@ -214,16 +236,10 @@ export function renderResults(results) {
 /**
  * Renders the sidebar navigation for component types and their examples.
  *
- * @param {Array<Object>} results - An array of component type objects.
- * @param {string} results[].type - The name of the component type.
- * @param {Array<Object>} results[].components - An array of component example objects.
- * @param {Object} results[].components[].markup - The markup object for the component example.
- * @param {string} results[].components[].markup.tagName - The tag name of the component example.
- *
- * @returns {void}
+ * @param results - The rendered examples, grouped by kind of component.
  */
-export function renderSidebar(results) {
-    const sidebarElement = document.getElementById("sidebar");
+export function renderSidebar(results: ComponentTypeResult[]): void {
+    const sidebarElement = requireElement("sidebar");
     // Cleared first so rendering twice replaces the sidebar rather than appending a second copy, which is what
     // happens when the client hydrates a prerendered page.
     sidebarElement.innerHTML = "";
@@ -252,17 +268,17 @@ export function renderSidebar(results) {
 
     navElement.classList.add("component-type-list");
 
-    results.forEach((componentType) => {
+    results.forEach((componentType: ComponentTypeResult) => {
         const typeDetailsElement = document.createElement("details");
         typeDetailsElement.open = true;
         const typeTitleElement = document.createElement("summary");
-        typeTitleElement.textContent = getComponentTypeNameFromKey(componentType?.type);
+        typeTitleElement.textContent = getComponentTypeNameFromKey(componentType?.type) ?? "";
         typeDetailsElement.appendChild(typeTitleElement);
 
         const componentsUlElement = document.createElement("ul");
         componentsUlElement.classList.add("component-list");
 
-        componentType.components.forEach((componentExample) => {
+        componentType.components.forEach((componentExample: ComponentExampleResult) => {
             const tagName = componentExample?.markup?.tagName;
             const componentName = getComponentNameFromTagName(tagName);
             const componentLiElement = document.createElement("li");
@@ -272,7 +288,7 @@ export function renderSidebar(results) {
             iconElement.src = iconBrick;
             iconElement.alt = "";
             iconElement.classList.add("component-icon");
-            componentLinkElement.textContent = componentName;
+            componentLinkElement.textContent = componentName ?? "";
             componentLinkElement.prepend(iconElement);
             componentLinkElement.href = `#component-${tagName}`;
             componentLiElement.appendChild(componentLinkElement);
@@ -305,13 +321,13 @@ export function renderSidebar(results) {
  * @returns {void}
  */
 export function setupSidebarSearch() {
-    const input = document.getElementById("sidebar-search");
+    const input = document.getElementById("sidebar-search") as HTMLInputElement | null;
     const nav = document.querySelector("nav.component-type-list");
     if (!input || !nav) {
         return;
     }
 
-    const groups = Array.from(nav.querySelectorAll(":scope > details"));
+    const groups = Array.from(nav.querySelectorAll<HTMLDetailsElement>(":scope > details"));
     const emptyState = document.getElementById("sidebar-empty");
 
     const applyFilter = () => {
@@ -349,8 +365,8 @@ export function setupSidebarSearch() {
 
     // "/" focuses the filter from anywhere, unless the user is already typing.
     document.addEventListener("keydown", (event) => {
-        const active = document.activeElement;
-        const isTyping = active?.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(active?.tagName);
+        const active = document.activeElement as HTMLElement | null;
+        const isTyping = active?.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(active?.tagName ?? "");
         if (event.key === "/" && !event.metaKey && !event.ctrlKey && !event.altKey && !isTyping) {
             event.preventDefault();
             input.focus();
@@ -374,15 +390,15 @@ export function setupSidebarSearch() {
  */
 export function setupScrollSpy() {
     const scrollContainer = document.querySelector(".page-container");
-    const links = Array.from(document.querySelectorAll("nav.component-type-list a[href^='#component-']"));
+    const links = Array.from(document.querySelectorAll<HTMLAnchorElement>("nav.component-type-list a[href^='#component-']"));
     if (!scrollContainer || !links.length || typeof IntersectionObserver === "undefined") {
         return;
     }
 
-    const linkBySection = new Map();
-    const sections = [];
+    const linkBySection = new Map<Element, HTMLAnchorElement>();
+    const sections: HTMLElement[] = [];
     links.forEach((link) => {
-        const sectionId = decodeURIComponent(link.getAttribute("href").slice(1));
+        const sectionId = decodeURIComponent(link.getAttribute("href")?.slice(1) ?? "");
         const section = document.getElementById(sectionId);
         if (section) {
             linkBySection.set(section, link);
@@ -390,9 +406,9 @@ export function setupScrollSpy() {
         }
     });
 
-    let activeLink = null;
-    let activeSummary = null;
-    const setActive = (link) => {
+    let activeLink: HTMLAnchorElement | null = null;
+    let activeSummary: Element | null = null;
+    const setActive = (link: HTMLAnchorElement | undefined) => {
         if (!link || link === activeLink) {
             return;
         }
@@ -429,10 +445,11 @@ export function setupScrollSpy() {
     // A clicked link stays authoritative until its smooth scroll settles, so
     // intermediate scroll positions can't briefly select a neighbouring item.
     let clickLocked = false;
-    let unlockTimer = null;
+    let unlockTimer: number | null = null;
     const syncFromScroll = () => {
         if (!clickLocked) {
-            setActive(linkBySection.get(sectionAtScrollLine()));
+            const section = sectionAtScrollLine();
+            setActive(section && linkBySection.get(section));
         }
     };
     const unlock = () => {
@@ -487,7 +504,7 @@ export function setupMobileNav() {
         return;
     }
 
-    const setOpen = (open) => {
+    const setOpen = (open: boolean) => {
         document.body.classList.toggle("sidebar-open", open);
         toggle.setAttribute("aria-expanded", String(open));
     };
@@ -503,7 +520,7 @@ export function setupMobileNav() {
     });
     // Close the drawer once a component is chosen from the menu.
     sidebar.addEventListener("click", (event) => {
-        if (event.target.closest("a[href^='#component-']")) {
+        if ((event.target as Element | null)?.closest("a[href^='#component-']")) {
             setOpen(false);
         }
     });
@@ -527,7 +544,7 @@ export function setupThemeToggle() {
     }
 
     const root = document.documentElement;
-    const apply = (theme) => {
+    const apply = (theme: "light" | "dark") => {
         root.dataset.theme = theme;
         toggle.setAttribute("aria-label", theme === "dark" ? "Bytt til lyst tema" : "Bytt til mørkt tema");
         toggle.setAttribute("aria-pressed", String(theme === "dark"));

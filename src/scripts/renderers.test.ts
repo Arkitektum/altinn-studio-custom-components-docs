@@ -1,4 +1,6 @@
-import { renderResults, renderSidebar, setupSidebarSearch } from "./renderers.js";
+import { beforeEach, describe, expect, it } from "@jest/globals";
+import { renderResults, renderSidebar, setupSidebarSearch } from "./renderers.ts";
+import type { ComponentTypeResult } from "../types.ts";
 
 /** The two containers index.html provides for the rendered gallery. */
 function givenAnEmptyPage() {
@@ -10,7 +12,7 @@ function givenAnEmptyPage() {
  *
  * Every entry needs an `element`: that is the rendered preview, and renderPreviewElement appends it directly.
  */
-function someResults() {
+function someResults(): ComponentTypeResult[] {
     return [
         {
             type: "table",
@@ -39,8 +41,8 @@ describe("renderResults", () => {
 
         const sections = document.querySelectorAll(".component-type-section");
         expect(sections).toHaveLength(2);
-        expect(document.getElementById("component-type-table").textContent).toBe("Tabell");
-        expect(document.getElementById("component-type-matrix").textContent).toBe("Matrise");
+        expect(document.getElementById("component-type-table")!.textContent).toBe("Tabell");
+        expect(document.getElementById("component-type-matrix")!.textContent).toBe("Matrise");
     });
 
     it("gives every example an anchor id and a heading", () => {
@@ -56,13 +58,13 @@ describe("renderResults", () => {
     it("renders a code block for the markup, and for data and resources when present", () => {
         renderResults(someResults());
 
-        const withData = document.getElementById("component-custom-table-eiendom");
+        const withData = document.getElementById("component-custom-table-eiendom")!;
         expect(withData.querySelector(".component-example-markup-title")).not.toBeNull();
         expect(withData.querySelector(".component-example-data-title")).not.toBeNull();
         expect(withData.querySelector(".component-example-resources-title")).not.toBeNull();
 
         // No data or resources on this one, so only the markup block should appear.
-        const withoutData = document.getElementById("component-custom-table-plan");
+        const withoutData = document.getElementById("component-custom-table-plan")!;
         expect(withoutData.querySelector(".component-example-data-title")).toBeNull();
         expect(withoutData.querySelector(".component-example-resources-title")).toBeNull();
     });
@@ -92,23 +94,23 @@ describe("renderSidebar", () => {
     it("groups the links per component type, expanded by default", () => {
         renderSidebar(someResults());
 
-        const groups = Array.from(document.querySelectorAll("nav.component-type-list > details"));
+        const groups = Array.from(document.querySelectorAll<HTMLDetailsElement>("nav.component-type-list > details"));
         expect(groups).toHaveLength(2);
-        expect(groups.map((group) => group.querySelector("summary").textContent)).toEqual(["Tabell", "Matrise"]);
+        expect(groups.map((group) => group.querySelector("summary")!.textContent)).toEqual(["Tabell", "Matrise"]);
         expect(groups.every((group) => group.open)).toBe(true);
     });
 
     it("records searchable text covering both the display name and the tag name", () => {
         renderSidebar(someResults());
 
-        const first = document.querySelector("nav.component-type-list li");
+        const first = document.querySelector<HTMLLIElement>("nav.component-type-list li")!;
         expect(first.dataset.searchText).toBe("eiendom custom-table-eiendom");
     });
 
     it("renders the empty state hidden", () => {
         renderSidebar(someResults());
 
-        const emptyState = document.getElementById("sidebar-empty");
+        const emptyState = document.getElementById("sidebar-empty")!;
         expect(emptyState.hidden).toBe(true);
         expect(emptyState.textContent).toBe("Ingen komponenter samsvarer med søket.");
     });
@@ -130,19 +132,20 @@ describe("setupSidebarSearch", () => {
      * Note the searchable text is the display name plus the tag name, not the component type, so a query has to match
      * one of those two.
      */
-    function givenAFilterableSidebar() {
+    function givenAFilterableSidebar(): HTMLInputElement {
         givenAnEmptyPage();
         renderSidebar(someResults());
         setupSidebarSearch();
-        return document.getElementById("sidebar-search");
+        return document.getElementById("sidebar-search") as HTMLInputElement;
     }
 
-    function typeInto(input, value) {
+    function typeInto(input: HTMLInputElement, value: string) {
         input.value = value;
         input.dispatchEvent(new window.Event("input"));
     }
 
-    const visibleItems = () => Array.from(document.querySelectorAll("nav.component-type-list li")).filter((item) => !item.hidden);
+    const visibleItems = () =>
+        Array.from(document.querySelectorAll<HTMLLIElement>("nav.component-type-list li")).filter((item) => !item.hidden);
 
     it("keeps only the matching items", () => {
         const input = givenAFilterableSidebar();
@@ -150,7 +153,7 @@ describe("setupSidebarSearch", () => {
         typeInto(input, "matrix");
 
         expect(visibleItems()).toHaveLength(1);
-        expect(visibleItems()[0].textContent).toBe("Data");
+        expect(visibleItems()[0]!.textContent).toBe("Data");
     });
 
     it("matches on the tag name as well as the display name", () => {
@@ -168,7 +171,7 @@ describe("setupSidebarSearch", () => {
 
         typeInto(input, "matrix");
 
-        const groups = Array.from(document.querySelectorAll("nav.component-type-list > details"));
+        const groups = Array.from(document.querySelectorAll<HTMLDetailsElement>("nav.component-type-list > details"));
         expect(groups.map((group) => group.hidden)).toEqual([true, false]);
     });
 
@@ -177,7 +180,7 @@ describe("setupSidebarSearch", () => {
 
         typeInto(input, "finnes ikke");
 
-        expect(document.getElementById("sidebar-empty").hidden).toBe(false);
+        expect(document.getElementById("sidebar-empty")!.hidden).toBe(false);
         expect(visibleItems()).toHaveLength(0);
     });
 
@@ -188,7 +191,7 @@ describe("setupSidebarSearch", () => {
         typeInto(input, "");
 
         expect(visibleItems()).toHaveLength(3);
-        expect(document.getElementById("sidebar-empty").hidden).toBe(true);
+        expect(document.getElementById("sidebar-empty")!.hidden).toBe(true);
     });
 
     it("clears the filter on Escape", () => {

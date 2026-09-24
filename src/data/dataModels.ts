@@ -1,4 +1,15 @@
-export default [
+/**
+ * One data model, shaped the way Altinn hands one to a component: everything a binding can reach sits under `data`.
+ *
+ * The values are deliberately left unknown. A component finds its value by walking a dataModelBinding path at
+ * runtime, so naming the type of every example here would be two thousand lines of declarations that no caller
+ * reads and that would have to be edited again for every new example.
+ */
+export interface DataModel {
+    data: Record<string, unknown>;
+}
+
+const dataModels: DataModel[] = [
     {
         data: {
             customField: {
@@ -2210,3 +2221,5 @@ export default [
         }
     }
 ];
+
+export default dataModels;

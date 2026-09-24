@@ -28,8 +28,8 @@ import {
 import componentExamples from "./components/index.js";
 
 // Data
-import dataModels from "./data/dataModels.js";
-import textResources from "./data/textResources.js";
+import dataModels from "./data/dataModels.ts";
+import textResources from "./data/textResources.ts";
 
 // Stylesheets
 import "./styles/main.css";

@@ -1,4 +1,16 @@
-export default {
+/** One text resource, as an Altinn resource file spells it. */
+export interface TextResource {
+    id: string;
+    value: string;
+}
+
+/** The text resources for one language, which is the whole of what an app ships per language. */
+export interface TextResourceBundle {
+    language: string;
+    resources: TextResource[];
+}
+
+const textResources: TextResourceBundle = {
     language: "nb",
     resources: [
         {
@@ -171,3 +183,5 @@ export default {
         }
     ]
 };
+
+export default textResources;

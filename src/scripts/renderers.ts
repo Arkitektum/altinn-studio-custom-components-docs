@@ -327,7 +327,7 @@ export function setupSidebarSearch() {
         return;
     }
 
-    const groups = Array.from(nav.querySelectorAll<HTMLDetailsElement>(":scope > details"));
+    const groups = Array.from(nav.querySelectorAll(":scope > details") as NodeListOf<HTMLDetailsElement>);
     const emptyState = document.getElementById("sidebar-empty");
 
     const applyFilter = () => {
@@ -390,7 +390,7 @@ export function setupSidebarSearch() {
  */
 export function setupScrollSpy() {
     const scrollContainer = document.querySelector(".page-container");
-    const links = Array.from(document.querySelectorAll<HTMLAnchorElement>("nav.component-type-list a[href^='#component-']"));
+    const links = Array.from(document.querySelectorAll("nav.component-type-list a[href^='#component-']") as NodeListOf<HTMLAnchorElement>);
     if (!scrollContainer || !links.length || typeof IntersectionObserver === "undefined") {
         return;
     }

@@ -94,7 +94,7 @@ describe("renderSidebar", () => {
     it("groups the links per component type, expanded by default", () => {
         renderSidebar(someResults());
 
-        const groups = Array.from(document.querySelectorAll<HTMLDetailsElement>("nav.component-type-list > details"));
+        const groups = Array.from(document.querySelectorAll("nav.component-type-list > details") as NodeListOf<HTMLDetailsElement>);
         expect(groups).toHaveLength(2);
         expect(groups.map((group) => group.querySelector("summary")!.textContent)).toEqual(["Tabell", "Matrise"]);
         expect(groups.every((group) => group.open)).toBe(true);
@@ -103,7 +103,7 @@ describe("renderSidebar", () => {
     it("records searchable text covering both the display name and the tag name", () => {
         renderSidebar(someResults());
 
-        const first = document.querySelector<HTMLLIElement>("nav.component-type-list li")!;
+        const first = document.querySelector("nav.component-type-list li")! as HTMLLIElement;
         expect(first.dataset.searchText).toBe("eiendom custom-table-eiendom");
     });
 
@@ -145,7 +145,7 @@ describe("setupSidebarSearch", () => {
     }
 
     const visibleItems = () =>
-        Array.from(document.querySelectorAll<HTMLLIElement>("nav.component-type-list li")).filter((item) => !item.hidden);
+        Array.from(document.querySelectorAll("nav.component-type-list li") as NodeListOf<HTMLLIElement>).filter((item) => !item.hidden);
 
     it("keeps only the matching items", () => {
         const input = givenAFilterableSidebar();
@@ -171,7 +171,7 @@ describe("setupSidebarSearch", () => {
 
         typeInto(input, "matrix");
 
-        const groups = Array.from(document.querySelectorAll<HTMLDetailsElement>("nav.component-type-list > details"));
+        const groups = Array.from(document.querySelectorAll("nav.component-type-list > details") as NodeListOf<HTMLDetailsElement>);
         expect(groups.map((group) => group.hidden)).toEqual([true, false]);
     });
 

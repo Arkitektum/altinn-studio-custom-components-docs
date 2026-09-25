@@ -88,7 +88,7 @@ describe("the examples the docs offer", () => {
     });
 
     it("demonstrates each component once, so no page silently replaces another", () => {
-        const counts = new Map<string | undefined, number>();
+        const counts: Map<string | undefined, number> = new Map();
         for (const { tagName } of documentedExamples()) {
             counts.set(tagName, (counts.get(tagName) ?? 0) + 1);
         }

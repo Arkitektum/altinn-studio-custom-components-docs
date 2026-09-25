@@ -395,7 +395,7 @@ export function setupScrollSpy() {
         return;
     }
 
-    const linkBySection = new Map<Element, HTMLAnchorElement>();
+    const linkBySection: Map<Element, HTMLAnchorElement> = new Map();
     const sections: HTMLElement[] = [];
     links.forEach((link) => {
         const sectionId = decodeURIComponent(link.getAttribute("href")?.slice(1) ?? "");

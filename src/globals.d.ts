@@ -1,4 +1,4 @@
-import type { TextResourceBundle } from "./types.ts";
+import type { TextResourceBundle } from "./data/textResources.ts";
 
 declare global {
     /**

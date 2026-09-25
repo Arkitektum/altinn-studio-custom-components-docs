@@ -1,0 +1,35 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
+const markup = {
+    id: "custom-group-vannforsyning",
+    type: "Custom",
+    tagName: "custom-group-vannforsyning",
+    hideIfEmpty: false,
+    hideTitle: false,
+    dataModelBindings: {
+        data: "customGroup.vannforsyning"
+    }
+} satisfies ComponentMarkup;
+
+const defaultResourceBindings = {
+    title: "resource.vannforsyning.title",
+    emptyFieldText: "resource.emptyFieldText.default",
+    beskrivelse: {
+        title: `resource.beskrivelse.title`
+    },
+    harTinglystErklaering: {
+        title: `resource.rammebetingelser.vannforsyning.harTinglystErklaering.title`,
+        trueText: `resource.trueText.default`,
+        falseText: `resource.falseText.default`
+    },
+    krysserVannforsyningAnnensGrunn: {
+        title: `resource.rammebetingelser.vannforsyning.krysserVannforsyningAnnensGrunn.title`,
+        trueText: `resource.trueText.default`,
+        falseText: `resource.falseText.default`
+    },
+    tilknytningstype: {
+        title: `resource.tilknytning.title`
+    }
+};
+
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

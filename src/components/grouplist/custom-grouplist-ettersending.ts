@@ -1,0 +1,32 @@
+import type { ComponentExample, ComponentMarkup } from "../../types.ts";
+
+const markup = {
+    id: "custom-grouplist-ettersending",
+    type: "Custom",
+    tagName: "custom-grouplist-ettersending",
+    hideTitle: false,
+    hideIfEmpty: false,
+    size: "h2",
+    dataModelBindings: {
+        data: "customGrouplist.ettersending"
+    },
+    resourceBindings: {
+        title: "resource.customGrouplist.ettersending.title",
+        emptyFieldText: "resource.customGrouplist.ettersending.emptyFieldText.default"
+    }
+} satisfies ComponentMarkup;
+const defaultResourceBindings = {
+    tema: {
+        title: "resource.tema.title"
+    },
+    kommentar: {
+        title: "resource.kommentar.title"
+    },
+    vedleggsliste: {
+        title: "resource.vedlegg.title"
+    },
+    title: "resource.ettersendinger.title",
+    emptyFieldText: "resource.emptyFieldText.default"
+};
+
+export default { markup, defaultResourceBindings } satisfies ComponentExample;

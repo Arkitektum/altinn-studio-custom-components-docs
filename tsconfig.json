@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "lib": ["esnext", "dom", "dom.iterable"],
+        "strict": true,
+        // A lookup in one of the name maps can miss, and the callers already fall back when it does. Without this,
+        // indexing a Record hands back a plain string and those fallbacks read as dead code.
+        "noUncheckedIndexedAccess": true,
+        "skipLibCheck": true,
+        "isolatedModules": true,
+        "verbatimModuleSyntax": true,
+        // Relative imports name the .ts file they mean, the same convention as the utils package. Webpack and jest
+        // both resolve that literally, so a renamed file needs no loader configuration to be found.
+        "allowImportingTsExtensions": true,
+        // The components package ships its default text resources as JSON, which the page loads at startup.
+        "resolveJsonModule": true,
+        // Webpack builds the site through babel, which strips the types. Nothing is emitted from here.
+        "noEmit": true
+    },
+    "include": ["src"]
+}

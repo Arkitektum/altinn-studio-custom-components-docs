@@ -11,11 +11,11 @@ For an overview of how the site is built and rendered, read [ARCHITECTURE.md](./
 - **Node.js 24**
 - **Yarn 4**, managed via [Corepack](https://nodejs.org/api/corepack.html). Enable it once:
 
-  ```bash
-  corepack enable
-  ```
+    ```bash
+    corepack enable
+    ```
 
-  The correct Yarn version is then activated automatically from the `packageManager` field in `package.json`.
+    The correct Yarn version is then activated automatically from the `packageManager` field in `package.json`.
 
 ---
 
@@ -23,30 +23,30 @@ For an overview of how the site is built and rendered, read [ARCHITECTURE.md](./
 
 1. **Clone and install**
 
-   ```bash
-   git clone https://github.com/Arkitektum/altinn-studio-custom-components-docs.git
-   cd altinn-studio-custom-components-docs
-   yarn install
-   ```
+    ```bash
+    git clone https://github.com/Arkitektum/altinn-studio-custom-components-docs.git
+    cd altinn-studio-custom-components-docs
+    yarn install
+    ```
 
 2. **Start the dev server**
 
-   ```bash
-   yarn start
-   ```
+    ```bash
+    yarn start
+    ```
 
-   Open <http://localhost:9000>.
-   The page renders every component example with live previews and reloads on change.
+    Open <http://localhost:9000>.
+    The page renders every component example with live previews and reloads on change.
 
 ---
 
 ## Everyday commands
 
-| Command | What it does |
-| ------- | ------------ |
-| `yarn start` | Webpack dev server (port `9000`). |
-| `yarn build` | Production build into `docs/` (git-ignored; published to GitHub Pages by CI). |
-| `npx eslint .` | Lint the source (ESLint flat config in `eslint.config.mjs`). |
+| Command        | What it does                                                                  |
+| -------------- | ----------------------------------------------------------------------------- |
+| `yarn start`   | Webpack dev server (port `9000`).                                             |
+| `yarn build`   | Production build into `docs/` (git-ignored; published to GitHub Pages by CI). |
+| `npx eslint .` | Lint the source (ESLint flat config in `eslint.config.mjs`).                  |
 
 ---
 
@@ -57,10 +57,10 @@ For an overview of how the site is built and rendered, read [ARCHITECTURE.md](./
 2. **Register it** by importing the new module in `src/components/index.js` (grouped under the right type).
 
 3. **Add supporting data** if the example needs it:
-   - example form data in `src/data/dataModels.js`,
-   - text-resource values in `src/data/textResources.js`.
+    - example form data in `src/data/dataModels.js`,
+    - text-resource values in `src/data/textResources.js`.
 
-   Use synthetic/example data only — never real or personal data.
+    Use synthetic/example data only — never real or personal data.
 
 4. **Check the type grouping.**
    If you introduce a new component type, add its display name to `src/constants/componentTypeNames.js`.

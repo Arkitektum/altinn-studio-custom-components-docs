@@ -78,14 +78,14 @@ A component **example** is just a module exporting a `markup` object — the com
 
 ```js
 const markup = {
-  id: "customField-data",
-  type: "Custom",
-  tagName: "custom-field-data",
-  dataModelBindings: { simpleBinding: "customField.data" },
-  resourceBindings: {
-    title: "resource.customField.data.title",
-    emptyFieldText: "resource.emptyFieldText.default"
-  }
+    id: "customField-data",
+    type: "Custom",
+    tagName: "custom-field-data",
+    dataModelBindings: { simpleBinding: "customField.data" },
+    resourceBindings: {
+        title: "resource.customField.data.title",
+        emptyFieldText: "resource.emptyFieldText.default"
+    }
 };
 export default { markup };
 ```
@@ -94,10 +94,10 @@ export default { markup };
 
 ## 4. Build & deploy
 
-| Command | What it does |
-| ------- | ------------ |
+| Command      | What it does                       |
+| ------------ | ---------------------------------- |
 | `yarn start` | Webpack dev server on port `9000`. |
-| `yarn build` | Production build into `docs/`. |
+| `yarn build` | Production build into `docs/`.     |
 
 The build output goes to **`docs/`** (git-ignored). The `Deploy` GitHub Actions workflow builds the site and publishes it to GitHub Pages on every push to `main`, so `docs/` no longer needs to be built or committed by hand. Pages is configured with **Source: GitHub Actions**.
 

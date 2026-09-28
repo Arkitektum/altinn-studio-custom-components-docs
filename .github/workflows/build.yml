@@ -1,58 +1,61 @@
 name: Build
 
 on:
-  pull_request:
-    branches: [ "main" ]
+    pull_request:
+        branches: ["main"]
 
 jobs:
-  build:
-    name: Verify build
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
+    build:
+        name: Verify build
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
 
-    steps:
-      # ------------------------------
-      # 1. Checkout repository
-      # ------------------------------
-      - name: Checkout code
-        uses: actions/checkout@v6
+        steps:
+            # ------------------------------
+            # 1. Checkout repository
+            # ------------------------------
+            - name: Checkout code
+              uses: actions/checkout@v6
 
-      # ------------------------------
-      # 2. Setup Node.js
-      # ------------------------------
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
+            # ------------------------------
+            # 2. Setup Node.js
+            # ------------------------------
+            - name: Setup Node.js
+              uses: actions/setup-node@v6
+              with:
+                  node-version: 24
 
-      # ------------------------------
-      # 3. Enable Corepack (Yarn 4)
-      # ------------------------------
-      - name: Enable Corepack
-        run: corepack enable
+            # ------------------------------
+            # 3. Enable Corepack (Yarn 4)
+            # ------------------------------
+            - name: Enable Corepack
+              run: corepack enable
 
-      # ------------------------------
-      # 4. Install dependencies
-      # ------------------------------
-      - name: Install dependencies
-        run: yarn install --immutable
+            # ------------------------------
+            # 4. Install dependencies
+            # ------------------------------
+            - name: Install dependencies
+              run: yarn install --immutable
 
-      # ------------------------------
-      # 5. Lint
-      # ------------------------------
-      # The ESLint scanning workflow uploads SARIF with continue-on-error, so this is what actually gates a PR.
-      - name: Lint
-        run: yarn lint
+            # ------------------------------
+            # 5. Lint
+            # ------------------------------
+            # The ESLint scanning workflow uploads SARIF with continue-on-error, so this is what actually gates a PR.
+            - name: Lint
+              run: yarn lint
 
-      # ------------------------------
-      # 6. Tests
-      # ------------------------------
-      - name: Run tests
-        run: yarn test
+            - name: Check formatting
+              run: yarn format:check
 
-      # ------------------------------
-      # 7. Build the site
-      # ------------------------------
-      - name: Build
-        run: yarn build
+            # ------------------------------
+            # 6. Tests
+            # ------------------------------
+            - name: Run tests
+              run: yarn test
+
+            # ------------------------------
+            # 7. Build the site
+            # ------------------------------
+            - name: Build
+              run: yarn build

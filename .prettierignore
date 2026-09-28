@@ -1,0 +1,4 @@
+# Build output. The gallery is prerendered into docs/ by webpack, so formatting it would fail the check again after
+# the next build.
+docs/
+coverage/

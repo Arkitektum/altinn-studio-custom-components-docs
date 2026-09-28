@@ -8,6 +8,8 @@
         "start": "webpack serve --mode development --config webpack.config.js",
         "build": "webpack --mode production --config webpack.config.js",
         "lint": "eslint .",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
         "test": "jest",
         "typecheck": "tsc --noEmit"
     },

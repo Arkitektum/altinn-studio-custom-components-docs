@@ -42,6 +42,7 @@ const componentNames: Record<string, string> = {
     "custom-group-avloep": "Avløp",
     "custom-group-dispensasjon-oversikt": "Dispensasjonsoversikt",
     "custom-group-ettersending": "Ettersending",
+    "custom-group-fakturamottaker": "Fakturamottaker",
     "custom-group-kontroll-ansvarsomraade": "Ansvarsområde (kontroll)",
     "custom-group-kontroll-erklaeringer": "Kontrollerklæringer",
     "custom-group-loefteinnretninger": "Løfteinnretninger",

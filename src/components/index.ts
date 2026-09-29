@@ -50,6 +50,7 @@ import customGroupAnsvarsrettErklaeringer from "./group/custom-group-ansvarsrett
 import customGroupAvloep from "./group/custom-group-avloep.ts";
 import customGroupDispensasjonOversikt from "./group/custom-group-dispensasjon-oversikt.ts";
 import customGroupEttersending from "./group/custom-group-ettersending.ts";
+import customGroupFakturamottaker from "./group/custom-group-fakturamottaker.ts";
 import customGroupKontrollAnsvarsomraade from "./group/custom-group-kontroll-ansvarsomraade.ts";
 import customGroupKontrollErklaeringer from "./group/custom-group-kontroll-erklaeringer.ts";
 import customGroupLoefteinnretninger from "./group/custom-group-loefteinnretninger.ts";
@@ -130,6 +131,7 @@ export const group = {
     customGroupAvloep,
     customGroupDispensasjonOversikt,
     customGroupEttersending,
+    customGroupFakturamottaker,
     customGroupKontrollAnsvarsomraade,
     customGroupKontrollErklaeringer,
     customGroupLoefteinnretninger,

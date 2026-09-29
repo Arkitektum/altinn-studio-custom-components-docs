@@ -592,6 +592,19 @@ const dataModels: DataModel[] = [
                         ]
                     }
                 },
+                fakturamottaker: {
+                    navn: "Testbedrift AS",
+                    adresse: {
+                        adresselinje1: "Storgata 1",
+                        postnr: "0155",
+                        poststed: "Oslo"
+                    },
+                    organisasjonsnummer: "987654321",
+                    bestillerreferanse: "Bestilt av Kari Nordmann",
+                    fakturareferanse: "Faktura 2024-17",
+                    prosjektnummer: 4711,
+                    epost: "faktura@testbedrift.no"
+                },
                 loefteinnretninger: {
                     erLoefteinnretningIBygning: false,
                     planleggesLoefteinnretningIBygning: true,

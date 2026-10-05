@@ -6,12 +6,14 @@ const markup = {
     tagName: "custom-dispensasjon",
     dataModelBindings: {
         begrunnelse: "customLayout.dispensasjon.begrunnelse",
+        beregningsregelGradAvUtnytting: "customLayout.dispensasjon.beregningsregelGradAvUtnytting",
         bestemmelsestype: "customLayout.dispensasjon.bestemmelsestype",
         dispensasjonsbeskrivelse: "customLayout.dispensasjon.dispensasjonsbeskrivelse",
         dispensasjonsreferanse: "customLayout.dispensasjon.dispensasjonsreferanse",
         dispensasjonstema: "customLayout.dispensasjon.dispensasjonstema",
         eiendomByggested: "customLayout.dispensasjon.eiendomByggested",
         generelleVilkaar: "customLayout.dispensasjon.generelleVilkaar",
+        gradAvUtnytting: "customLayout.dispensasjon.gradAvUtnytting",
         kommunensSaksnummer: "customLayout.dispensasjon.kommunensSaksnummer",
         metadata: "customLayout.dispensasjon.metadata",
         nasjonalArealplanId: "customLayout.dispensasjon.nasjonalArealplanId",
@@ -112,6 +114,12 @@ const defaultResourceBindings = {
     },
     dispensasjonsbeskrivelse: {
         title: "resource.dispensasjonsbeskrivelse.title"
+    },
+    beregningsregelGradAvUtnytting: {
+        title: "resource.beregningsregelGradAvUtnytting.title"
+    },
+    gradAvUtnytting: {
+        title: "resource.gradAvUtnytting.title"
     },
     dispensasjonFraHeader: {
         title: "resource.bestemmelse.title"

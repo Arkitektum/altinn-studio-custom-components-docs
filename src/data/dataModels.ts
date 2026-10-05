@@ -1563,6 +1563,10 @@ const dataModels: DataModel[] = [
                         },
                         samletBegrunnelse: "Etter en helhetsvurdering mener vi at fordelene ved å gi dispensasjon veier tyngre enn ulempene."
                     },
+                    beregningsregelGradAvUtnytting: {
+                        kodeverdi: "%BYA",
+                        kodebeskrivelse: "Prosent bebygd areal"
+                    },
                     bestemmelsestype: {
                         kodeverdi: "REG",
                         kodebeskrivelse: "Reguleringsplan"
@@ -1627,6 +1631,7 @@ const dataModels: DataModel[] = [
                     generelleVilkaar: {
                         norskSvenskDansk: true
                     },
+                    gradAvUtnytting: 30,
                     kommunensSaksnummer: {
                         saksaar: 2024,
                         sakssekvensnummer: 12345

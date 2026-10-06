@@ -5,13 +5,6 @@ __metadata:
   version: 10
   cacheKey: 10c0
 
-"@arkitektum/altinn-studio-custom-components-utils@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "@arkitektum/altinn-studio-custom-components-utils@npm:2.0.2"
-  checksum: 10c0/eaf3fd99bc9867df32e8a810030f78f2658f80b0f83f9685d786c202e9653560e102560d9b699bf870a90201f97b809268a8223ac34264f7ebdc2ee53631c7c6
-  languageName: node
-  linkType: hard
-
 "@arkitektum/altinn-studio-custom-components-utils@npm:^2.0.3":
   version: 2.0.3
   resolution: "@arkitektum/altinn-studio-custom-components-utils@npm:2.0.3"
@@ -19,13 +12,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkitektum/altinn-studio-custom-components@npm:^17.2.0":
-  version: 17.2.0
-  resolution: "@arkitektum/altinn-studio-custom-components@npm:17.2.0"
+"@arkitektum/altinn-studio-custom-components@npm:^17.3.1":
+  version: 17.3.1
+  resolution: "@arkitektum/altinn-studio-custom-components@npm:17.3.1"
   dependencies:
-    "@arkitektum/altinn-studio-custom-components-utils": "npm:^2.0.2"
+    "@arkitektum/altinn-studio-custom-components-utils": "npm:^2.0.3"
     "@arkitektum/client-logger": "npm:^1.2.2"
-  checksum: 10c0/63b3b9c5040ad0c74778f4f3d3776957cd54f1f901e08db2bf06435ea587d560618e53d5fde340a90cff696cf27d6f4d4205cb75f1ae775e8d96abc17558c2a2
+  checksum: 10c0/ae746cb731f9ee0717faaf3fb82a37ffa2b0dc13ae4bf1b08ecdca5d607f6288b722a2ac1405d1bc2f9884344b2c3189838582f43f690dad0c29d7242a9c8088
   languageName: node
   linkType: hard
 
@@ -3814,7 +3807,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "altinn-studio-custom-components-docs@workspace:."
   dependencies:
-    "@arkitektum/altinn-studio-custom-components": "npm:^17.2.0"
+    "@arkitektum/altinn-studio-custom-components": "npm:^17.3.1"
     "@arkitektum/altinn-studio-custom-components-utils": "npm:^2.0.3"
     "@babel/core": "npm:^8.0.6"
     "@babel/preset-env": "npm:^8.0.6"
@@ -8442,13 +8435,13 @@ __metadata:
   linkType: hard
 
 "regjsparser@npm:^0.13.0":
-  version: 0.13.3
-  resolution: "regjsparser@npm:0.13.3"
+  version: 0.13.4
+  resolution: "regjsparser@npm:0.13.4"
   dependencies:
     jsesc: "npm:~3.1.0"
   bin:
     regjsparser: bin/parser
-  checksum: 10c0/8c9562eeea8ac7c24f58e4b5951f2434b5c2cc7cda8ce7acf7344a072d60c791c10c40df48fdae9f1aaf6fdad445740936d4e986ef2a9b534fa34b0b17de33dd
+  checksum: 10c0/7a623e13bef4041c9e870e7a2bd97fe09d41bbcc960590edc7866e9c8e9a14ae5512ae19ca73bf8d022473c3cb386bef595d13462ff6d0b81da91bfabd8790f3
   languageName: node
   linkType: hard
 

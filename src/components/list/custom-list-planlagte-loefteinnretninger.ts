@@ -26,7 +26,7 @@ const defaultResourceBindings = {
     planleggesTrappeheis: {
         title: `resource.rammebetingelser.loefteinnretninger.planleggesTrappeheis.title`
     },
-    title: "resource.loefteinnretninger.title",
+    title: "resource.rammebetingelser.loefteinnretninger.planlagteLoefteinnretninger.title",
     emptyFieldText: "resource.emptyFieldText.default"
 };
 

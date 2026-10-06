@@ -79,7 +79,7 @@ const defaultResourceBindings = {
         operator: "resource.operator.minus",
         unit: "resource.unit.meterSquared"
     },
-    title: "resource.arealdisponering.title",
+    title: "resource.rammebetingelser.arealdisponering.title",
     emptyFieldText: "resource.emptyFieldText.default"
 };
 

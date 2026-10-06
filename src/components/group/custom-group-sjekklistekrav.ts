@@ -15,7 +15,7 @@ const defaultResourceBindings = {
     emptyFieldText: "resource.emptyFieldText.default",
     trueText: "resource.trueText.default",
     falseText: "resource.falseText.default",
-    defaultText: "resource.defaultText.default"
+    defaultText: "resource.emptyFieldText.default"
 };
 
 export default { markup, defaultResourceBindings } satisfies ComponentExample;

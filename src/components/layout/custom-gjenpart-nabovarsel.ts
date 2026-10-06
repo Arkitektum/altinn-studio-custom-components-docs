@@ -36,19 +36,19 @@ const defaultResourceBindings = {
         emptyFieldText: "resource.emptyFieldText.address"
     },
     eiendomsidentifikasjonGaardsnummer: {
-        title: "resource.eiendom.eiendomsidentifikasjon.gaardsnummer.title",
+        title: "resource.eiendom.gaardsnummer.title",
         emptyFieldText: "resource.emptyFieldText.default"
     },
     eiendomsidentifikasjonBruksnummer: {
-        title: "resource.eiendom.eiendomsidentifikasjon.bruksnummer.title",
+        title: "resource.eiendom.bruksnummer.title",
         emptyFieldText: "resource.emptyFieldText.default"
     },
     eiendomsidentifikasjonSeksjonsnummer: {
-        title: "resource.eiendom.eiendomsidentifikasjon.seksjonsnummer.title",
+        title: "resource.eiendom.seksjonsnummer.title",
         emptyFieldText: "resource.emptyFieldText.default"
     },
     eiendomsidentifikasjonFestenummer: {
-        title: "resource.eiendom.eiendomsidentifikasjon.festenummer.title",
+        title: "resource.eiendom.festenummer.title",
         emptyFieldText: "resource.emptyFieldText.default"
     },
     bolignummer: {
@@ -163,7 +163,7 @@ const defaultResourceBindings = {
         emptyFieldText: "resource.emptyFieldText.default"
     },
     responsErMerknadEllerSamtykkeMottatt: {
-        title: "resource.respons.erMerknadEllerSamtykkeMottatt.title",
+        title: "resource.status.title",
         falseText: "resource.respons.erMerknadEllerSamtykkeMottatt.falseText"
     },
     responsErMerknadMottatt: {

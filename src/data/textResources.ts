@@ -30,6 +30,10 @@ const textResources: TextResourceBundle = {
             value: "Label for count-data felt"
         },
         {
+            id: "resource.customField.countData.emptyFieldText",
+            value: "Ingen oppført"
+        },
+        {
             id: "resource.customField.kode.title",
             value: "Label for kodefelt"
         },

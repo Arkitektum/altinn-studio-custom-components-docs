@@ -29,12 +29,6 @@ const defaultResourceBindings = {
     emne: {
         title: "resource.emne.title"
     },
-    plannavn: {
-        title: "resource.dispensasjonsvarsel.plannavn.title"
-    },
-    paragrafnummer: {
-        title: "resource.dispensasjonsvarsel.paragrafnummer.title"
-    },
     spoersmaalOmDispensasjonssoeknaden: {
         title: "resource.dispensasjonsvarsel.spoersmaalOmDispensasjonssoeknaden.title"
     }

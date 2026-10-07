@@ -394,6 +394,36 @@ main:focus {
                             border-radius: var(--docs-radius-default);
                             box-shadow: var(--docs-shadow-card);
                         }
+                        /* The copy button sits beside its <details>, over the summary bar. */
+                        & .component-example-code-block {
+                            position: relative;
+                            & > .code-copy-button {
+                                position: absolute;
+                                /* The middle of the 40px summary bar it sits over, where it sat when it was inside it. */
+                                top: 20px;
+                                right: 8px;
+                                transform: translateY(-50%);
+                                font-family: inherit;
+                                font-size: 12px;
+                                font-weight: 600;
+                                line-height: 1;
+                                padding: 5px 10px;
+                                color: #fff;
+                                background-color: rgba(255, 255, 255, 0.15);
+                                border: 1px solid rgba(255, 255, 255, 0.4);
+                                border-radius: var(--docs-radius-default);
+                                cursor: pointer;
+                                transition: var(--docs-background-transition-default);
+                                &:hover {
+                                    background-color: rgba(255, 255, 255, 0.28);
+                                }
+                                &.is-copied {
+                                    color: #1c1b1d;
+                                    background-color: rgba(255, 255, 255, 0.92);
+                                    border-color: transparent;
+                                }
+                            }
+                        }
                         & .component-example-code {
                             background-color: var(--docs-color-code-background);
                             border-radius: var(--docs-radius-default);
@@ -439,31 +469,6 @@ main:focus {
                                     margin-right: 8px;
                                     position: relative;
                                     top: -2px;
-                                }
-                                & .code-copy-button {
-                                    position: absolute;
-                                    top: 50%;
-                                    right: 8px;
-                                    transform: translateY(-50%);
-                                    font-family: inherit;
-                                    font-size: 12px;
-                                    font-weight: 600;
-                                    line-height: 1;
-                                    padding: 5px 10px;
-                                    color: #fff;
-                                    background-color: rgba(255, 255, 255, 0.15);
-                                    border: 1px solid rgba(255, 255, 255, 0.4);
-                                    border-radius: var(--docs-radius-default);
-                                    cursor: pointer;
-                                    transition: var(--docs-background-transition-default);
-                                    &:hover {
-                                        background-color: rgba(255, 255, 255, 0.28);
-                                    }
-                                    &.is-copied {
-                                        color: #1c1b1d;
-                                        background-color: rgba(255, 255, 255, 0.92);
-                                        border-color: transparent;
-                                    }
                                 }
                             }
                             & pre {

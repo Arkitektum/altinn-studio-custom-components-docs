@@ -69,6 +69,35 @@ describe("renderResults", () => {
         expect(withoutData.querySelector(".component-example-resources-title")).toBeNull();
     });
 
+    it("puts each copy button beside its code block's summary, not inside it, so the summary is not a control holding a control", () => {
+        renderResults(someResults());
+
+        const blocks = Array.from(document.querySelectorAll("#component-custom-table-eiendom .component-example-code-block"));
+        expect(blocks).toHaveLength(3);
+        for (const block of blocks) {
+            const [details, button] = Array.from(block.children);
+            expect(details!.tagName).toBe("DETAILS");
+            expect(button!.tagName).toBe("BUTTON");
+            expect(details!.querySelector("button")).toBeNull();
+        }
+        expect(blocks.map((block) => block.querySelector("summary")!.textContent)).toEqual(["Markup", "Data", "Resources"]);
+        expect(blocks.map((block) => block.querySelector(".code-copy-button")!.getAttribute("aria-label"))).toEqual([
+            "Kopier Markup som JSON",
+            "Kopier Data som JSON",
+            "Kopier Resources som JSON"
+        ]);
+    });
+
+    it("leaves a code block open or closed when its copy button is pressed", () => {
+        renderResults(someResults());
+        const block = document.querySelector("#component-custom-table-eiendom .component-example-code-block")!;
+        const details = block.querySelector("details")!;
+
+        (block.querySelector(".code-copy-button") as HTMLButtonElement).click();
+
+        expect(details.open).toBe(false);
+    });
+
     it("replaces earlier output instead of appending to it", () => {
         renderResults(someResults());
         renderResults(someResults());

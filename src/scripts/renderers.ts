@@ -47,7 +47,7 @@ async function copyText(text: string): Promise<boolean> {
 
 /**
  * Creates a "Copy" button that writes the given text to the clipboard and shows
- * brief feedback. Clicks are prevented from toggling the surrounding <details>.
+ * brief feedback.
  *
  * @param label - Section label, used for the accessible name.
  * @param text - The text copied to the clipboard.
@@ -61,9 +61,7 @@ function createCopyButton(label: string, text: string): HTMLButtonElement {
     button.setAttribute("aria-label", `Kopier ${label} som JSON`);
 
     let resetTimer: number | undefined;
-    button.addEventListener("click", async (event) => {
-        // Keep the click from toggling the surrounding <details>.
-        event.preventDefault();
+    button.addEventListener("click", async () => {
         const copied = await copyText(text);
         button.textContent = copied ? "Kopiert" : "Feilet";
         button.classList.toggle("is-copied", copied);
@@ -81,8 +79,13 @@ function createCopyButton(label: string, text: string): HTMLButtonElement {
  * Renders a collapsible code section (Markup, Data, or Resources) that shows a
  * value as formatted JSON inside a <details> element, with a copy button.
  *
+ * The button sits beside the <details> rather than in its <summary>, and is placed over the summary bar by CSS. A
+ * <summary> is a button to assistive technology, so a button inside it was a control nested in a control, and its
+ * label was read as part of the summary's name ("Markup Kopier Markup som JSON"). It cannot go inside the <details>
+ * either, since everything there but the summary is hidden while the section is closed.
+ *
  * @param options - The section configuration.
- * @returns The <details> element containing the code block.
+ * @returns A wrapper holding the <details> element and its copy button.
  */
 function renderCodeBlock({
     title,
@@ -98,8 +101,11 @@ function renderCodeBlock({
     titleClassName: string;
     /** The value serialized into the code block. */
     value: unknown;
-}): HTMLDetailsElement {
+}): HTMLDivElement {
     const jsonString = JSON.stringify(value, null, 2);
+
+    const blockElement = document.createElement("div");
+    blockElement.classList.add("component-example-code-block");
 
     const containerElement = document.createElement("details");
     containerElement.classList.add("component-example-code");
@@ -112,7 +118,6 @@ function renderCodeBlock({
     iconElement.classList.add("summary-icon");
     titleElement.textContent = title;
     titleElement.prepend(iconElement);
-    titleElement.appendChild(createCopyButton(title, jsonString));
     containerElement.appendChild(titleElement);
 
     const codeElement = document.createElement("pre");
@@ -122,7 +127,9 @@ function renderCodeBlock({
     codeElement.appendChild(codeContentElement);
     containerElement.appendChild(codeElement);
 
-    return containerElement;
+    blockElement.appendChild(containerElement);
+    blockElement.appendChild(createCopyButton(title, jsonString));
+    return blockElement;
 }
 
 /**

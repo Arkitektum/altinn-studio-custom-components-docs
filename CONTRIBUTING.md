@@ -42,11 +42,16 @@ For an overview of how the site is built and rendered, read [ARCHITECTURE.md](./
 
 ## Everyday commands
 
-| Command        | What it does                                                                  |
-| -------------- | ----------------------------------------------------------------------------- |
-| `yarn start`   | Webpack dev server (port `9000`).                                             |
-| `yarn build`   | Production build into `docs/` (git-ignored; published to GitHub Pages by CI). |
-| `npx eslint .` | Lint the source (ESLint flat config in `eslint.config.mjs`).                  |
+| Command             | What it does                                                                  |
+| ------------------- | ----------------------------------------------------------------------------- |
+| `yarn start`        | Webpack dev server (port `9000`).                                             |
+| `yarn build`        | Production build into `docs/` (git-ignored; published to GitHub Pages by CI). |
+| `yarn lint`         | Lint the source (ESLint flat config in `eslint.config.mjs`).                  |
+| `yarn format:check` | Check formatting with Prettier.                                               |
+| `yarn typecheck`    | Type-check with `tsc --noEmit`.                                               |
+| `yarn test`         | Run the Jest tests.                                                           |
+
+The Build workflow runs lint, the format check, the typecheck, the tests and the build on every pull request, and Deploy runs the same before publishing.
 
 ---
 

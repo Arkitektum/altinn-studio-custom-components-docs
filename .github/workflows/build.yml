@@ -41,12 +41,16 @@ jobs:
             # ------------------------------
             # 5. Lint
             # ------------------------------
-            # The ESLint scanning workflow uploads SARIF with continue-on-error, so this is what actually gates a PR.
+            # The ESLint scanning workflow uploads its findings without failing on them, so this is what actually gates a PR.
             - name: Lint
               run: yarn lint
 
             - name: Check formatting
               run: yarn format:check
+
+            # Webpack and jest both strip the types without checking them, so nothing else would catch a type error.
+            - name: Typecheck
+              run: yarn typecheck
 
             # ------------------------------
             # 6. Tests

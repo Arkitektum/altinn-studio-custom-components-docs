@@ -102,7 +102,7 @@ export default { markup };
 The build output goes to **`docs/`** (git-ignored). The `Deploy` GitHub Actions workflow builds the site and publishes it to GitHub Pages on every push to `main`, so `docs/` no longer needs to be built or committed by hand. Pages is configured with **Source: GitHub Actions**.
 
 **Tooling:** Webpack 5 (with `html-webpack-plugin`, `mini-css-extract-plugin`, `css-minimizer-webpack-plugin`), highlight.js, ESLint (flat config), Yarn 4 via Corepack.
-CI runs an ESLint scan (`.github/workflows/eslint.yml`) that uploads results to the GitHub Security tab.
+CI runs lint, the format check, the typecheck, the tests and the build on pull requests (`build.yml`) and again before publishing (`deploy.yml`), and an ESLint scan (`eslint.yml`) that uploads results to the GitHub Security tab.
 
 ---
 

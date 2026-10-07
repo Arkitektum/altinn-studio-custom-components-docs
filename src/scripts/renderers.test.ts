@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, jest } from "@jest/globals";
-import { renderResults, renderSidebar, scrollIntoNearestView, setupMobileNav, setupSidebarSearch } from "./renderers.ts";
+import { renderResults, renderSidebar, scrollIntoNearestView, setupMobileNav, setupSidebarSearch, setupThemeToggle } from "./renderers.ts";
 import type { ComponentTypeResult } from "../types.ts";
 
 /** The two containers index.html provides for the rendered gallery. */
@@ -388,5 +388,37 @@ describe("scrollIntoNearestView", () => {
             throw new Error("scrollIntoView was called");
         };
         expect(() => scrollIntoNearestView(container, element)).not.toThrow();
+    });
+});
+
+describe("setupThemeToggle", () => {
+    const toggle = () => document.getElementById("theme-toggle")!;
+
+    beforeEach(() => {
+        document.documentElement.dataset.theme = "light";
+        document.body.innerHTML = `<button id="theme-toggle" type="button" aria-label="Mørkt tema" aria-pressed="false"></button>`;
+    });
+
+    it("keeps one name for the button and lets aria-pressed say whether the dark theme is on", () => {
+        setupThemeToggle();
+        expect(toggle().getAttribute("aria-pressed")).toBe("false");
+
+        toggle().click();
+        expect(document.documentElement.dataset.theme).toBe("dark");
+        expect(toggle().getAttribute("aria-pressed")).toBe("true");
+        expect(toggle().getAttribute("aria-label")).toBe("Mørkt tema");
+
+        toggle().click();
+        expect(document.documentElement.dataset.theme).toBe("light");
+        expect(toggle().getAttribute("aria-pressed")).toBe("false");
+        expect(toggle().getAttribute("aria-label")).toBe("Mørkt tema");
+    });
+
+    it("starts pressed when the page opens in the dark theme", () => {
+        document.documentElement.dataset.theme = "dark";
+        setupThemeToggle();
+
+        expect(toggle().getAttribute("aria-pressed")).toBe("true");
+        expect(toggle().getAttribute("aria-label")).toBe("Mørkt tema");
     });
 });

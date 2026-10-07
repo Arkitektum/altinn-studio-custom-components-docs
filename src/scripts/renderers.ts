@@ -581,6 +581,10 @@ export function setupMobileNav() {
  * avoid a flash of the wrong theme, so this only reflects the current theme on
  * the button and flips it on click, persisting the choice to localStorage.
  *
+ * The button is a toggle named for what it turns on, "Mørkt tema" in the markup, and only its aria-pressed changes.
+ * Changing the label as well, to the action it would take next, had a screen reader announce "switch to dark theme"
+ * as pressed while the page was light, the two contradicting each other.
+ *
  * No-ops when the toggle button is unavailable.
  *
  * @returns {void}
@@ -594,7 +598,6 @@ export function setupThemeToggle() {
     const root = document.documentElement;
     const apply = (theme: "light" | "dark") => {
         root.dataset.theme = theme;
-        toggle.setAttribute("aria-label", theme === "dark" ? "Bytt til lyst tema" : "Bytt til mørkt tema");
         toggle.setAttribute("aria-pressed", String(theme === "dark"));
     };
 

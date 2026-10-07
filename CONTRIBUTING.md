@@ -57,18 +57,18 @@ The Build workflow runs lint, the format check, the typecheck, the tests and the
 
 ## Adding or updating a component example
 
-1. **Add an example module** under `src/components/<type>/<component-tag-name>.js` that exports a `markup` object — the component's `tagName` plus the attributes / `dataModelBindings` / `resourceBindings` that drive the demo. Follow an existing file in the same folder as a template.
+1. **Add an example module** under `src/components/<type>/<component-tag-name>.ts` that exports a `markup` object: the component's `tagName` plus the attributes / `dataModelBindings` / `resourceBindings` that drive the demo. Follow an existing file in the same folder as a template, keeping its `satisfies ComponentMarkup` and `satisfies ComponentExample`, which are what type-check the example. Webpack would also pick up a `.js` file, but it would skip those checks.
 
-2. **Register it** by importing the new module in `src/components/index.js` (grouped under the right type).
+2. **Register it** by importing the new module in `src/components/index.ts` (grouped under the right type).
 
 3. **Add supporting data** if the example needs it:
-    - example form data in `src/data/dataModels.js`,
-    - text-resource values in `src/data/textResources.js`.
+    - example form data in `src/data/dataModels.ts`,
+    - text-resource values in `src/data/textResources.ts`.
 
     Use synthetic/example data only — never real or personal data.
 
-4. **Check the type grouping.**
-   If you introduce a new component type, add its display name to `src/constants/componentTypeNames.js`.
+4. **Name it.**
+   Give the component its display name in `src/constants/componentNames.ts`, or the sidebar shows its tag name. If you introduce a new component type, add that type's display name to `src/constants/componentTypeNames.ts`.
 
 5. **Verify** with `yarn start` that the example renders and its markup displays correctly.
 

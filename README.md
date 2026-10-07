@@ -40,7 +40,7 @@ The live site is built and published to **GitHub Pages by the `Deploy` GitHub Ac
 ## How it works
 
 The site imports the **published** custom components and renders each example in the browser — there is no backend.
-Each example is a module under `src/components/<type>/` that exports a `markup` object (the component's tag name plus its attributes and bindings), with supporting data in `src/data/dataModels.js` and `src/data/textResources.js`.
+Each example is a module under `src/components/<type>/` that exports a `markup` object (the component's tag name plus its attributes and bindings), with supporting data in `src/data/dataModels.ts` and `src/data/textResources.ts`.
 
 To add a component example, see [CONTRIBUTING.md](./CONTRIBUTING.md).
 For the full build/render flow, see [ARCHITECTURE.md](./ARCHITECTURE.md).

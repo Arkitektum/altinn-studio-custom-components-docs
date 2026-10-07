@@ -376,6 +376,28 @@ export function setupSidebarSearch() {
 }
 
 /**
+ * Scrolls a container just enough to show an element inside it, the way `scrollIntoView({ block: "nearest" })` would.
+ *
+ * Done by hand because Chrome moves the point that Tab continues from to whatever `scrollIntoView` was called on. The
+ * scroll-spy runs on every scroll, so a keyboard user who had scrolled the content found Tab jumping into the sidebar
+ * just after the highlighted link, and the skip link out of reach. Setting the container's scroll position moves
+ * nothing but the scroll position.
+ *
+ * @param {Element} container - The scrolling element.
+ * @param {Element} element - The element to bring into view, a descendant of the container.
+ * @returns {void}
+ */
+export function scrollIntoNearestView(container: Element, element: Element) {
+    const containerRect = container.getBoundingClientRect();
+    const elementRect = element.getBoundingClientRect();
+    if (elementRect.top < containerRect.top) {
+        container.scrollTop -= containerRect.top - elementRect.top;
+    } else if (elementRect.bottom > containerRect.bottom) {
+        container.scrollTop += Math.min(elementRect.bottom - containerRect.bottom, elementRect.top - containerRect.top);
+    }
+}
+
+/**
  * Wires up scroll-spy so the sidebar reflects the component currently in view.
  *
  * Observes every rendered component section within the main scroll container
@@ -422,7 +444,10 @@ export function setupScrollSpy() {
         }
         activeSummary = parentDetails?.querySelector(":scope > summary") ?? null;
         activeSummary?.classList.add("active-group");
-        activeLink.scrollIntoView({ block: "nearest" });
+        const nav = activeLink.closest("nav.component-type-list");
+        if (nav) {
+            scrollIntoNearestView(nav, activeLink);
+        }
     };
 
     // Sections stack in document (and sidebar) order, so the one being read is

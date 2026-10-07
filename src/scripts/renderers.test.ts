@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, jest } from "@jest/globals";
-import { renderResults, renderSidebar, setupMobileNav, setupSidebarSearch } from "./renderers.ts";
+import { renderResults, renderSidebar, scrollIntoNearestView, setupMobileNav, setupSidebarSearch } from "./renderers.ts";
 import type { ComponentTypeResult } from "../types.ts";
 
 /** The two containers index.html provides for the rendered gallery. */
@@ -313,5 +313,51 @@ describe("setupMobileNav", () => {
         setupMobileNav();
 
         expect(sidebar().hasAttribute("inert")).toBe(false);
+    });
+});
+
+describe("scrollIntoNearestView", () => {
+    /** A container 100px tall at the top of the page, scrolled to 200px, and an element at the given place in it. */
+    function layout(elementTop: number, elementHeight: number) {
+        const container = document.createElement("div");
+        const element = document.createElement("a");
+        container.appendChild(element);
+        container.scrollTop = 200;
+        const rect = (top: number, height: number) => ({ top, bottom: top + height }) as DOMRect;
+        container.getBoundingClientRect = () => rect(0, 100);
+        element.getBoundingClientRect = () => rect(elementTop - (container.scrollTop - 200), elementHeight);
+        return { container, element };
+    }
+
+    it("leaves the container alone when the element is already in view", () => {
+        const { container, element } = layout(40, 20);
+        scrollIntoNearestView(container, element);
+        expect(container.scrollTop).toBe(200);
+    });
+
+    it("scrolls up just enough to show an element above the view", () => {
+        const { container, element } = layout(-30, 20);
+        scrollIntoNearestView(container, element);
+        expect(container.scrollTop).toBe(170);
+    });
+
+    it("scrolls down just enough to show an element below the view", () => {
+        const { container, element } = layout(130, 20);
+        scrollIntoNearestView(container, element);
+        expect(container.scrollTop).toBe(250);
+    });
+
+    it("shows the top of an element taller than the view rather than its bottom", () => {
+        const { container, element } = layout(130, 300);
+        scrollIntoNearestView(container, element);
+        expect(container.scrollTop).toBe(330);
+    });
+
+    it("does not touch the element itself, so focus and the Tab starting point stay where they were", () => {
+        const { container, element } = layout(130, 20);
+        element.scrollIntoView = () => {
+            throw new Error("scrollIntoView was called");
+        };
+        expect(() => scrollIntoNearestView(container, element)).not.toThrow();
     });
 });

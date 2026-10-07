@@ -74,6 +74,30 @@
     outline-offset: 2px;
 }
 
+/* Out of sight until it is tabbed to, then above the fixed menu and theme buttons. */
+.skip-link {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 70;
+    padding: 10px 16px;
+    color: var(--docs-color-text-default);
+    background-color: var(--docs-color-surface);
+    border: 1px solid var(--docs-color-border);
+    border-radius: var(--docs-radius-default);
+    box-shadow: var(--docs-shadow-card);
+    transform: translateY(-200%);
+}
+.skip-link:focus-visible {
+    transform: none;
+    outline: var(--docs-focus-ring);
+    outline-offset: 2px;
+}
+/* Main only takes focus from the skip link, where moving the reader there is the whole point; no ring needed. */
+main:focus {
+    outline: none;
+}
+
 @media (prefers-reduced-motion: no-preference) {
     .page-container {
         scroll-behavior: smooth;

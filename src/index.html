@@ -55,6 +55,8 @@
         <link rel="stylesheet" type="text/css" href="main.css" />
     </head>
     <body class="docs">
+        <!-- First in the page, so a keyboard user can skip the sidebar's search and its list of every component. -->
+        <a class="skip-link" href="#main">Hopp til innholdet</a>
         <button id="sidebar-toggle" class="sidebar-toggle" type="button" aria-label="Meny" aria-controls="sidebar" aria-expanded="false">
             <span class="sidebar-toggle-icon"></span>
         </button>
@@ -88,7 +90,7 @@
         </button>
         <aside id="sidebar" class="sidebar"></aside>
         <section class="page-container">
-            <main>
+            <main id="main" tabindex="-1">
                 <h1>Altinn Studio Custom Components</h1>
                 <div id="component-docs-container"></div>
             </main>

@@ -1,5 +1,6 @@
 {
     "name": "altinn-studio-custom-components-docs",
+    "license": "MIT",
     "engines": {
         "node": ">=24"
     },

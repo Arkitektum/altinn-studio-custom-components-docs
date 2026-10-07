@@ -492,6 +492,10 @@ export function setupScrollSpy() {
  * button's aria-expanded state in sync, and closes it on backdrop click, the
  * Escape key, or after a component is chosen from the menu.
  *
+ * A closed drawer is only moved off screen, so it is also made inert: otherwise a keyboard or screen reader user
+ * tabs through the search field and every link in a menu they cannot see. That applies below the breakpoint only,
+ * where the sidebar is a drawer at all. Closing with Escape hands focus back to the toggle.
+ *
  * No-ops when the toggle, backdrop, or sidebar elements are unavailable.
  *
  * @returns {void}
@@ -504,18 +508,30 @@ export function setupMobileNav() {
         return;
     }
 
+    // The same breakpoint as the drawer's @media rule in main.css. Absent when prerendering, where jsdom has no
+    // matchMedia, so the shipped markup carries no inert and the page sets it once it loads.
+    const drawerQuery = typeof globalThis.matchMedia === "function" ? globalThis.matchMedia("(max-width: 900px)") : null;
+    const isOpen = () => document.body.classList.contains("sidebar-open");
+
     const setOpen = (open: boolean) => {
         document.body.classList.toggle("sidebar-open", open);
         toggle.setAttribute("aria-expanded", String(open));
+        sidebar.toggleAttribute("inert", Boolean(drawerQuery?.matches) && !open);
     };
 
+    setOpen(isOpen());
+    // Crossing the breakpoint turns the drawer into the always-visible sidebar and back.
+    drawerQuery?.addEventListener("change", () => setOpen(isOpen()));
+
     toggle.addEventListener("click", () => {
-        setOpen(!document.body.classList.contains("sidebar-open"));
+        setOpen(!isOpen());
     });
     backdrop.addEventListener("click", () => setOpen(false));
     document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
+        if (event.key === "Escape" && isOpen()) {
             setOpen(false);
+            // Focus may have been inside the drawer, which is now inert, so put it somewhere the user can act from.
+            toggle.focus();
         }
     });
     // Close the drawer once a component is chosen from the menu.

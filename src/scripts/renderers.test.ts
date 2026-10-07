@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it } from "@jest/globals";
-import { renderResults, renderSidebar, setupSidebarSearch } from "./renderers.ts";
+import { afterEach, beforeEach, describe, expect, it, jest } from "@jest/globals";
+import { renderResults, renderSidebar, setupMobileNav, setupSidebarSearch } from "./renderers.ts";
 import type { ComponentTypeResult } from "../types.ts";
 
 /** The two containers index.html provides for the rendered gallery. */
@@ -208,5 +208,110 @@ describe("setupSidebarSearch", () => {
         givenAnEmptyPage();
 
         expect(() => setupSidebarSearch()).not.toThrow();
+    });
+});
+
+describe("setupMobileNav", () => {
+    /** Answers matchMedia for the drawer's breakpoint, and lets a test cross it. */
+    function stubBreakpoint(matches: boolean) {
+        const listeners: (() => void)[] = [];
+        const query = { matches, addEventListener: (_type: string, listener: () => void) => listeners.push(listener) };
+        globalThis.matchMedia = (() => query) as unknown as typeof globalThis.matchMedia;
+        return {
+            cross(nowMatches: boolean) {
+                query.matches = nowMatches;
+                listeners.forEach((listener) => listener());
+            }
+        };
+    }
+
+    const sidebar = () => document.getElementById("sidebar")!;
+    const toggle = () => document.getElementById("sidebar-toggle")!;
+    const pressEscape = () => document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+
+    // The page wires the drawer up once, but each test here does, and every call adds a keydown listener to the
+    // document. They are removed after each test, or an earlier test's listener answers Escape before this one's.
+    let addListener: ReturnType<typeof jest.spyOn>;
+
+    afterEach(() => {
+        for (const [type, listener] of addListener.mock.calls as [string, EventListener][]) {
+            document.removeEventListener(type, listener);
+        }
+        addListener.mockRestore();
+    });
+
+    beforeEach(() => {
+        addListener = jest.spyOn(document, "addEventListener");
+        document.body.className = "docs";
+        document.body.innerHTML = `
+            <button id="sidebar-toggle" type="button" aria-expanded="false"></button>
+            <div id="sidebar-backdrop"></div>
+            <aside id="sidebar"><input type="search" /><a href="#component-custom-field-data">Data</a></aside>
+            <button id="elsewhere" type="button"></button>`;
+    });
+
+    it("makes the closed drawer inert below the breakpoint, so its links cannot be tabbed to while off screen", () => {
+        stubBreakpoint(true);
+        setupMobileNav();
+
+        expect(sidebar().hasAttribute("inert")).toBe(true);
+
+        toggle().click();
+        expect(sidebar().hasAttribute("inert")).toBe(false);
+        expect(toggle().getAttribute("aria-expanded")).toBe("true");
+
+        toggle().click();
+        expect(sidebar().hasAttribute("inert")).toBe(true);
+    });
+
+    it("hands focus back to the toggle when Escape closes the drawer", () => {
+        stubBreakpoint(true);
+        setupMobileNav();
+        toggle().click();
+        (sidebar().querySelector("input") as HTMLInputElement).focus();
+
+        pressEscape();
+
+        expect(document.body.classList.contains("sidebar-open")).toBe(false);
+        expect(sidebar().hasAttribute("inert")).toBe(true);
+        expect(document.activeElement).toBe(toggle());
+    });
+
+    it("leaves focus alone when Escape is pressed with the drawer already closed", () => {
+        stubBreakpoint(true);
+        setupMobileNav();
+        (document.getElementById("elsewhere") as HTMLButtonElement).focus();
+
+        pressEscape();
+
+        expect(document.activeElement).toBe(document.getElementById("elsewhere"));
+    });
+
+    it("never makes the sidebar inert above the breakpoint, where it is always on screen", () => {
+        stubBreakpoint(false);
+        setupMobileNav();
+
+        expect(sidebar().hasAttribute("inert")).toBe(false);
+        toggle().click();
+        toggle().click();
+        expect(sidebar().hasAttribute("inert")).toBe(false);
+    });
+
+    it("follows the breakpoint when the window is resized across it", () => {
+        const breakpoint = stubBreakpoint(false);
+        setupMobileNav();
+
+        breakpoint.cross(true);
+        expect(sidebar().hasAttribute("inert")).toBe(true);
+
+        breakpoint.cross(false);
+        expect(sidebar().hasAttribute("inert")).toBe(false);
+    });
+
+    it("leaves the sidebar as it is where there is no matchMedia, as when the page is prerendered", () => {
+        globalThis.matchMedia = undefined as unknown as typeof globalThis.matchMedia;
+        setupMobileNav();
+
+        expect(sidebar().hasAttribute("inert")).toBe(false);
     });
 });

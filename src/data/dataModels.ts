@@ -1567,6 +1567,9 @@ const dataModels: DataModel[] = [
                         kodeverdi: "%BYA",
                         kodebeskrivelse: "Prosent bebygd areal"
                     },
+                    bestemmelsesoverskrift: "Plassering av garasje",
+                    bestemmelsestekst:
+                        "Garasje skal ligge minst 5 m fra tomtegrense mot vei når garasjen ligger vinkelrett på boliggate og tilsvarende minst 1 m fra tomtegrensen når garasjen ligger parallelt med boliggate.",
                     bestemmelsestype: {
                         kodeverdi: "REG",
                         kodebeskrivelse: "Reguleringsplan"
@@ -1895,6 +1898,10 @@ const dataModels: DataModel[] = [
                         telefonnummer: "88776655",
                         mobilnummer: "91234567",
                         epost: "kari.nordmann@example.com"
+                    },
+                    ansvarligSoekerTiltaksklasse: {
+                        kodeverdi: "2",
+                        kodebeskrivelse: "2"
                     }
                 },
                 gjenpartNabovarsel: {

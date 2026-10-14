@@ -7,6 +7,8 @@ const markup = {
     dataModelBindings: {
         begrunnelse: "customLayout.dispensasjon.begrunnelse",
         beregningsregelGradAvUtnytting: "customLayout.dispensasjon.beregningsregelGradAvUtnytting",
+        bestemmelsesoverskrift: "customLayout.dispensasjon.bestemmelsesoverskrift",
+        bestemmelsestekst: "customLayout.dispensasjon.bestemmelsestekst",
         bestemmelsestype: "customLayout.dispensasjon.bestemmelsestype",
         dispensasjonsbeskrivelse: "customLayout.dispensasjon.dispensasjonsbeskrivelse",
         dispensasjonsreferanse: "customLayout.dispensasjon.dispensasjonsreferanse",

@@ -10,7 +10,8 @@ const markup = {
         metadata: "customLayout.gjennomfoeringsplan.metadata",
         kommunensSaksnummer: "customLayout.gjennomfoeringsplan.kommunensSaksnummer",
         eiendomByggested: "customLayout.gjennomfoeringsplan.eiendomByggested",
-        ansvarligSoeker: "customLayout.gjennomfoeringsplan.ansvarligSoeker"
+        ansvarligSoeker: "customLayout.gjennomfoeringsplan.ansvarligSoeker",
+        ansvarligSoekerTiltaksklasse: "customLayout.gjennomfoeringsplan.ansvarligSoekerTiltaksklasse"
     }
 } satisfies ComponentMarkup;
 

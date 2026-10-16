@@ -41,6 +41,6 @@
     },
     "dependencies": {
         "@arkitektum/altinn-studio-custom-components": "^17.6.0",
-        "@arkitektum/altinn-studio-custom-components-utils": "^2.0.4"
+        "@arkitektum/altinn-studio-custom-components-utils": "^2.0.5"
     }
 }

@@ -5,13 +5,6 @@ __metadata:
   version: 10
   cacheKey: 10c0
 
-"@arkitektum/altinn-studio-custom-components-utils@npm:^2.0.4":
-  version: 2.0.4
-  resolution: "@arkitektum/altinn-studio-custom-components-utils@npm:2.0.4"
-  checksum: 10c0/ad6e66857354a8b803cdf022b8aec2ac38f4908e12937217dfd169d6a8661c8c96cb2906b9a465236f548f98b66f82091c2bfdcd1a1a72b6a37e76af432cab96
-  languageName: node
-  linkType: hard
-
 "@arkitektum/altinn-studio-custom-components-utils@npm:^2.0.5":
   version: 2.0.5
   resolution: "@arkitektum/altinn-studio-custom-components-utils@npm:2.0.5"
@@ -19,13 +12,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arkitektum/altinn-studio-custom-components@npm:^17.6.0":
-  version: 17.6.0
-  resolution: "@arkitektum/altinn-studio-custom-components@npm:17.6.0"
+"@arkitektum/altinn-studio-custom-components@npm:^17.8.1":
+  version: 17.8.1
+  resolution: "@arkitektum/altinn-studio-custom-components@npm:17.8.1"
   dependencies:
-    "@arkitektum/altinn-studio-custom-components-utils": "npm:^2.0.4"
+    "@arkitektum/altinn-studio-custom-components-utils": "npm:^2.0.5"
     "@arkitektum/client-logger": "npm:^1.2.2"
-  checksum: 10c0/a0cd14ac6c72bee5ab473edfbcd33a8abc29624c6235e77a53d7ce4df213ef8a01974f60291dd4dedbf719207488dd76c320fbc7ee3c0c108a0228a61b3cc510
+  checksum: 10c0/acf55a629909be1234ea3458d901ab84eb777035a1062839edbae91a8fc4e870af0c6ee7b8febb97dbabb0b8ad1b891cce54a9178d2cd0c555afa259f2be4b69
   languageName: node
   linkType: hard
 
@@ -3814,7 +3807,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "altinn-studio-custom-components-docs@workspace:."
   dependencies:
-    "@arkitektum/altinn-studio-custom-components": "npm:^17.6.0"
+    "@arkitektum/altinn-studio-custom-components": "npm:^17.8.1"
     "@arkitektum/altinn-studio-custom-components-utils": "npm:^2.0.5"
     "@babel/core": "npm:^8.0.7"
     "@babel/preset-env": "npm:^8.0.7"

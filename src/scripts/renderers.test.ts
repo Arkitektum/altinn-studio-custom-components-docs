@@ -154,7 +154,7 @@ describe("the Prøv selv panel", () => {
         panel.open = true;
         panel.dispatchEvent(new Event("toggle"));
 
-        const input = panel.querySelector("input")!;
+        const input = panel.querySelector(".playground-field input") as HTMLInputElement;
         input.value = "7";
         input.dispatchEvent(new Event("input"));
 

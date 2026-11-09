@@ -71,7 +71,9 @@
 .sidebar summary:focus-visible,
 .component-example-code summary:focus-visible,
 .component-example-playground summary:focus-visible,
-.component-example-playground input:focus-visible {
+.component-example-playground input:focus-visible,
+.component-example-playground select:focus-visible,
+.component-example-playground button:focus-visible {
     outline: var(--docs-focus-ring);
     outline-offset: 2px;
 }
@@ -420,9 +422,41 @@ main:focus {
                                 display: grid;
                                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
                                 gap: 8px 12px;
-                                & > .playground-group,
-                                & > .playground-empty {
+                                & .playground-group,
+                                & .playground-empty,
+                                & .playground-list-add {
                                     grid-column: 1 / -1;
+                                }
+                            }
+                            /* Holds a list's items only so they can be drawn again, and takes no part in the layout. */
+                            & .playground-list-items {
+                                display: contents;
+                            }
+                            & .playground-list-item {
+                                display: flex;
+                                align-items: flex-end;
+                                gap: 6px;
+                                min-width: 0;
+                                & > .playground-field {
+                                    flex: 1;
+                                    min-width: 0;
+                                }
+                            }
+                            & button {
+                                justify-self: start;
+                                padding: 3px 8px;
+                                font: inherit;
+                                font-size: 13px;
+                                color: inherit;
+                                background-color: var(--docs-color-surface);
+                                border: 1px solid var(--docs-color-border);
+                                border-radius: var(--docs-radius-default);
+                                cursor: pointer;
+                                &:hover:not(:disabled) {
+                                    background-color: var(--docs-color-hover);
+                                }
+                                &:disabled {
+                                    cursor: default;
                                 }
                             }
                             & .playground-fields {
@@ -438,10 +472,27 @@ main:focus {
                                 border: none;
                                 border-left: 2px solid var(--docs-color-border);
                                 & > legend {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 12px;
                                     padding: 0;
                                     margin-bottom: 4px;
                                     font-size: 14px;
-                                    font-weight: 600;
+                                    & > .playground-group-name {
+                                        font-weight: 600;
+                                    }
+                                    & > .playground-empty-toggle {
+                                        display: inline-flex;
+                                        align-items: center;
+                                        gap: 4px;
+                                        font-size: 13px;
+                                    }
+                                }
+                                /* The attribute rather than :disabled, which every fieldset inside it matches too, so the
+                                   dimming would compound. A list wrapper draws no box, so its items are dimmed instead. */
+                                &[disabled] > :not(legend, .playground-list-items),
+                                &[disabled] > .playground-list-items > * {
+                                    opacity: 0.5;
                                 }
                             }
                             & .playground-field {
@@ -450,7 +501,8 @@ main:focus {
                                 gap: 2px;
                                 font-size: 14px;
                                 & > input[type="text"],
-                                & > input[type="number"] {
+                                & > input[type="number"],
+                                & > select {
                                     min-width: 0;
                                     padding: 4px 6px;
                                     font: inherit;
@@ -458,11 +510,6 @@ main:focus {
                                     background-color: var(--docs-color-background);
                                     border: 1px solid var(--docs-color-border);
                                     border-radius: var(--docs-radius-default);
-                                }
-                                &.playground-field-checkbox {
-                                    flex-direction: row;
-                                    align-items: center;
-                                    gap: 6px;
                                 }
                             }
                             & .playground-empty {

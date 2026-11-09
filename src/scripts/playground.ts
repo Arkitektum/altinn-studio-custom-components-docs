@@ -6,6 +6,9 @@
  * again.
  */
 
+// Types
+import type { ComponentMarkup } from "../types.ts";
+
 /** Where a value sits in an example's data: object keys, and indexes into lists. */
 export type DataPath = (string | number)[];
 
@@ -86,4 +89,23 @@ export function parseNumberInput(raw: string): number | null {
     }
     const value = Number(raw);
     return Number.isFinite(value) ? value : null;
+}
+
+/** The markup flags the panel can change, in the order it shows them. All but size are true or false. */
+export const markupFlagKeys = ["size", "hideTitle", "hideIfEmpty", "inline", "hideOrgNr", "enableLinks"] as const;
+
+/** One of the markup flags the panel can change. */
+export type MarkupFlagKey = (typeof markupFlagKeys)[number];
+
+/**
+ * Returns the markup flags the panel offers for an example, which are the ones its markup sets.
+ *
+ * Not every component reads every flag, and the markup is the only place that says which ones this one does. An
+ * example that should offer a flag has to set it, to its default if need be.
+ *
+ * @param markup - The example's markup.
+ * @returns The flags it sets.
+ */
+export function getMarkupFlags(markup: ComponentMarkup): MarkupFlagKey[] {
+    return markupFlagKeys.filter((key) => markup[key] !== undefined);
 }

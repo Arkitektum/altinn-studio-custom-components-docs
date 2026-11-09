@@ -115,7 +115,7 @@ export function getResults(componentExamples: ComponentExamples, dataModels: Dat
                             markup,
                             options: component?.options,
                             data,
-                            renderPreview: (changedData: unknown) => getPreviewOrErrorElement(markup, changedData),
+                            renderPreview: getPreviewOrErrorElement,
                             resources: getTextResourcesFromResourceBindings({
                                 ...component?.defaultResourceBindings,
                                 ...markup?.resourceBindings

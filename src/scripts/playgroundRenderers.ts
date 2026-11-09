@@ -1,21 +1,33 @@
+// Dependencies
+import { hasValue, validSizeValues } from "@arkitektum/altinn-studio-custom-components-utils";
+
 // Local functions
-import { getFieldKind, parseNumberInput, setValueAtPath } from "./playground.ts";
-import type { DataPath } from "./playground.ts";
+import type { DataPath, MarkupFlagKey } from "./playground.ts";
+import { getFieldKind, getMarkupFlags, parseNumberInput, setValueAtPath } from "./playground.ts";
+import type { ComponentMarkup } from "../types.ts";
 
 /** Called with where a value sits in the data and what it was changed to. */
 type FieldChangeHandler = (path: DataPath, value: unknown) => void;
 
+/** Called with the markup flag that changed and its new value. */
+type MarkupChangeHandler = (key: MarkupFlagKey, value: string | boolean) => void;
+
 /**
- * Renders the "Prøv selv" panel, which lets a reader change the data an example renders with.
+ * Renders the "Prøv selv" panel, which lets a reader change the markup flags and the data an example renders with.
  *
- * The panel keeps the changed data itself and hands all of it over on every change, so the caller only has to
- * render the example with what it is given.
+ * The panel keeps the changed markup and data itself and hands both over on every change, so the caller only has to
+ * render the example with what it is given. Tilbakestill hands back the example's own and draws the fields again.
  *
+ * @param markup - The example's markup, which is never changed.
  * @param data - The example's data, which is never changed.
- * @param onChange - Called with the changed data after every edit.
+ * @param onChange - Called with the changed markup and data after every edit.
  * @returns The panel, closed.
  */
-export function renderPlayground(data: unknown, onChange: (data: unknown) => void): HTMLDetailsElement {
+export function renderPlayground(
+    markup: ComponentMarkup,
+    data: unknown,
+    onChange: (markup: ComponentMarkup, data: unknown) => void
+): HTMLDetailsElement {
     const panelElement = document.createElement("details");
     panelElement.classList.add("component-example-playground");
 
@@ -23,21 +35,105 @@ export function renderPlayground(data: unknown, onChange: (data: unknown) => voi
     summaryElement.textContent = "Prøv selv";
     panelElement.appendChild(summaryElement);
 
+    let currentMarkup = markup;
     let currentData = data;
+    const handleMarkupChange: MarkupChangeHandler = (key, value) => {
+        currentMarkup = { ...currentMarkup, [key]: value };
+        onChange(currentMarkup, currentData);
+    };
     const handleFieldChange: FieldChangeHandler = (path, value) => {
         currentData = setValueAtPath(currentData, path, value);
-        onChange(currentData);
+        onChange(currentMarkup, currentData);
     };
+
+    // Everything that Tilbakestill draws again. The button itself sits outside it, so it keeps focus when pressed.
+    const editorsElement = document.createElement("div");
+    editorsElement.classList.add("playground-editors");
+    const drawEditors = (): void => {
+        const editorElements: HTMLElement[] = [];
+        if (getMarkupFlags(markup).length > 0) {
+            editorElements.push(renderMarkupFields(markup, handleMarkupChange));
+        }
+        if (hasValue(data)) {
+            editorElements.push(renderPlaygroundFields(data, handleFieldChange));
+        }
+        editorsElement.replaceChildren(...editorElements);
+    };
+
+    const resetButtonElement = document.createElement("button");
+    resetButtonElement.type = "button";
+    resetButtonElement.classList.add("playground-reset");
+    resetButtonElement.textContent = "Tilbakestill";
+    resetButtonElement.addEventListener("click", () => {
+        currentMarkup = markup;
+        currentData = data;
+        drawEditors();
+        onChange(markup, data);
+    });
 
     // The fields are built the first time the panel opens. The layout examples alone have hundreds of values, and
     // most readers never open the panel.
     panelElement.addEventListener("toggle", () => {
-        if (panelElement.open && !panelElement.querySelector(".playground-fields")) {
-            panelElement.appendChild(renderPlaygroundFields(data, handleFieldChange));
+        if (panelElement.open && !panelElement.querySelector(".playground-content")) {
+            const contentElement = document.createElement("div");
+            contentElement.classList.add("playground-content");
+            const toolbarElement = document.createElement("div");
+            toolbarElement.classList.add("playground-toolbar");
+            toolbarElement.appendChild(resetButtonElement);
+            drawEditors();
+            contentElement.append(toolbarElement, editorsElement);
+            panelElement.appendChild(contentElement);
         }
     });
 
     return panelElement;
+}
+
+/**
+ * Renders a field for each markup flag the example sets: a checkbox for a true or false flag, a select for size.
+ *
+ * @param markup - The example's markup.
+ * @param onChange - Called when a flag changes.
+ * @returns The fieldset holding them.
+ */
+function renderMarkupFields(markup: ComponentMarkup, onChange: MarkupChangeHandler): HTMLFieldSetElement {
+    const fieldsetElement = document.createElement("fieldset");
+    fieldsetElement.classList.add("playground-group", "playground-markup");
+    const legendElement = document.createElement("legend");
+    const legendTextElement = document.createElement("span");
+    legendTextElement.classList.add("playground-group-name");
+    legendTextElement.textContent = "Markup";
+    legendElement.appendChild(legendTextElement);
+    fieldsetElement.appendChild(legendElement);
+
+    for (const key of getMarkupFlags(markup)) {
+        const labelElement = document.createElement("label");
+        labelElement.classList.add("playground-field");
+        const labelTextElement = document.createElement("span");
+        labelTextElement.textContent = key;
+
+        if (key === "size") {
+            const selectElement = document.createElement("select");
+            for (const size of validSizeValues) {
+                const optionElement = document.createElement("option");
+                optionElement.value = size;
+                optionElement.textContent = size;
+                selectElement.appendChild(optionElement);
+            }
+            selectElement.value = String(markup.size);
+            selectElement.addEventListener("change", () => onChange(key, selectElement.value));
+            labelElement.append(labelTextElement, selectElement);
+        } else {
+            labelElement.classList.add("playground-field-checkbox");
+            const checkboxElement = document.createElement("input");
+            checkboxElement.type = "checkbox";
+            checkboxElement.checked = markup[key] === true;
+            checkboxElement.addEventListener("change", () => onChange(key, checkboxElement.checked));
+            labelElement.append(checkboxElement, labelTextElement);
+        }
+        fieldsetElement.appendChild(labelElement);
+    }
+    return fieldsetElement;
 }
 
 /**

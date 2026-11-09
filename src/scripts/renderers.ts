@@ -2,8 +2,9 @@
 import { appendChildren, hasValue } from "@arkitektum/altinn-studio-custom-components-utils";
 
 // Global functions
-import type { ComponentExampleResult, ComponentTypeResult } from "../types.ts";
+import type { ComponentExampleResult, ComponentMarkup, ComponentTypeResult } from "../types.ts";
 import { getComponentNameFromTagName, getComponentTypeNameFromKey } from "./helpers.ts";
+import { getMarkupFlags } from "./playground.ts";
 import { highlightAgain } from "./highlight.ts";
 import { renderPlayground } from "./playgroundRenderers.ts";
 
@@ -153,7 +154,7 @@ function renderPreviewElement(componentExample: ComponentExampleResult): HTMLDiv
 /**
  * Renders a component example, including its title, preview, "Prøv selv" panel, markup, data, and resources.
  *
- * The panel is left out when there is no data to edit, or nothing to render it again with.
+ * The panel is left out when there is neither data nor a markup flag to change, or nothing to render it again with.
  *
  * @param componentExample - The component example object to render.
  * @returns The container element with the rendered component example.
@@ -177,9 +178,9 @@ function renderComponentExample(componentExample: ComponentExampleResult): HTMLD
 
     const componentExampleData = componentExample?.data;
     const renderPreview = componentExample?.renderPreview;
-    if (renderPreview && hasValue(componentExampleData)) {
-        const playgroundElement = renderPlayground(componentExampleData, (changedData) =>
-            updateComponentExample(containerElement, renderPreview(changedData), changedData)
+    if (renderPreview && (hasValue(componentExampleData) || getMarkupFlags(componentExample.markup).length > 0)) {
+        const playgroundElement = renderPlayground(componentExample.markup, componentExampleData, (changedMarkup, changedData) =>
+            updateComponentExample(containerElement, renderPreview(changedMarkup, changedData), changedMarkup, changedData)
         );
         containerElement.appendChild(playgroundElement);
     }
@@ -217,21 +218,34 @@ function renderComponentExample(componentExample: ComponentExampleResult): HTMLD
 }
 
 /**
- * Shows an example with other data, replacing its preview and the contents of its Data block.
+ * Shows an example with other markup and data, replacing its preview and the contents of its Markup and Data blocks.
  *
  * An example that had no data to begin with has no Data block, and is left without one.
  *
  * @param exampleElement - The example, as renderComponentExample made it.
- * @param previewElement - The preview rendered with the new data.
+ * @param previewElement - The preview rendered with the new markup and data.
+ * @param markup - The new markup.
  * @param data - The new data.
  */
-export function updateComponentExample(exampleElement: HTMLElement, previewElement: HTMLElement, data: unknown): void {
+export function updateComponentExample(exampleElement: HTMLElement, previewElement: HTMLElement, markup: ComponentMarkup, data: unknown): void {
     exampleElement.querySelector(".component-example-preview")?.replaceChildren(previewElement);
+    rewriteCodeBlock(exampleElement, "component-example-markup-title", markup);
+    rewriteCodeBlock(exampleElement, "component-example-data-title", data);
+}
 
-    const dataCodeElement = exampleElement.querySelector(".component-example-data-title")?.closest(".component-example-code")?.querySelector("code");
-    if (dataCodeElement) {
-        dataCodeElement.textContent = JSON.stringify(data, null, 2);
-        highlightAgain(dataCodeElement);
+/**
+ * Puts a new value in one of an example's code blocks and highlights it again. A block the example does not have is
+ * left out.
+ *
+ * @param exampleElement - The example.
+ * @param titleClassName - The class on the block's summary, which says which block it is.
+ * @param value - The value to show.
+ */
+function rewriteCodeBlock(exampleElement: HTMLElement, titleClassName: string, value: unknown): void {
+    const codeElement = exampleElement.querySelector(`.${titleClassName}`)?.closest(".component-example-code")?.querySelector("code");
+    if (codeElement) {
+        codeElement.textContent = JSON.stringify(value, null, 2);
+        highlightAgain(codeElement);
     }
 }
 

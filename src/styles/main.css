@@ -459,11 +459,20 @@ main:focus {
                                     cursor: default;
                                 }
                             }
-                            & .playground-fields {
+                            & .playground-content {
                                 padding: 8px 12px 12px;
                                 max-height: 600px;
                                 overflow: auto;
                                 border-top: 1px solid var(--docs-color-border-subtle);
+                            }
+                            & .playground-toolbar {
+                                display: flex;
+                                justify-content: flex-end;
+                            }
+                            & .playground-editors {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 12px;
                             }
                             & .playground-group {
                                 min-width: 0;
@@ -500,6 +509,11 @@ main:focus {
                                 flex-direction: column;
                                 gap: 2px;
                                 font-size: 14px;
+                                &.playground-field-checkbox {
+                                    flex-direction: row;
+                                    align-items: center;
+                                    gap: 6px;
+                                }
                                 & > input[type="text"],
                                 & > input[type="number"],
                                 & > select {

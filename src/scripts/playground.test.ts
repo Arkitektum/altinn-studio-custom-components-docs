@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
-import { getFieldKind, parseNumberInput, setValueAtPath } from "./playground.ts";
+import { getFieldKind, getMarkupFlags, parseNumberInput, setValueAtPath } from "./playground.ts";
 
 describe("getFieldKind", () => {
     it("reads the kind off the value", () => {
@@ -83,5 +83,21 @@ describe("parseNumberInput", () => {
 
     it("reads anything else as no value", () => {
         expect(parseNumberInput("abc")).toBeNull();
+    });
+});
+
+describe("getMarkupFlags", () => {
+    it("offers the flags the markup sets, whatever they are set to, in the panel's order", () => {
+        expect(getMarkupFlags({ tagName: "custom-field-data", hideIfEmpty: false, size: "h2", hideTitle: true, enableLinks: false })).toEqual([
+            "size",
+            "hideTitle",
+            "hideIfEmpty",
+            "enableLinks"
+        ]);
+        expect(getMarkupFlags({ tagName: "custom-field-data", inline: false, hideOrgNr: false })).toEqual(["inline", "hideOrgNr"]);
+    });
+
+    it("offers nothing that is not a flag, and nothing for markup without any", () => {
+        expect(getMarkupFlags({ tagName: "custom-field-data", id: "x", dataModelBindings: { simpleBinding: "a" } })).toEqual([]);
     });
 });

@@ -116,11 +116,22 @@ describe("getResults", () => {
         const example = results[0]!.components[0]!;
         const firstPreview = example.element.outerHTML;
 
-        const preview = example.renderPreview!({ data: [{ navn: "Kari Nordmann" }] });
+        const preview = example.renderPreview!(example.markup, { data: [{ navn: "Kari Nordmann" }] });
 
         expect(preview).not.toBe(example.element);
         expect(preview.querySelector("custom-table-data")!.getAttribute("formdata")).toBe(JSON.stringify({ data: [{ navn: "Kari Nordmann" }] }));
         expect(example.element.outerHTML).toBe(firstPreview);
+    });
+
+    it("renders the preview again with other markup", () => {
+        const results = getResults({ table: { customTableData: exampleFor("custom-table-data", { hideTitle: false }) } }, dataModels);
+        const example = results[0]!.components[0]!;
+
+        const preview = example.renderPreview!({ ...example.markup, hideTitle: true }, example.data);
+
+        expect(preview.querySelector("custom-table-data")!.getAttribute("hidetitle")).toBe("true");
+        // A flag that is false is left out of the attributes altogether.
+        expect(example.element.querySelector("custom-table-data")!.getAttribute("hidetitle")).toBeNull();
     });
 
     it("shows an error preview when rendering with other data fails", () => {
@@ -130,7 +141,7 @@ describe("getResults", () => {
         const circular: Record<string, unknown> = {};
         circular.self = circular;
 
-        const preview = results[0]!.components[0]!.renderPreview!({ data: circular });
+        const preview = results[0]!.components[0]!.renderPreview!(results[0]!.components[0]!.markup, { data: circular });
 
         expect(preview.classList.contains("component-example-error")).toBe(true);
         expect(preview.textContent).toContain("custom-table-data");

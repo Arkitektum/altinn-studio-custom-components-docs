@@ -1,5 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 import { renderPlayground, renderPlaygroundFields } from "./playgroundRenderers.ts";
+import type { ComponentMarkup } from "../types.ts";
 import type { DataPath } from "./playground.ts";
 
 const data = {
@@ -14,9 +15,11 @@ const data = {
     }
 };
 
-/** The field whose label reads the given text. */
+/** The field whose label reads the given text. The text is in a span, before the input or after a checkbox. */
 function fieldFor(container: HTMLElement, label: string): HTMLLabelElement {
-    const field = Array.from(container.querySelectorAll(".playground-field")).find((element) => element.firstElementChild!.textContent === label);
+    const field = Array.from(container.querySelectorAll(".playground-field")).find(
+        (element) => element.querySelector(":scope > span")!.textContent === label
+    );
     if (!field) {
         throw new Error(`No field labelled ${label}`);
     }
@@ -301,48 +304,141 @@ describe("editing a list", () => {
 });
 
 describe("renderPlayground", () => {
+    const markup = { tagName: "custom-field-data", size: "h2", hideTitle: false, hideIfEmpty: true };
+
+    /** Renders the panel open, recording every change it hands over. */
+    function renderOpenPanel(panelMarkup: ComponentMarkup = markup, panelData: unknown = data) {
+        const changes: [ComponentMarkup, unknown][] = [];
+        const panel = renderPlayground(panelMarkup, panelData, (changedMarkup, changedData) => changes.push([changedMarkup, changedData]));
+        document.body.replaceChildren(panel);
+        open(panel);
+        return { panel, changes };
+    }
+
     it("starts closed, titled Prøv selv, with no fields until it is opened", () => {
-        const panel = renderPlayground(data, () => {});
+        const panel = renderPlayground(markup, data, () => {});
 
         expect(panel.open).toBe(false);
         expect(panel.querySelector("summary")!.textContent).toBe("Prøv selv");
-        expect(panel.querySelector(".playground-fields")).toBeNull();
+        expect(panel.querySelector(".playground-content")).toBeNull();
 
         open(panel);
 
+        expect(panel.querySelectorAll(".playground-markup")).toHaveLength(1);
         expect(panel.querySelectorAll(".playground-fields")).toHaveLength(1);
     });
 
     it("builds the fields once, however often it is opened", () => {
-        const panel = renderPlayground(data, () => {});
+        const panel = renderPlayground(markup, data, () => {});
 
         open(panel);
         panel.open = false;
         panel.dispatchEvent(new Event("toggle"));
         open(panel);
 
-        expect(panel.querySelectorAll(".playground-fields")).toHaveLength(1);
+        expect(panel.querySelectorAll(".playground-content")).toHaveLength(1);
     });
 
-    it("hands over all of the changed data on every edit, keeping earlier edits", () => {
-        const changed: unknown[] = [];
-        const panel = renderPlayground(data, (changedData) => changed.push(changedData));
-        open(panel);
+    it("offers the markup flags the example sets, above the data, filled in from the markup", () => {
+        const { panel } = renderOpenPanel();
+
+        const markupFields = panel.querySelector(".playground-markup") as HTMLFieldSetElement;
+        expect(markupFields.nextElementSibling!.classList.contains("playground-fields")).toBe(true);
+        expect(Array.from(markupFields.querySelectorAll(".playground-field > span")).map((name) => name.textContent)).toEqual([
+            "size",
+            "hideTitle",
+            "hideIfEmpty"
+        ]);
+        const sizeSelect = fieldFor(markupFields, "size").querySelector("select")!;
+        expect(Array.from(sizeSelect.options).map((option) => option.value)).toEqual(["h1", "h2", "h3", "h4", "h5", "h6"]);
+        expect(sizeSelect.value).toBe("h2");
+        expect(inputFor(markupFields, "hideTitle").checked).toBe(false);
+        expect(inputFor(markupFields, "hideIfEmpty").checked).toBe(true);
+    });
+
+    it("leaves out the markup without flags, and the data fields without data", () => {
+        expect(renderOpenPanel({ tagName: "custom-field-data" }).panel.querySelector(".playground-markup")).toBeNull();
+
+        const { panel } = renderOpenPanel(markup, {});
+        expect(panel.querySelector(".playground-fields")).toBeNull();
+        expect(panel.querySelector(".playground-markup")).not.toBeNull();
+    });
+
+    it("hands over all of the changed markup and data on every edit, keeping earlier edits", () => {
+        const { panel, changes } = renderOpenPanel();
 
         typeInto(inputFor(panel, "navn"), "Annet AS");
+        const hideTitle = inputFor(panel, "hideTitle");
+        hideTitle.checked = true;
+        hideTitle.dispatchEvent(new Event("change"));
+        choose(fieldFor(panel, "size").querySelector("select")!, "h4");
         typeInto(inputFor(panel, "saksaar"), "2025");
 
-        expect(changed).toHaveLength(2);
-        expect(changed[1]).toEqual({ data: { ...data.data, navn: "Annet AS", saksaar: 2025 } });
+        expect(changes).toHaveLength(4);
+        expect(changes[1]).toEqual([{ ...markup, hideTitle: true }, { data: { ...data.data, navn: "Annet AS" } }]);
+        expect(changes.at(-1)).toEqual([{ ...markup, hideTitle: true, size: "h4" }, { data: { ...data.data, navn: "Annet AS", saksaar: 2025 } }]);
     });
 
-    it("leaves the example's own data unchanged", () => {
-        const before = JSON.stringify(data);
-        const panel = renderPlayground(data, () => {});
-        open(panel);
+    it("leaves the example's own markup and data unchanged", () => {
+        const before = JSON.stringify([markup, data]);
+        const { panel } = renderOpenPanel();
 
         typeInto(inputFor(panel, "navn"), "Annet AS");
+        const hideTitle = inputFor(panel, "hideTitle");
+        hideTitle.checked = true;
+        hideTitle.dispatchEvent(new Event("change"));
 
-        expect(JSON.stringify(data)).toBe(before);
+        expect(JSON.stringify([markup, data])).toBe(before);
+    });
+
+    describe("Tilbakestill", () => {
+        /** Changes a flag, a value and a list, then presses Tilbakestill. */
+        function editThenReset(panel: HTMLDetailsElement): HTMLButtonElement {
+            typeInto(inputFor(panel, "navn"), "Annet AS");
+            const hideTitle = inputFor(panel, "hideTitle");
+            hideTitle.checked = true;
+            hideTitle.dispatchEvent(new Event("change"));
+            press(groupNamed(panel, "Element 1"), "playground-list-remove");
+            const resetButton = panel.querySelector(".playground-reset") as HTMLButtonElement;
+            resetButton.focus();
+            resetButton.click();
+            return resetButton;
+        }
+
+        it("hands back the example's own markup and data", () => {
+            const { panel, changes } = renderOpenPanel();
+
+            editThenReset(panel);
+
+            expect(changes.at(-1)![0]).toBe(markup);
+            expect(changes.at(-1)![1]).toBe(data);
+        });
+
+        it("draws the fields again with the example's values", () => {
+            const { panel } = renderOpenPanel();
+
+            editThenReset(panel);
+
+            expect(inputFor(panel, "navn").value).toBe("Selskap AS");
+            expect(inputFor(panel, "hideTitle").checked).toBe(false);
+            expect(itemNames(groupNamed(panel, "tiltakstyper"))).toEqual(["Element 1", "Element 2"]);
+        });
+
+        it("starts the next edit from the example's values", () => {
+            const { panel, changes } = renderOpenPanel();
+            editThenReset(panel);
+
+            typeInto(inputFor(panel, "saksaar"), "2025");
+
+            expect(changes.at(-1)).toEqual([markup, { data: { ...data.data, saksaar: 2025 } }]);
+        });
+
+        it("keeps focus on the button", () => {
+            const { panel } = renderOpenPanel();
+
+            const resetButton = editThenReset(panel);
+
+            expect(document.activeElement).toBe(resetButton);
+        });
     });
 });

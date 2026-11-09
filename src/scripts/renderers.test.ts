@@ -120,9 +120,10 @@ describe("the Prøv selv panel", () => {
     /** The example from someResults with data, made editable by giving it something to render again with. */
     function resultsWithAnEditableExample(): ComponentTypeResult[] {
         const results = someResults();
-        results[0]!.components[0]!.renderPreview = (data) => {
+        results[0]!.components[0]!.renderPreview = (markup, data) => {
             const preview = document.createElement("div");
             preview.className = "rendered-again";
+            preview.dataset.markup = JSON.stringify(markup);
             preview.textContent = JSON.stringify(data);
             return preview;
         };
@@ -135,6 +136,37 @@ describe("the Prøv selv panel", () => {
         const example = document.getElementById("component-custom-table-eiendom")!;
         const classNames = Array.from(example.children).map((child) => child.className);
         expect(classNames.slice(1, 4)).toEqual(["component-example-preview", "component-example-playground", "component-example-code-block"]);
+    });
+
+    it("is offered for an example with no data but a markup flag to change", () => {
+        const results = resultsWithAnEditableExample();
+        results[0]!.components[1]!.markup.hideTitle = false;
+        results[0]!.components[1]!.renderPreview = () => document.createElement("div");
+
+        renderResults(results);
+
+        expect(document.querySelector("#component-custom-table-plan .component-example-playground")).not.toBeNull();
+    });
+
+    it("renders the example again with a changed markup flag, and shows it in the Markup block", () => {
+        const results = resultsWithAnEditableExample();
+        results[0]!.components[0]!.markup.hideTitle = false;
+        renderResults(results);
+        const example = document.getElementById("component-custom-table-eiendom")!;
+        const panel = example.querySelector(".component-example-playground") as HTMLDetailsElement;
+        panel.open = true;
+        panel.dispatchEvent(new Event("toggle"));
+
+        const checkbox = panel.querySelector(".playground-markup input") as HTMLInputElement;
+        checkbox.checked = true;
+        checkbox.dispatchEvent(new Event("change"));
+
+        const changedMarkup = { tagName: "custom-table-eiendom", hideTitle: true };
+        expect((example.querySelector(".component-example-preview .rendered-again") as HTMLElement).dataset.markup).toBe(
+            JSON.stringify(changedMarkup)
+        );
+        const markupCode = example.querySelector(".component-example-markup-title")!.closest(".component-example-code")!.querySelector("code")!;
+        expect(markupCode.textContent).toBe(JSON.stringify(changedMarkup, null, 2));
     });
 
     it("is left out when there is nothing to render again with, or no data", () => {
@@ -177,18 +209,29 @@ describe("updateComponentExample", () => {
         const example = document.getElementById("component-custom-table-eiendom")!;
         const newPreview = document.createElement("span");
 
-        updateComponentExample(example, newPreview, { data: [] });
+        updateComponentExample(example, newPreview, { tagName: "custom-table-eiendom" }, { data: [] });
 
         const preview = example.querySelector(".component-example-preview")!;
         expect(preview.children).toHaveLength(1);
         expect(preview.firstElementChild).toBe(newPreview);
     });
 
+    it("shows the new markup in the Markup block", () => {
+        renderResults(someResults());
+        const example = document.getElementById("component-custom-table-eiendom")!;
+
+        updateComponentExample(example, document.createElement("div"), { tagName: "custom-table-eiendom", size: "h4" }, { data: [] });
+
+        const markupCode = example.querySelector(".component-example-markup-title")!.closest(".component-example-code")!.querySelector("code")!;
+        expect(markupCode.textContent).toBe(JSON.stringify({ tagName: "custom-table-eiendom", size: "h4" }, null, 2));
+        expect(markupCode.dataset.highlighted).toBe("yes");
+    });
+
     it("shows the new data in the Data block", () => {
         renderResults(someResults());
         const example = document.getElementById("component-custom-table-eiendom")!;
 
-        updateComponentExample(example, document.createElement("div"), { data: [{ gnr: 7 }] });
+        updateComponentExample(example, document.createElement("div"), { tagName: "custom-table-eiendom" }, { data: [{ gnr: 7 }] });
 
         expect(dataCodeOf(example).textContent).toBe(JSON.stringify({ data: [{ gnr: 7 }] }, null, 2));
     });
@@ -199,8 +242,8 @@ describe("updateComponentExample", () => {
         renderResults(someResults());
         const example = document.getElementById("component-custom-table-eiendom")!;
 
-        updateComponentExample(example, document.createElement("div"), { data: [{ gnr: 7 }] });
-        updateComponentExample(example, document.createElement("div"), { data: [{ gnr: 8 }] });
+        updateComponentExample(example, document.createElement("div"), { tagName: "custom-table-eiendom" }, { data: [{ gnr: 7 }] });
+        updateComponentExample(example, document.createElement("div"), { tagName: "custom-table-eiendom" }, { data: [{ gnr: 8 }] });
 
         expect(dataCodeOf(example).dataset.highlighted).toBe("yes");
         expect(dataCodeOf(example).querySelector(".hljs-number")!.textContent).toBe("8");
@@ -214,7 +257,7 @@ describe("updateComponentExample", () => {
         });
         renderResults(someResults());
         const example = document.getElementById("component-custom-table-eiendom")!;
-        updateComponentExample(example, document.createElement("div"), { data: [{ gnr: 7 }] });
+        updateComponentExample(example, document.createElement("div"), { tagName: "custom-table-eiendom" }, { data: [{ gnr: 7 }] });
 
         const dataBlock = dataCodeOf(example).closest(".component-example-code-block")!;
         (dataBlock.querySelector(".code-copy-button") as HTMLButtonElement).click();
@@ -228,7 +271,7 @@ describe("updateComponentExample", () => {
         renderResults(someResults());
         const example = document.getElementById("component-custom-table-plan")!;
 
-        updateComponentExample(example, document.createElement("div"), { data: [] });
+        updateComponentExample(example, document.createElement("div"), { tagName: "custom-table-eiendom" }, { data: [] });
 
         expect(example.querySelector(".component-example-data-title")).toBeNull();
     });

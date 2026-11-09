@@ -122,6 +122,39 @@ describe("renderPlaygroundFields", () => {
         expect(inputFor(groupNamed(fields, "merknader"), "Element 2").value).toBe("Andre");
     });
 
+    it("lets a long camelCase name break before each capital, Norwegian ones too, keeping its text", () => {
+        const fields = renderPlaygroundFields({ vurderingHensynBakBestemmelsen: "x", kostnadØkonomiAndel: { kode: "y" } }, () => {});
+
+        /** The pieces between the break opportunities. */
+        const partsOf = (element: Element) => Array.from(element.childNodes, (node) => node.textContent).filter((part) => part !== "");
+
+        const fieldName = fields.querySelector(".playground-field > span")!;
+        expect(fieldName.textContent).toBe("vurderingHensynBakBestemmelsen");
+        expect(partsOf(fieldName)).toEqual(["vurdering", "Hensyn", "Bak", "Bestemmelsen"]);
+        expect(fieldName.querySelectorAll("wbr")).toHaveLength(3);
+        const groupName = fields.querySelector(".playground-group-name")!;
+        expect(groupName.textContent).toBe("kostnadØkonomiAndel");
+        expect(partsOf(groupName)).toEqual(["kostnad", "Økonomi", "Andel"]);
+    });
+
+    it("gives long text, or text over more lines, a textarea across the row", () => {
+        const longText = "Bestemmelsen er satt for å sikre at ny bebyggelse tilpasses eksisterende omgivelser.";
+        const changes: [DataPath, unknown][] = [];
+        const fields = renderPlaygroundFields({ kort: "Kort tekst", lang: longText, linjer: "En\nTo" }, (path, value) => changes.push([path, value]));
+
+        expect(fieldFor(fields, "kort").querySelector("input")).not.toBeNull();
+        for (const label of ["lang", "linjer"]) {
+            expect(fieldFor(fields, label).classList.contains("playground-field-long")).toBe(true);
+        }
+        const textarea = fieldFor(fields, "lang").querySelector("textarea")!;
+        expect(textarea.value).toBe(longText);
+        expect(fieldFor(fields, "kort").classList.contains("playground-field-long")).toBe(false);
+
+        textarea.value = "Endret";
+        textarea.dispatchEvent(new Event("input"));
+        expect(changes).toEqual([[["lang"], "Endret"]]);
+    });
+
     it("says so when a list is empty", () => {
         const fields = renderPlaygroundFields(data, () => {});
 

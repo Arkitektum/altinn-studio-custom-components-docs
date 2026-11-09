@@ -12,6 +12,9 @@ type FieldChangeHandler = (path: DataPath, value: unknown) => void;
 /** Called with the markup flag that changed and its new value. */
 type MarkupChangeHandler = (key: MarkupFlagKey, value: string | boolean) => void;
 
+/** Text longer than this gets a textarea across the whole row, as an input that narrow would show only its start. */
+const longTextLength = 60;
+
 /**
  * Renders the "Prøv selv" panel, which lets a reader change the markup flags and the data an example renders with.
  *
@@ -100,17 +103,15 @@ function renderMarkupFields(markup: ComponentMarkup, onChange: MarkupChangeHandl
     const fieldsetElement = document.createElement("fieldset");
     fieldsetElement.classList.add("playground-group", "playground-markup");
     const legendElement = document.createElement("legend");
-    const legendTextElement = document.createElement("span");
+    const legendTextElement = renderName("Markup");
     legendTextElement.classList.add("playground-group-name");
-    legendTextElement.textContent = "Markup";
     legendElement.appendChild(legendTextElement);
     fieldsetElement.appendChild(legendElement);
 
     for (const key of getMarkupFlags(markup)) {
         const labelElement = document.createElement("label");
         labelElement.classList.add("playground-field");
-        const labelTextElement = document.createElement("span");
-        labelTextElement.textContent = key;
+        const labelTextElement = renderName(key);
 
         if (key === "size") {
             const selectElement = document.createElement("select");
@@ -182,8 +183,7 @@ function renderField(label: string, value: unknown, path: DataPath, onChange: Fi
 
     const labelElement = document.createElement("label");
     labelElement.classList.add("playground-field");
-    const labelTextElement = document.createElement("span");
-    labelTextElement.textContent = label;
+    const labelTextElement = renderName(label);
 
     if (kind === "boolean") {
         labelElement.append(
@@ -193,16 +193,30 @@ function renderField(label: string, value: unknown, path: DataPath, onChange: Fi
         return labelElement;
     }
 
-    const inputElement = document.createElement("input");
     if (kind === "number") {
+        const inputElement = document.createElement("input");
         inputElement.type = "number";
         inputElement.value = String(value);
         inputElement.addEventListener("input", () => onChange(path, parseNumberInput(inputElement.value)));
-    } else {
-        inputElement.type = "text";
-        inputElement.value = value === null || value === undefined ? "" : String(value);
-        inputElement.addEventListener("input", () => onChange(path, inputElement.value));
+        labelElement.append(labelTextElement, inputElement);
+        return labelElement;
     }
+
+    const text = value === null || value === undefined ? "" : String(value);
+    if (text.length > longTextLength || text.includes("\n")) {
+        labelElement.classList.add("playground-field-long");
+        const textareaElement = document.createElement("textarea");
+        textareaElement.rows = Math.min(6, Math.max(2, Math.ceil(text.length / 90)));
+        textareaElement.value = text;
+        textareaElement.addEventListener("input", () => onChange(path, textareaElement.value));
+        labelElement.append(labelTextElement, textareaElement);
+        return labelElement;
+    }
+
+    const inputElement = document.createElement("input");
+    inputElement.type = "text";
+    inputElement.value = text;
+    inputElement.addEventListener("input", () => onChange(path, inputElement.value));
     labelElement.append(labelTextElement, inputElement);
     return labelElement;
 }
@@ -261,9 +275,8 @@ function renderGroupField(label: string, value: unknown, path: DataPath, onChang
     fieldsetElement.disabled = startEmpty;
 
     const legendElement = document.createElement("legend");
-    const legendTextElement = document.createElement("span");
+    const legendTextElement = renderName(label);
     legendTextElement.classList.add("playground-group-name");
-    legendTextElement.textContent = label;
     legendElement.appendChild(legendTextElement);
 
     const emptyLabelElement = document.createElement("label");
@@ -360,6 +373,24 @@ function renderGroupField(label: string, value: unknown, path: DataPath, onChang
     drawItems();
     fieldsetElement.appendChild(addButtonElement);
     return fieldsetElement;
+}
+
+/**
+ * Renders a field or group name that can break before each capital, so a long camelCase key such as
+ * vurderingHensynBakBestemmelsen wraps onto more lines rather than running into the next field.
+ *
+ * @param name - The name.
+ * @returns A span holding it, with a break opportunity before each capital.
+ */
+function renderName(name: string): HTMLSpanElement {
+    const nameElement = document.createElement("span");
+    name.split(/(?=[A-ZÆØÅ])/).forEach((part, index) => {
+        if (index > 0) {
+            nameElement.appendChild(document.createElement("wbr"));
+        }
+        nameElement.append(part);
+    });
+    return nameElement;
 }
 
 /**

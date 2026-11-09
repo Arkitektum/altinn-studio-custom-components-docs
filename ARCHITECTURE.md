@@ -46,6 +46,20 @@ For each example, `src/index.ts`:
 
 Examples are grouped by component type for the sidebar (see `src/constants/componentTypeNames.ts`).
 
+### The "Prøv selv" panel
+
+Below each preview is a closed panel that lets a reader change the example and see the component render with it. It needs nothing from the example files: everything it offers is read off the example's markup and data.
+
+- **Data fields.** A field for every value in the example's data, by the type of the example value: a text field for text, a number field for numbers, a Ja / Nei / Tom select for true or false. Groups and lists become fieldsets, list items are numbered. A value that is null in the example has no type to read, so it gets a text field.
+- **Empty states.** Every group and list has a Tom checkbox that sets it to null, which is how a reader sees `emptyFieldText` and `hideIfEmpty` at work. Text and numbers need no checkbox, as a cleared field is already empty.
+- **Lists.** Items can be removed, and added as a copy of the last one (or of the example's first once the list is empty).
+- **Markup flags.** `size`, `hideTitle`, `hideIfEmpty`, `inline`, `hideOrgNr` and `enableLinks`, but only those the example's markup sets, since the markup is the only place that says which ones the component reads.
+- **Tilbakestill** puts back the example's own markup and data.
+
+The panel never changes the example's markup or data. Every edit makes a changed copy, and the panel hands the whole copy to `renderPreview` (set on each result by `getResults`), which builds a fresh preview from it. `updateComponentExample` then swaps that preview in and rewrites the Markup and Data blocks, so they and their copy buttons always show what is rendered. A preview that fails to render with the edited values shows the same error box a broken example does.
+
+The fields are only built the first time a panel is opened, as the layout examples alone have hundreds of values. The prerendered page holds the closed panels without their fields.
+
 ---
 
 ## 3. Source layout
@@ -68,6 +82,9 @@ src/
 │   └── componentTypeNames.ts # Display names per component type (Felt, Tabell, Gruppe, ...)
 ├── scripts/
 │   ├── renderers.ts         # Renders the sidebar and the results
+│   ├── playgroundRenderers.ts # The "Prøv selv" panel's fields
+│   ├── playground.ts        # The panel's data side: field kinds, changed copies, which markup flags to offer
+│   ├── highlight.ts         # highlight.js, set up for JSON, and highlighting a block again after an edit
 │   └── helpers.ts
 ├── styles/main.css
 └── fonts/ assets/

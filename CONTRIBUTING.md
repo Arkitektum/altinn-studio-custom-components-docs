@@ -67,10 +67,16 @@ The Build workflow runs lint, the format check, the typecheck, the tests and the
 
     Use synthetic/example data only — never real or personal data.
 
-4. **Name it.**
+4. **Check what the "Prøv selv" panel offers for it.**
+   The panel builds its fields from the example itself, so the example decides what a reader can try:
+    - It offers a markup flag (`size`, `hideTitle`, `hideIfEmpty`, `inline`, `hideOrgNr`, `enableLinks`) only if the markup sets it. Set a flag the component reads, to its default if need be, to make it adjustable.
+    - It picks each field by the type of the example value. Give values their real type rather than null, or the panel can only offer a text field.
+    - It adds list items by copying one, so give a list at least one item, or the panel has nothing to copy.
+
+5. **Name it.**
    Give the component its display name in `src/constants/componentNames.ts`, or the sidebar shows its tag name. If you introduce a new component type, add that type's display name to `src/constants/componentTypeNames.ts`.
 
-5. **Verify** with `yarn start` that the example renders and its markup displays correctly.
+6. **Verify** with `yarn start` that the example renders and its markup displays correctly, and open its "Prøv selv" panel to check the fields make sense.
 
 > The site renders the **published** components package.
 > To document a component or change that isn't released yet, bump `@arkitektum/altinn-studio-custom-components` (and `-utils` if needed) to the target version first.

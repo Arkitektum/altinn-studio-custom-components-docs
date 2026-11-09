@@ -5,6 +5,7 @@ import { appendChildren, hasValue } from "@arkitektum/altinn-studio-custom-compo
 import type { ComponentExampleResult, ComponentTypeResult } from "../types.ts";
 import { getComponentNameFromTagName, getComponentTypeNameFromKey } from "./helpers.ts";
 import { highlightAgain } from "./highlight.ts";
+import { renderPlayground } from "./playgroundRenderers.ts";
 
 // Assets
 import iconBrick from "../assets/svg/brick.svg";
@@ -150,7 +151,9 @@ function renderPreviewElement(componentExample: ComponentExampleResult): HTMLDiv
 }
 
 /**
- * Renders a component example, including its title, preview, markup, data, and resources.
+ * Renders a component example, including its title, preview, "Prøv selv" panel, markup, data, and resources.
+ *
+ * The panel is left out when there is no data to edit, or nothing to render it again with.
  *
  * @param componentExample - The component example object to render.
  * @returns The container element with the rendered component example.
@@ -172,6 +175,15 @@ function renderComponentExample(componentExample: ComponentExampleResult): HTMLD
     const previewElement = renderPreviewElement(componentExample);
     containerElement.appendChild(previewElement);
 
+    const componentExampleData = componentExample?.data;
+    const renderPreview = componentExample?.renderPreview;
+    if (renderPreview && hasValue(componentExampleData)) {
+        const playgroundElement = renderPlayground(componentExampleData, (changedData) =>
+            updateComponentExample(containerElement, renderPreview(changedData), changedData)
+        );
+        containerElement.appendChild(playgroundElement);
+    }
+
     const markupElement = renderCodeBlock({
         title: "Markup",
         icon: iconCodeBlocks,
@@ -180,7 +192,6 @@ function renderComponentExample(componentExample: ComponentExampleResult): HTMLD
     });
     containerElement.appendChild(markupElement);
 
-    const componentExampleData = componentExample?.data;
     if (hasValue(componentExampleData)) {
         const dataElement = renderCodeBlock({
             title: "Data",

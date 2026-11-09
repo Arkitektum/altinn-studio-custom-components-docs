@@ -114,6 +114,56 @@ describe("renderResults", () => {
     });
 });
 
+describe("the Prøv selv panel", () => {
+    beforeEach(givenAnEmptyPage);
+
+    /** The example from someResults with data, made editable by giving it something to render again with. */
+    function resultsWithAnEditableExample(): ComponentTypeResult[] {
+        const results = someResults();
+        results[0]!.components[0]!.renderPreview = (data) => {
+            const preview = document.createElement("div");
+            preview.className = "rendered-again";
+            preview.textContent = JSON.stringify(data);
+            return preview;
+        };
+        return results;
+    }
+
+    it("sits between the preview and the Markup block of an example that can be edited", () => {
+        renderResults(resultsWithAnEditableExample());
+
+        const example = document.getElementById("component-custom-table-eiendom")!;
+        const classNames = Array.from(example.children).map((child) => child.className);
+        expect(classNames.slice(1, 4)).toEqual(["component-example-preview", "component-example-playground", "component-example-code-block"]);
+    });
+
+    it("is left out when there is nothing to render again with, or no data", () => {
+        renderResults(someResults());
+        expect(document.querySelector("#component-custom-table-eiendom .component-example-playground")).toBeNull();
+
+        const results = resultsWithAnEditableExample();
+        results[0]!.components[1]!.renderPreview = () => document.createElement("div");
+        renderResults(results);
+        expect(document.querySelector("#component-custom-table-plan .component-example-playground")).toBeNull();
+    });
+
+    it("renders the example again with the edited data, and shows it in the Data block", () => {
+        renderResults(resultsWithAnEditableExample());
+        const example = document.getElementById("component-custom-table-eiendom")!;
+        const panel = example.querySelector(".component-example-playground") as HTMLDetailsElement;
+        panel.open = true;
+        panel.dispatchEvent(new Event("toggle"));
+
+        const input = panel.querySelector("input")!;
+        input.value = "7";
+        input.dispatchEvent(new Event("input"));
+
+        expect(example.querySelector(".component-example-preview .rendered-again")!.textContent).toBe(JSON.stringify({ data: [{ gnr: 7 }] }));
+        const dataCode = example.querySelector(".component-example-data-title")!.closest(".component-example-code")!.querySelector("code")!;
+        expect(dataCode.textContent).toBe(JSON.stringify({ data: [{ gnr: 7 }] }, null, 2));
+    });
+});
+
 describe("updateComponentExample", () => {
     beforeEach(givenAnEmptyPage);
 

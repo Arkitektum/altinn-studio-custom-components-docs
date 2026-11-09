@@ -69,7 +69,9 @@
    never alter focus styling inside the rendered example components. */
 .sidebar a:focus-visible,
 .sidebar summary:focus-visible,
-.component-example-code summary:focus-visible {
+.component-example-code summary:focus-visible,
+.component-example-playground summary:focus-visible,
+.component-example-playground input:focus-visible {
     outline: var(--docs-focus-ring);
     outline-offset: 2px;
 }
@@ -393,6 +395,81 @@ main:focus {
                             border: 1px solid var(--docs-color-preview-border);
                             border-radius: var(--docs-radius-default);
                             box-shadow: var(--docs-shadow-card);
+                        }
+                        /* Themed like the rest of the docs page, not like the preview, as it is part of the page. */
+                        & .component-example-playground {
+                            margin-bottom: 16px;
+                            color: var(--docs-color-text-default);
+                            background-color: var(--docs-color-surface);
+                            border: 1px solid var(--docs-color-border);
+                            border-radius: var(--docs-radius-default);
+                            box-shadow: var(--docs-shadow-card);
+                            & summary {
+                                font-weight: bold;
+                                font-size: 16px;
+                                padding: 8px;
+                                cursor: pointer;
+                                transition: var(--docs-background-transition-default);
+                                &:hover {
+                                    background-color: var(--docs-color-hover);
+                                }
+                            }
+                            /* Values side by side, with each group or list on a row of its own. */
+                            & .playground-fields,
+                            & .playground-group {
+                                display: grid;
+                                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                                gap: 8px 12px;
+                                & > .playground-group,
+                                & > .playground-empty {
+                                    grid-column: 1 / -1;
+                                }
+                            }
+                            & .playground-fields {
+                                padding: 8px 12px 12px;
+                                max-height: 600px;
+                                overflow: auto;
+                                border-top: 1px solid var(--docs-color-border-subtle);
+                            }
+                            & .playground-group {
+                                min-width: 0;
+                                margin: 0;
+                                padding: 4px 0 4px 12px;
+                                border: none;
+                                border-left: 2px solid var(--docs-color-border);
+                                & > legend {
+                                    padding: 0;
+                                    margin-bottom: 4px;
+                                    font-size: 14px;
+                                    font-weight: 600;
+                                }
+                            }
+                            & .playground-field {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 2px;
+                                font-size: 14px;
+                                & > input[type="text"],
+                                & > input[type="number"] {
+                                    min-width: 0;
+                                    padding: 4px 6px;
+                                    font: inherit;
+                                    color: inherit;
+                                    background-color: var(--docs-color-background);
+                                    border: 1px solid var(--docs-color-border);
+                                    border-radius: var(--docs-radius-default);
+                                }
+                                &.playground-field-checkbox {
+                                    flex-direction: row;
+                                    align-items: center;
+                                    gap: 6px;
+                                }
+                            }
+                            & .playground-empty {
+                                margin: 0;
+                                font-size: 14px;
+                                font-style: italic;
+                            }
                         }
                         /* The copy button sits beside its <details>, over the summary bar. */
                         & .component-example-code-block {

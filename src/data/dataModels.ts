@@ -1726,6 +1726,73 @@ const dataModels: DataModel[] = [
                     paragrafnummer: "§ 3.1",
                     plannavn: "Reguleringsplan for Stavern sentrum"
                 },
+                endringAvRolleIByggesaken: {
+                    kommunensSaksnummer: { saksaar: 2024, sakssekvensnummer: 12345 },
+                    gjelderFraDato: "2026-12-01",
+                    eiendomByggested: {
+                        eiendom: [
+                            {
+                                eiendomsidentifikasjon: {
+                                    kommunenummer: "1234",
+                                    gaardsnummer: 33,
+                                    bruksnummer: 16,
+                                    festenummer: 0,
+                                    seksjonsnummer: 0
+                                },
+                                adresse: {
+                                    adresselinje1: "Adressevegen 1",
+                                    adresselinje2: "",
+                                    adresselinje3: "",
+                                    postnr: "1234",
+                                    poststed: "Bø",
+                                    landkode: "NO",
+                                    gatenavn: "Adressevegen",
+                                    husnr: "1",
+                                    bokstav: ""
+                                },
+                                bygningsnummer: "1234567",
+                                bolignummer: "H0101",
+                                kommunenavn: "Oslo"
+                            }
+                        ]
+                    },
+                    soeknadGjelder: {
+                        type: { kode: [{ kodeverdi: "nyttbyggboligformal", kodebeskrivelse: "Nytt bygg - boligformål" }] },
+                        bruk: { tiltaksformaal: { kode: [{ kodeverdi: "bolig", kodebeskrivelse: "Bolig" }] } }
+                    },
+                    rolleendringer: {
+                        rolleendring: [
+                            {
+                                aktoer: { navn: "Søker AS", organisasjonsnummer: "123456789" },
+                                aktoertype: { kodeverdi: "ansvarligSoeker", kodebeskrivelse: "Ansvarlig søker" },
+                                aktoerendring: { kodeverdi: "fratraer", kodebeskrivelse: "Fratrer" },
+                                erRolleendringErklaert: true
+                            },
+                            {
+                                aktoer: { navn: "Ny Søker AS", organisasjonsnummer: "987654321" },
+                                aktoertype: { kodeverdi: "ansvarligSoeker", kodebeskrivelse: "Ansvarlig søker" },
+                                aktoerendring: { kodeverdi: "ny", kodebeskrivelse: "Ny" },
+                                erRolleendringErklaert: false
+                            }
+                        ]
+                    },
+                    endringMeldtAv: {
+                        partstype: { kodeverdi: "Foretak", kodebeskrivelse: "Foretak" },
+                        organisasjonsnummer: "987654321",
+                        navn: "Ny Søker AS",
+                        adresse: {
+                            adresselinje1: "Søkervegen 3",
+                            adresselinje2: null,
+                            adresselinje3: null,
+                            postnr: "3456",
+                            poststed: "Søkerbyen",
+                            landkode: "NO"
+                        },
+                        telefonnummer: "44556677",
+                        epost: "post@nysoeker.no",
+                        kontaktperson: { navn: "Kari Nordmann", telefonnummer: "11223344", epost: "kari@nysoeker.no" }
+                    }
+                },
                 gjennomfoeringsplan: {
                     versjon: "1.0",
                     gjennomfoeringsplan: {

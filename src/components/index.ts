@@ -80,6 +80,7 @@ import customGrouplistVegtypeTillatelse from "./grouplist/custom-grouplist-vegty
 // Layout
 import customDispensasjon from "./layout/custom-dispensasjon.ts";
 import customDispensasjonsvarsel from "./layout/custom-dispensasjonsvarsel.ts";
+import customEndringAvRolleIByggesaken from "./layout/custom-endring-av-rolle-i-byggesaken.ts";
 import customGjennomfoeringsplan from "./layout/custom-gjennomfoeringsplan.ts";
 import customGjenpartNabovarsel from "./layout/custom-gjenpart-nabovarsel.ts";
 
@@ -160,7 +161,13 @@ export const grouplist = {
     customGrouplistVegtypeTillatelse
 };
 
-export const layout = { customDispensasjon, customDispensasjonsvarsel, customGjennomfoeringsplan, customGjenpartNabovarsel };
+export const layout = {
+    customDispensasjon,
+    customDispensasjonsvarsel,
+    customEndringAvRolleIByggesaken,
+    customGjennomfoeringsplan,
+    customGjenpartNabovarsel
+};
 
 export default {
     typography,

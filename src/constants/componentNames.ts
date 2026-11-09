@@ -68,6 +68,7 @@ const componentNames: Record<string, string> = {
     "custom-grouplist-vegtype-tillatelse": "Vegtype tillatelse",
     "custom-dispensasjon": "Dispensasjonssøknad",
     "custom-dispensasjonsvarsel": "Dispensasjonsvarsel",
+    "custom-endring-av-rolle-i-byggesaken": "Endring av rolle i byggesaken",
     "custom-gjennomfoeringsplan": "Gjennomføringsplan",
     "custom-gjenpart-nabovarsel": "Gjenpart nabovarsel"
 };

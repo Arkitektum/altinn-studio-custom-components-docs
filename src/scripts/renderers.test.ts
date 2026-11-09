@@ -1,5 +1,13 @@
 import { afterEach, beforeEach, describe, expect, it, jest } from "@jest/globals";
-import { renderResults, renderSidebar, scrollIntoNearestView, setupMobileNav, setupSidebarSearch, setupThemeToggle } from "./renderers.ts";
+import {
+    renderResults,
+    renderSidebar,
+    scrollIntoNearestView,
+    setupMobileNav,
+    setupSidebarSearch,
+    setupThemeToggle,
+    updateComponentExample
+} from "./renderers.ts";
 import type { ComponentTypeResult } from "../types.ts";
 
 /** The two containers index.html provides for the rendered gallery. */
@@ -103,6 +111,76 @@ describe("renderResults", () => {
         renderResults(someResults());
 
         expect(document.querySelectorAll(".component-type-section")).toHaveLength(2);
+    });
+});
+
+describe("updateComponentExample", () => {
+    beforeEach(givenAnEmptyPage);
+
+    /** The Data block's code element for an example. */
+    function dataCodeOf(exampleElement: HTMLElement): HTMLElement {
+        return exampleElement.querySelector(".component-example-data-title")!.closest(".component-example-code")!.querySelector("code")!;
+    }
+
+    it("replaces the preview with the new one", () => {
+        renderResults(someResults());
+        const example = document.getElementById("component-custom-table-eiendom")!;
+        const newPreview = document.createElement("span");
+
+        updateComponentExample(example, newPreview, { data: [] });
+
+        const preview = example.querySelector(".component-example-preview")!;
+        expect(preview.children).toHaveLength(1);
+        expect(preview.firstElementChild).toBe(newPreview);
+    });
+
+    it("shows the new data in the Data block", () => {
+        renderResults(someResults());
+        const example = document.getElementById("component-custom-table-eiendom")!;
+
+        updateComponentExample(example, document.createElement("div"), { data: [{ gnr: 7 }] });
+
+        expect(dataCodeOf(example).textContent).toBe(JSON.stringify({ data: [{ gnr: 7 }] }, null, 2));
+    });
+
+    // Updated twice, as on the page the block has always been highlighted once already, and highlight.js skips a
+    // block it has marked as done.
+    it("highlights the new data, also when the block was highlighted before", () => {
+        renderResults(someResults());
+        const example = document.getElementById("component-custom-table-eiendom")!;
+
+        updateComponentExample(example, document.createElement("div"), { data: [{ gnr: 7 }] });
+        updateComponentExample(example, document.createElement("div"), { data: [{ gnr: 8 }] });
+
+        expect(dataCodeOf(example).dataset.highlighted).toBe("yes");
+        expect(dataCodeOf(example).querySelector(".hljs-number")!.textContent).toBe("8");
+    });
+
+    it("copies the new data, not the data the block was rendered with", async () => {
+        const copied: string[] = [];
+        Object.defineProperty(navigator, "clipboard", {
+            configurable: true,
+            value: { writeText: async (text: string) => void copied.push(text) }
+        });
+        renderResults(someResults());
+        const example = document.getElementById("component-custom-table-eiendom")!;
+        updateComponentExample(example, document.createElement("div"), { data: [{ gnr: 7 }] });
+
+        const dataBlock = dataCodeOf(example).closest(".component-example-code-block")!;
+        (dataBlock.querySelector(".code-copy-button") as HTMLButtonElement).click();
+        await Promise.resolve();
+
+        expect(copied).toEqual([JSON.stringify({ data: [{ gnr: 7 }] }, null, 2)]);
+        Reflect.deleteProperty(navigator, "clipboard");
+    });
+
+    it("leaves an example that had no data without a Data block", () => {
+        renderResults(someResults());
+        const example = document.getElementById("component-custom-table-plan")!;
+
+        updateComponentExample(example, document.createElement("div"), { data: [] });
+
+        expect(example.querySelector(".component-example-data-title")).toBeNull();
     });
 });
 

@@ -4,6 +4,7 @@ import { appendChildren, hasValue } from "@arkitektum/altinn-studio-custom-compo
 // Global functions
 import type { ComponentExampleResult, ComponentTypeResult } from "../types.ts";
 import { getComponentNameFromTagName, getComponentTypeNameFromKey } from "./helpers.ts";
+import { highlightAgain } from "./highlight.ts";
 
 // Assets
 import iconBrick from "../assets/svg/brick.svg";
@@ -50,10 +51,10 @@ async function copyText(text: string): Promise<boolean> {
  * brief feedback.
  *
  * @param label - Section label, used for the accessible name.
- * @param text - The text copied to the clipboard.
+ * @param getText - Returns the text to copy. Read on every click, as the Data block changes when the example is edited.
  * @returns The copy button.
  */
-function createCopyButton(label: string, text: string): HTMLButtonElement {
+function createCopyButton(label: string, getText: () => string): HTMLButtonElement {
     const button = document.createElement("button");
     button.type = "button";
     button.classList.add("code-copy-button");
@@ -62,7 +63,7 @@ function createCopyButton(label: string, text: string): HTMLButtonElement {
 
     let resetTimer: number | undefined;
     button.addEventListener("click", async () => {
-        const copied = await copyText(text);
+        const copied = await copyText(getText());
         button.textContent = copied ? "Kopiert" : "Feilet";
         button.classList.toggle("is-copied", copied);
         window.clearTimeout(resetTimer);
@@ -128,7 +129,7 @@ function renderCodeBlock({
     containerElement.appendChild(codeElement);
 
     blockElement.appendChild(containerElement);
-    blockElement.appendChild(createCopyButton(title, jsonString));
+    blockElement.appendChild(createCopyButton(title, () => codeContentElement.textContent ?? ""));
     return blockElement;
 }
 
@@ -202,6 +203,25 @@ function renderComponentExample(componentExample: ComponentExampleResult): HTMLD
     }
 
     return containerElement;
+}
+
+/**
+ * Shows an example with other data, replacing its preview and the contents of its Data block.
+ *
+ * An example that had no data to begin with has no Data block, and is left without one.
+ *
+ * @param exampleElement - The example, as renderComponentExample made it.
+ * @param previewElement - The preview rendered with the new data.
+ * @param data - The new data.
+ */
+export function updateComponentExample(exampleElement: HTMLElement, previewElement: HTMLElement, data: unknown): void {
+    exampleElement.querySelector(".component-example-preview")?.replaceChildren(previewElement);
+
+    const dataCodeElement = exampleElement.querySelector(".component-example-data-title")?.closest(".component-example-code")?.querySelector("code");
+    if (dataCodeElement) {
+        dataCodeElement.textContent = JSON.stringify(data, null, 2);
+        highlightAgain(dataCodeElement);
+    }
 }
 
 /**

@@ -108,6 +108,43 @@ describe("getResults", () => {
         errorSpy.mockRestore();
     });
 
+    it("renders the preview again with other data, leaving the first preview as it was", () => {
+        const results = getResults(
+            { table: { customTableData: exampleFor("custom-table-data", { dataModelBindings: { data: "customTable.data" } }) } },
+            dataModels
+        );
+        const example = results[0]!.components[0]!;
+        const firstPreview = example.element.outerHTML;
+
+        const preview = example.renderPreview!({ data: [{ navn: "Kari Nordmann" }] });
+
+        expect(preview).not.toBe(example.element);
+        expect(preview.querySelector("custom-table-data")!.getAttribute("formdata")).toBe(JSON.stringify({ data: [{ navn: "Kari Nordmann" }] }));
+        expect(example.element.outerHTML).toBe(firstPreview);
+    });
+
+    it("shows an error preview when rendering with other data fails", () => {
+        const errorSpy = jest.spyOn(console, "error").mockImplementation(() => {});
+        const results = getResults({ table: { customTableData: exampleFor("custom-table-data") } }, dataModels);
+        // Data that refers to itself cannot be serialized into the formdata attribute.
+        const circular: Record<string, unknown> = {};
+        circular.self = circular;
+
+        const preview = results[0]!.components[0]!.renderPreview!({ data: circular });
+
+        expect(preview.classList.contains("component-example-error")).toBe(true);
+        expect(preview.textContent).toContain("custom-table-data");
+        errorSpy.mockRestore();
+    });
+
+    it("gives an example that failed to render nothing to render again with", () => {
+        const errorSpy = jest.spyOn(console, "error").mockImplementation(() => {});
+        const results = getResults({ table: { rejected: exampleFor("custom-not-in-the-allow-list") } }, dataModels);
+
+        expect(results[0]!.components[0]!.renderPreview).toBeUndefined();
+        errorSpy.mockRestore();
+    });
+
     it("returns no types at all when there are no examples", () => {
         expect(getResults({}, dataModels)).toEqual([]);
     });

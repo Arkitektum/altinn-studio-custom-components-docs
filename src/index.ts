@@ -11,8 +11,6 @@ import {
     getDataForComponent,
     getTextResourcesFromResourceBindings
 } from "@arkitektum/altinn-studio-custom-components-utils";
-import hljs from "highlight.js/lib/core";
-import json from "highlight.js/lib/languages/json";
 
 // Types
 import type { ComponentExample, ComponentExampleResult, ComponentExamples, ComponentMarkup, ComponentTypeResult } from "./types.ts";
@@ -30,6 +28,7 @@ import {
     setupThemeToggle
 } from "./scripts/renderers.ts";
 import componentExamples from "./components/index.ts";
+import hljs from "./scripts/highlight.ts";
 
 // Data
 import dataModels from "./data/dataModels.ts";
@@ -38,8 +37,6 @@ import textResources from "./data/textResources.ts";
 // Stylesheets
 import "./styles/main.css";
 import "highlight.js/styles/vs2015.css";
-
-hljs.registerLanguage("json", json);
 
 /**
  * Generates a preview DOM element for a given custom component and its data.
@@ -68,6 +65,22 @@ function getErrorPreviewElement(tagName: string, error: unknown): HTMLElement {
     element.classList.add("component-example-error");
     element.textContent = `Failed to render <${tagName}>: ${error instanceof Error ? error.message : error}`;
     return element;
+}
+
+/**
+ * Renders an example's preview with the given data, showing what went wrong in its place if that fails.
+ *
+ * @param component - The component definition.
+ * @param data - The form data passed to the component as attributes.
+ * @returns The preview, or the error shown instead of it.
+ */
+function getPreviewOrErrorElement(component: ComponentMarkup, data: unknown): HTMLElement {
+    try {
+        return getPreviewElement(component, data);
+    } catch (error) {
+        console.error(`Failed to render component "${component.tagName}"`, error);
+        return getErrorPreviewElement(component.tagName, error);
+    }
 }
 
 /**
@@ -102,6 +115,7 @@ export function getResults(componentExamples: ComponentExamples, dataModels: Dat
                             markup,
                             options: component?.options,
                             data,
+                            renderPreview: (changedData: unknown) => getPreviewOrErrorElement(markup, changedData),
                             resources: getTextResourcesFromResourceBindings({
                                 ...component?.defaultResourceBindings,
                                 ...markup?.resourceBindings

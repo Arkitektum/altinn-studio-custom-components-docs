@@ -59,6 +59,8 @@ export interface ComponentExampleResult {
     options?: ComponentExampleOptions;
     /** The data the component was given, which is whatever its bindings reached. */
     data?: unknown;
+    /** Renders the preview again with other data. Missing on an example that failed to render in the first place. */
+    renderPreview?: (data: unknown) => HTMLElement;
     /** The text resources its bindings resolved to. */
     resources?: unknown;
 }

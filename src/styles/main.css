@@ -598,7 +598,7 @@ main:focus {
                             position: relative;
                             & > .code-copy-button {
                                 position: absolute;
-                                /* The middle of the 40px summary bar it sits over, where it sat when it was inside it. */
+                                /* The middle of the 40px summary bar it sits over. */
                                 top: 20px;
                                 right: 8px;
                                 transform: translateY(-50%);
@@ -705,7 +705,7 @@ main:focus {
         align-items: center;
         justify-content: center;
         position: fixed;
-        /* Sits in the top-left of the "Components" title band. */
+        /* Sits in the top-left of the "Komponenter" title band. */
         top: 5px;
         left: 5px;
         z-index: 60;

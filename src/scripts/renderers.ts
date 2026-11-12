@@ -17,8 +17,7 @@ import iconDictionary from "../assets/svg/dictionary.svg";
 /**
  * The element the gallery renders into.
  *
- * These containers ship with the page, so one missing means the page was built wrong. Saying which one is missing
- * beats the "cannot set properties of null" this used to fail with.
+ * These containers ship with the page, so one missing means the page was built wrong, and the error says which.
  *
  * @param id - The id of the container.
  * @returns The element.
@@ -83,8 +82,8 @@ function createCopyButton(label: string, getText: () => string): HTMLButtonEleme
  * value as formatted JSON inside a <details> element, with a copy button.
  *
  * The button sits beside the <details> rather than in its <summary>, and is placed over the summary bar by CSS. A
- * <summary> is a button to assistive technology, so a button inside it was a control nested in a control, and its
- * label was read as part of the summary's name ("Markup Kopier Markup som JSON"). It cannot go inside the <details>
+ * <summary> is a button to assistive technology, so a button inside it would be a control nested in a control, with its
+ * label read as part of the summary's name ("Markup Kopier Markup som JSON"). It cannot go inside the <details>
  * either, since everything there but the summary is hidden while the section is closed.
  *
  * @param options - The section configuration.
@@ -505,7 +504,7 @@ export function setupScrollSpy() {
     // Sections stack in document (and sidebar) order, so the one being read is
     // the last whose top has passed a line a short way down the scroll area.
     // Measuring against that line ignores sections that have scrolled off the
-    // top, which is what previously caused the wrong item to be selected.
+    // top, which would otherwise be selected.
     const sectionAtScrollLine = () => {
         const line = scrollContainer.getBoundingClientRect().top + scrollContainer.clientHeight * 0.25;
         let current = sections[0];
@@ -627,8 +626,8 @@ export function setupMobileNav() {
  * the button and flips it on click, persisting the choice to localStorage.
  *
  * The button is a toggle named for what it turns on, "Mørkt tema" in the markup, and only its aria-pressed changes.
- * Changing the label as well, to the action it would take next, had a screen reader announce "switch to dark theme"
- * as pressed while the page was light, the two contradicting each other.
+ * A label naming the action it would take next would have a screen reader announce "switch to dark theme" as
+ * pressed while the page is light, the two contradicting each other.
  *
  * No-ops when the toggle button is unavailable.
  *
@@ -693,8 +692,8 @@ export function setupBackToTop() {
 /**
  * Scrolls to the component named in the current URL hash, if any.
  *
- * The gallery is rendered during window load — after the browser's own attempt
- * to scroll to a hash target — so deep links (e.g. #component-custom-field-data)
+ * The gallery is rendered during window load, after the browser's own attempt
+ * to scroll to a hash target, so deep links (e.g. #component-custom-field-data)
  * would otherwise land at the top. Call this once after rendering. The jump is
  * instant to avoid a long animated scroll on load; the scroll-spy then reflects
  * the active component.

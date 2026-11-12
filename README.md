@@ -12,7 +12,7 @@ It renders every custom component with example (dummy) data, alongside the marku
 ### Prerequisites
 
 - **Node.js 24**
-- **Yarn 4** via [Corepack](https://nodejs.org/api/corepack.html) — run `corepack enable` once.
+- **Yarn 4** via [Corepack](https://nodejs.org/api/corepack.html): run `corepack enable` once.
 
 ### Run locally
 
@@ -33,13 +33,13 @@ yarn build
 ```
 
 The production build is written to `docs/` (git-ignored).
-The live site is built and published to **GitHub Pages by the `Deploy` GitHub Actions workflow** on every push to `main` — there is no need to build or commit `docs/` by hand.
+The live site is built and published to **GitHub Pages by the `Deploy` GitHub Actions workflow** on every push to `main`, so there is no need to build or commit `docs/` by hand.
 
 ---
 
 ## How it works
 
-The site imports the **published** custom components and renders each example in the browser — there is no backend.
+The site imports the **published** custom components and renders each example in the browser. There is no backend.
 Each example is a module under `src/components/<type>/` that exports a `markup` object (the component's tag name plus its attributes and bindings), with supporting data in `src/data/dataModels.ts` and `src/data/textResources.ts`.
 
 To add a component example, see [CONTRIBUTING.md](./CONTRIBUTING.md).
@@ -52,8 +52,8 @@ For the full build/render flow, see [ARCHITECTURE.md](./ARCHITECTURE.md).
 - [Architecture overview](./ARCHITECTURE.md)
 - [Contributing guide](./CONTRIBUTING.md)
 - [Security policy](./SECURITY.md)
-- [Custom components](https://github.com/Arkitektum/altinn-studio-custom-components) — the components this gallery shows
-- [Shared utils](https://github.com/Arkitektum/altinn-studio-custom-components-utils) — `createCustomElement` and the tag-name allow-list
+- [Custom components](https://github.com/Arkitektum/altinn-studio-custom-components): the components this gallery shows
+- [Shared utils](https://github.com/Arkitektum/altinn-studio-custom-components-utils): `createCustomElement` and the tag-name allow-list
 
 ## Licence
 

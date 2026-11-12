@@ -8,11 +8,11 @@ import { customElementTagNames } from "@arkitektum/altinn-studio-custom-componen
  *
  * The two lists do not know about each other. `customElementTagNames` is maintained in the utils package alongside
  * the components themselves; the examples here are added by hand, one file per component. Nothing reconciles them,
- * so a component added to the package simply never appears in the docs, and nobody finds out — the docs are built
+ * so a component added to the package simply never appears in the docs, and nobody finds out: the docs are built
  * from the examples that exist, not from the components that do.
  *
  * This fails when that happens, rather than reporting it, because the answer is usually the same: write the example.
- * Where it is not — a primitive, a component built only by other components, or one on its way out — the reason is
+ * Where it is not (a primitive, a component built only by other components, or one on its way out), the reason is
  * recorded in one of the three lists in componentsWithoutExamples.ts. Between them they cover everything the package ships that has no example,
  * so a component reaching this test unlisted is genuinely new.
  */
@@ -68,9 +68,9 @@ describe("what the package ships without an example", () => {
 
         const missing = customElementTagNames.filter((tagName) => !documented.has(tagName) && !excused.has(tagName));
 
-        // A new component has shipped without an example. Add one under src/components/<type>/<tag-name>.js and
-        // export it from index.js — or, if it is not for a form author to write, add it to the right list above
-        // with the reason.
+        // A new component has shipped without an example. Add one under src/components/<type>/<tag-name>.ts and
+        // export it from index.ts. If it is not for a form author to write, add it to the right list in
+        // componentsWithoutExamples.ts with the reason.
         expect(missing).toEqual([]);
     });
 

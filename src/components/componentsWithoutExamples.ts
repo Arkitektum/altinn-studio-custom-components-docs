@@ -18,7 +18,7 @@ export const PRIMITIVES_WITHOUT_EXAMPLES = [
 
 /**
  * Components that exist for other components to build with, rather than for a form author to write. The feedback
- * stack is three deep — validation messages builds a feedback list, which builds one feedback item per message — and
+ * stack is three deep (validation messages builds a feedback list, which builds one feedback item per message), and
  * an app names none of them.
  */
 export const BUILT_BY_OTHER_COMPONENTS = ["custom-feedback-data", "custom-feedbacklist-data", "custom-feedbacklist-validation-messages"];
@@ -31,7 +31,7 @@ export const BUILT_BY_OTHER_COMPONENTS = ["custom-feedback-data", "custom-feedba
  *   custom-header-text-data               unused, and to be removed
  *
  * These still ship, so they are listed here rather than simply absent. When one is finally dropped from the package,
- * "lists only components that are still shipped" in index.test.ts fails — which is the reminder to delete its line.
+ * "lists only components that are still shipped" in index.test.ts fails, which is the reminder to delete its line.
  */
 export const SUPERSEDED = ["custom-field-grid", "custom-field-image", "custom-field-row", "custom-header-text-data"];
 

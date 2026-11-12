@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for contributing to `altinn-studio-custom-components-docs` — the documentation site and component gallery for [`@arkitektum/altinn-studio-custom-components`](https://github.com/Arkitektum/altinn-studio-custom-components).
+Thanks for contributing to `altinn-studio-custom-components-docs`, the documentation site and component gallery for [`@arkitektum/altinn-studio-custom-components`](https://github.com/Arkitektum/altinn-studio-custom-components).
 
 For an overview of how the site is built and rendered, read [ARCHITECTURE.md](./ARCHITECTURE.md) first.
 
@@ -65,7 +65,7 @@ The Build workflow runs lint, the format check, the typecheck, the tests and the
     - example form data in `src/data/dataModels.ts`,
     - text-resource values in `src/data/textResources.ts`.
 
-    Use synthetic/example data only — never real or personal data.
+    Use synthetic/example data only, never real or personal data.
 
 4. **Check what the "Prøv selv" panel offers for it.**
    The panel builds its fields from the example itself, so the example decides what a reader can try:
@@ -88,7 +88,7 @@ The Build workflow runs lint, the format check, the typecheck, the tests and the
 - **ES modules** throughout.
 - **JSDoc** on exported functions.
 - **Formatting & linting** via Prettier (`.prettierrc`) and ESLint (`eslint.config.mjs`).
-- Keep example modules declarative — just the `markup` and supporting data.
+- Keep example modules declarative: just the `markup` and supporting data.
 
 ---
 
@@ -97,11 +97,11 @@ The Build workflow runs lint, the format check, the typecheck, the tests and the
 1. Branch off `main`.
 2. Keep changes focused and lint-clean.
 3. Run `yarn build` and verify the gallery renders.
-4. Open a PR against `main`. The ESLint scan must be green before merge.
+4. Open a PR against `main`. The Build workflow (lint, format, typecheck, tests and a build) must be green before merge.
 
 ---
 
 ## Publishing the site
 
 The live site is built and published to **GitHub Pages by the `Deploy` GitHub Actions workflow** on every push to `main`.
-There is no need to build or commit `docs/` — merging to `main` updates <https://arkitektum.github.io/altinn-studio-custom-components-docs/> automatically.
+There is no need to build or commit `docs/`: merging to `main` updates <https://arkitektum.github.io/altinn-studio-custom-components-docs/> automatically.

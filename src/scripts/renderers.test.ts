@@ -316,7 +316,7 @@ describe("renderSidebar", () => {
         expect(emptyState.textContent).toBe("Ingen komponenter samsvarer med søket.");
     });
 
-    // Rendering twice is the normal case now: the page is prerendered at build time and rendered again on load.
+    // Rendering twice is the normal case: the page is prerendered at build time and rendered again on load.
     it("replaces an existing sidebar instead of appending a second one", () => {
         renderSidebar(someResults());
         renderSidebar(someResults());

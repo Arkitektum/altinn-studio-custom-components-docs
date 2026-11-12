@@ -19,9 +19,9 @@ The site is published with **GitHub Pages**: <https://arkitektum.github.io/altin
 ## 2. How it works
 
 The site is a static page built by Webpack.
-It imports the **published** custom components and renders each example in the browser — there is no server.
+It imports the **published** custom components and renders each example in the browser. There is no server.
 
-That is the whole of its relationship with the other repositories: it pins `@arkitektum/altinn-studio-custom-components` and `@arkitektum/altinn-studio-custom-components-utils` from npm and nothing else. It does not talk to the statistics API, which is a local dev tool for the components repository, and it has nothing to do with `altinn-studio-api-tools`. An example here can only show what the pinned versions can render, which is why documenting an unreleased component means bumping the dependency first.
+That is the whole of its relationship with the other repositories: it pins `@arkitektum/altinn-studio-custom-components` and `@arkitektum/altinn-studio-custom-components-utils` from npm and nothing else. An example here can only show what the pinned versions can render, which is why documenting an unreleased component means bumping the dependency first.
 
 ```text
   @arkitektum/altinn-studio-custom-components  (main.js + main.css + resource.nb.json)
@@ -92,7 +92,7 @@ src/
 docs/                        # Build output, published to GitHub Pages by CI (git-ignored)
 ```
 
-A component **example** is just a module exporting a `markup` object — the component's tag name plus the attributes/bindings that drive the demo. For example (`src/components/field/custom-field-data.ts`, shortened):
+A component **example** is just a module exporting a `markup` object: the component's tag name plus the attributes/bindings that drive the demo. For example (`src/components/field/custom-field-data.ts`, shortened):
 
 ```ts
 import type { ComponentExample, ComponentMarkup } from "../../types.ts";
@@ -131,6 +131,6 @@ CI runs lint, the format check, the typecheck, the tests and the build on pull r
 
 ## 5. Relationship to the other packages
 
-- It consumes the **published** `@arkitektum/altinn-studio-custom-components` and `@arkitektum/altinn-studio-custom-components-utils` from npm — it does not contain component logic itself.
+- It consumes the **published** `@arkitektum/altinn-studio-custom-components` and `@arkitektum/altinn-studio-custom-components-utils` from npm, and contains no component logic itself.
 - When a new component is added to the components package, an example should be added here (see [CONTRIBUTING](./CONTRIBUTING.md)).
 - To document changes from an unreleased components version, bump the dependency to that version first.

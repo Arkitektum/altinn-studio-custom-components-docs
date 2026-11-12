@@ -86,15 +86,11 @@ function getPreviewOrErrorElement(component: ComponentMarkup, data: unknown): HT
 /**
  * Generates a structured list of component preview results based on provided examples and data models.
  *
- * @param {Object} componentExamples - An object containing component examples grouped by type.
- * @param {Object} dataModels - An object representing available data models for the components.
- * @returns {Array<Object>} An array of result objects, each containing:
- *   - {string} type: The component type.
- *   - {Array<Object>} components: An array of component result objects, each with:
- *       - {HTMLElement} element: The preview element for the component.
- *       - {Object} markup: The markup definition of the component.
- *       - {Object} data: The data generated for the component.
- *       - {Object} resources: The text resources associated with the component.
+ * @param componentExamples - The component examples, grouped by type.
+ * @param dataModels - The data models the examples read their data from.
+ * @returns One result per component type that has a valid example, each listing its components with the preview
+ *   element, markup, options, data, the text resources, and `renderPreview` for the Prøv selv panel. An example that
+ *   fails to render carries an error preview and no data.
  */
 export function getResults(componentExamples: ComponentExamples, dataModels: DataModel[]): ComponentTypeResult[] {
     const resultsElements = Object.keys(componentExamples)
@@ -146,9 +142,10 @@ export function getResults(componentExamples: ComponentExamples, dataModels: Dat
 /**
  * Initializes the documentation page when the window has finished loading.
  *
- * Fetches default text resources, computes component results using the
- * imported `componentExamples` and `dataModels`, renders the results and
- * sidebar, and applies syntax highlighting to code blocks.
+ * Puts the bundled text resources on globalThis, computes the component results from the imported
+ * `componentExamples` and `dataModels`, renders the results and the sidebar, highlights the code blocks (skipped
+ * while prerendering), and sets up the scroll-spy, sidebar search, mobile navigation, theme toggle, back-to-top
+ * button and the jump to the component named in the URL hash.
  *
  * @returns {Promise<void>} A promise that resolves when initialization is complete.
  */

@@ -49,7 +49,7 @@ export interface ComponentExample {
     defaultResourceBindings?: object;
 }
 
-/** Every example, grouped by the kind of component, as `src/components/index.js` collects them. */
+/** Every example, grouped by the kind of component, as `src/components/index.ts` collects them. */
 export type ComponentExamples = Record<string, Record<string, ComponentExample>>;
 
 /** One rendered example: the preview, and everything the gallery shows alongside it. */

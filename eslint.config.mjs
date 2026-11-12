@@ -31,7 +31,6 @@ export default defineConfig([
     },
     {
         files: ["**/*.{js,mjs,cjs,ts}"],
-        plugins: { js },
         languageOptions: { globals: { ...globals.browser, ...globals.node } },
         rules: {
             "sort-imports": [
@@ -43,18 +42,6 @@ export default defineConfig([
         }
     },
     {
-        ignores: ["dist/**", "docs/**", "node_modules/", "**/vendor/*.js"]
-    },
-    {
-        files: ["**/*.test.{js,ts}", "**/*.spec.{js,ts}"], // 👈 Only apply to test files
-        languageOptions: {
-            globals: {
-                ...globals.jest // 👈 Add Jest globals like `describe`, `it`, `expect`
-            }
-        },
-        rules: {
-            // Optional: Jest-specific rules
-            "no-undef": "off" // Jest defines globals, so we disable this warning
-        }
+        ignores: ["docs/**", "node_modules/"]
     }
 ]);

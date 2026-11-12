@@ -10,7 +10,4 @@ const markup = {
     }
 } satisfies ComponentMarkup;
 
-// This component renders its header labels from resource bindings only, so it has no default bindings of its own.
-const defaultResourceBindings = {};
-
-export default { markup, defaultResourceBindings } satisfies ComponentExample;
+export default { markup } satisfies ComponentExample;

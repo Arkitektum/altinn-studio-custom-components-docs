@@ -3,6 +3,7 @@ import {
     renderResults,
     renderSidebar,
     scrollIntoNearestView,
+    setupBackToTop,
     setupMobileNav,
     setupSidebarSearch,
     setupThemeToggle,
@@ -591,5 +592,43 @@ describe("setupThemeToggle", () => {
 
         expect(toggle().getAttribute("aria-pressed")).toBe("true");
         expect(toggle().getAttribute("aria-label")).toBe("Mørkt tema");
+    });
+});
+
+describe("setupBackToTop", () => {
+    /** The page as index.html lays it out, scrolled the given distance down. */
+    function renderPage(scrollTop: number) {
+        document.body.innerHTML = `
+            <button id="back-to-top" type="button" hidden>Til toppen</button>
+            <section class="page-container"><main id="main" tabindex="-1"><h1>Komponenter</h1></main></section>`;
+        const scrollContainer = document.querySelector(".page-container") as HTMLElement;
+        Object.defineProperty(scrollContainer, "scrollTop", { value: scrollTop, writable: true, configurable: true });
+        // jsdom does not scroll, so this stands in for the browser reaching the top.
+        scrollContainer.scrollTo = (() => {
+            scrollContainer.scrollTop = 0;
+            scrollContainer.dispatchEvent(new Event("scroll"));
+        }) as typeof scrollContainer.scrollTo;
+        return { button: document.getElementById("back-to-top") as HTMLButtonElement, scrollContainer };
+    }
+
+    it("shows the button only once the page is scrolled well down", () => {
+        expect(renderPage(100).button.hidden).toBe(true);
+        setupBackToTop();
+        expect(document.getElementById("back-to-top")!.hidden).toBe(true);
+
+        renderPage(800);
+        setupBackToTop();
+        expect(document.getElementById("back-to-top")!.hidden).toBe(false);
+    });
+
+    it("moves focus to the main content, since the button hides itself on the way up", () => {
+        const { button } = renderPage(800);
+        setupBackToTop();
+        button.focus();
+
+        button.click();
+
+        expect(button.hidden).toBe(true);
+        expect(document.activeElement).toBe(document.getElementById("main"));
     });
 });

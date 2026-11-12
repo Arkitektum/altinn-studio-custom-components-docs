@@ -665,6 +665,9 @@ export function setupThemeToggle() {
  * scrolls the content back to the top on click. Scrolling defers to the
  * container's CSS scroll-behavior, so it respects reduced-motion preferences.
  *
+ * The button hides itself on the way up, so a click moves focus to the main
+ * content, where the next Tab starts from the top of the page.
+ *
  * No-ops when the button or scroll container is unavailable.
  *
  * @returns {void}
@@ -682,6 +685,7 @@ export function setupBackToTop() {
     toggleVisibility();
     scrollContainer.addEventListener("scroll", toggleVisibility, { passive: true });
     button.addEventListener("click", () => {
+        document.getElementById("main")?.focus({ preventScroll: true });
         scrollContainer.scrollTo({ top: 0 });
     });
 }

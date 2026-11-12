@@ -274,6 +274,10 @@ function renderGroupField(label: string, value: unknown, path: DataPath, onChang
     fieldsetElement.classList.add("playground-group");
     fieldsetElement.disabled = startEmpty;
 
+    // Named by its label alone. Taken from the legend, the name would also hold the Tom checkbox and the Fjern button
+    // that sit in it.
+    fieldsetElement.setAttribute("aria-label", label);
+
     const legendElement = document.createElement("legend");
     const legendTextElement = renderName(label);
     legendTextElement.classList.add("playground-group-name");
@@ -284,6 +288,8 @@ function renderGroupField(label: string, value: unknown, path: DataPath, onChang
     const emptyCheckboxElement = document.createElement("input");
     emptyCheckboxElement.type = "checkbox";
     emptyCheckboxElement.checked = startEmpty;
+    // Every group has one, so each says which group it empties, the way the add and remove buttons do.
+    emptyCheckboxElement.setAttribute("aria-label", `Tom ${label}`);
     emptyCheckboxElement.addEventListener("change", () => {
         fieldsetElement.disabled = emptyCheckboxElement.checked;
         onChange(path, emptyCheckboxElement.checked ? null : currentValue);

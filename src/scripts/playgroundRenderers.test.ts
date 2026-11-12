@@ -183,6 +183,21 @@ describe("renderPlaygroundFields", () => {
 });
 
 describe("the Tom checkbox", () => {
+    it("names each group by its label, without the controls in its legend", () => {
+        const { fields } = renderRecorded();
+
+        expect(groupNamed(fields, "tiltakstyper").getAttribute("aria-label")).toBe("tiltakstyper");
+        expect(groupNamed(fields, "Element 1").getAttribute("aria-label")).toBe("Element 1");
+    });
+
+    it("says which group each checkbox empties", () => {
+        const { fields } = renderRecorded();
+        const checkboxOf = (name: string) => groupNamed(fields, name).querySelector(":scope > legend .playground-empty-toggle input")!;
+
+        expect(checkboxOf("tiltakstyper").getAttribute("aria-label")).toBe("Tom tiltakstyper");
+        expect(checkboxOf("Element 1").getAttribute("aria-label")).toBe("Tom Element 1");
+    });
+
     it("sets a group to no value and disables the fields in it, but not itself", () => {
         const { fields, changes } = renderRecorded();
         const group = groupNamed(fields, "Element 1");

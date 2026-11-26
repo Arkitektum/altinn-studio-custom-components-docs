@@ -1,107 +1,54 @@
 # Contributing
 
-Thanks for contributing to `altinn-studio-custom-components-docs`, the documentation site and component gallery for [`@arkitektum/altinn-studio-custom-components`](https://github.com/Arkitektum/altinn-studio-custom-components).
+Set up and run the site as described in the [README](./README.md). For how the site is built and rendered, see [ARCHITECTURE.md](./ARCHITECTURE.md).
 
-For an overview of how the site is built and rendered, read [ARCHITECTURE.md](./ARCHITECTURE.md) first.
+## Commands
 
----
-
-## Prerequisites
-
-- **Node.js 24**
-- **Yarn 4**, managed via [Corepack](https://nodejs.org/api/corepack.html). Enable it once:
-
-    ```bash
-    corepack enable
-    ```
-
-    The correct Yarn version is then activated automatically from the `packageManager` field in `package.json`.
-
----
-
-## Getting started
-
-1. **Clone and install**
-
-    ```bash
-    git clone https://github.com/Arkitektum/altinn-studio-custom-components-docs.git
-    cd altinn-studio-custom-components-docs
-    yarn install
-    ```
-
-2. **Start the dev server**
-
-    ```bash
-    yarn start
-    ```
-
-    Open <http://localhost:9000>.
-    The page renders every component example with live previews and reloads on change.
-
----
-
-## Everyday commands
-
-| Command             | What it does                                                                  |
-| ------------------- | ----------------------------------------------------------------------------- |
-| `yarn start`        | Webpack dev server (port `9000`).                                             |
-| `yarn build`        | Production build into `docs/` (git-ignored; published to GitHub Pages by CI). |
-| `yarn lint`         | Lint the source (ESLint flat config in `eslint.config.mjs`).                  |
-| `yarn format:check` | Check formatting with Prettier.                                               |
-| `yarn typecheck`    | Type-check with `tsc --noEmit`.                                               |
-| `yarn test`         | Run the Jest tests.                                                           |
-
-The Build workflow runs lint, the format check, the typecheck, the tests and the build on every pull request, and Deploy runs the same before publishing.
-
----
+| Command             | What it does                                              |
+| ------------------- | --------------------------------------------------------- |
+| `yarn start`        | Webpack dev server on port `9000`.                        |
+| `yarn build`        | Production build into `docs/`.                            |
+| `yarn lint`         | Lint with ESLint (flat config in `eslint.config.mjs`).    |
+| `yarn format`       | Format with Prettier.                                     |
+| `yarn format:check` | Check formatting with Prettier.                           |
+| `yarn typecheck`    | Type-check with `tsc --noEmit`.                           |
+| `yarn test`         | Run the Jest tests, including the checks on the examples. |
 
 ## Adding or updating a component example
 
-1. **Add an example module** under `src/components/<type>/<component-tag-name>.ts` that exports a `markup` object: the component's `tagName` plus the attributes / `dataModelBindings` / `resourceBindings` that drive the demo. Follow an existing file in the same folder as a template, keeping its `satisfies ComponentMarkup` and `satisfies ComponentExample`, which are what type-check the example. Webpack would also pick up a `.js` file, but it would skip those checks.
+1. Add an example module under `src/components/<type>/<component-tag-name>.ts` that exports a `markup` object: the component's `tagName` plus the attributes, `dataModelBindings` and `resourceBindings` that drive the demo. Use an existing file in the same folder as a template and keep its `satisfies ComponentMarkup` and `satisfies ComponentExample`, which type-check the example.
 
-2. **Register it** by importing the new module in `src/components/index.ts` (grouped under the right type).
+2. Register it by importing the new module in `src/components/index.ts`, under the right type.
 
-3. **Add supporting data** if the example needs it:
-    - example form data in `src/data/dataModels.ts`,
-    - text-resource values in `src/data/textResources.ts`.
+3. Add supporting data if the example needs it: form data in `src/data/dataModels.ts`, text-resource values in `src/data/textResources.ts`. Use synthetic example data only, never real or personal data.
 
-    Use synthetic/example data only, never real or personal data.
-
-4. **Check what the "Prøv selv" panel offers for it.**
-   The panel builds its fields from the example itself, so the example decides what a reader can try:
+4. Check what the "Prøv selv" panel offers for it. The panel builds its fields from the example, so the example decides what a reader can try:
     - It offers a markup flag (`size`, `hideTitle`, `hideIfEmpty`, `inline`, `hideOrgNr`, `enableLinks`) only if the markup sets it. Set a flag the component reads, to its default if need be, to make it adjustable.
     - It picks each field by the type of the example value. Give values their real type rather than null, or the panel can only offer a text field.
-    - It adds list items by copying one, so give a list at least one item, or the panel has nothing to copy.
+    - It adds list items by copying one, so give a list at least one item.
 
-5. **Name it.**
-   Give the component its display name in `src/constants/componentNames.ts`, or the sidebar shows its tag name. If you introduce a new component type, add that type's display name to `src/constants/componentTypeNames.ts`.
+5. Name it in `src/constants/componentNames.ts`, or the sidebar shows its tag name. A new component type also needs a display name in `src/constants/componentTypeNames.ts`.
 
-6. **Verify** with `yarn start` that the example renders and its markup displays correctly, and open its "Prøv selv" panel to check the fields make sense.
+6. Run `yarn test`. The tests in `src/components/` check that:
+    - every component the package ships (`customElementTagNames` from the utils package) has an example, or is listed with its reason in `src/components/componentsWithoutExamples.ts`,
+    - each example binds exactly the `dataModelBindings` keys its component reads, as listed in the components package's `dataModelBindingKeys.json`,
+    - every `resource.` id an example names exists in `src/data/textResources.ts` or in the components package's `resource.nb.json`.
 
-> The site renders the **published** components package.
-> To document a component or change that isn't released yet, bump `@arkitektum/altinn-studio-custom-components` (and `-utils` if needed) to the target version first.
+7. Verify with `yarn start` that the example renders, and open its "Prøv selv" panel to check the fields make sense.
 
----
+The site renders the published components package. To document a component or change that is not released yet, bump `@arkitektum/altinn-studio-custom-components` (and `-utils` if needed) to the target version first.
 
 ## Coding conventions
 
-- **ES modules** throughout.
-- **JSDoc** on exported functions.
-- **Formatting & linting** via Prettier (`.prettierrc`) and ESLint (`eslint.config.mjs`).
+- ES modules throughout.
+- JSDoc on exported functions.
+- Formatting and linting via Prettier (`.prettierrc`) and ESLint (`eslint.config.mjs`).
 - Keep example modules declarative: just the `markup` and supporting data.
-
----
 
 ## Pull requests
 
 1. Branch off `main`.
-2. Keep changes focused and lint-clean.
-3. Run `yarn build` and verify the gallery renders.
-4. Open a PR against `main`. The Build workflow (lint, format, typecheck, tests and a build) must be green before merge.
+2. Keep changes focused.
+3. Open a PR against `main`. The Build workflow (lint, format check, typecheck, tests and build) must be green before merge.
 
----
-
-## Publishing the site
-
-The live site is built and published to **GitHub Pages by the `Deploy` GitHub Actions workflow** on every push to `main`.
-There is no need to build or commit `docs/`: merging to `main` updates <https://arkitektum.github.io/altinn-studio-custom-components-docs/> automatically.
+Merging to `main` publishes the site.
